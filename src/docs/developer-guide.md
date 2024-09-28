@@ -11,7 +11,7 @@ lastUpdated: 2023-04-21
 3. Getting Started
 4. Project Structure
 5. Development Workflow
-6. Coding Standards
+6. Coding Standards and UI Components
 7. State Management
    7.1 Using Zustand in Components
    7.2 Zustand and Next.js Integration
@@ -60,12 +60,61 @@ Our project uses Next.js with TypeScript. Here's an overview of the key director
 
 For current tasks, priorities, and project progress, please refer to the [Todo List](./todo.md). This document is regularly updated to reflect the current state of development.
 
-## 6. Coding Standards
+## 6. Coding Standards and UI Components
 
 - Use TypeScript for type safety
 - Follow ESLint rules for code style
 - Write meaningful commit messages
 - Update the changelog for significant changes (see CHANGELOG.md in the project root)
+
+### 6.1 UI Components with shadcn/ui
+
+We use shadcn/ui for our UI components. This is not a component library that you install as a dependency, but rather a collection of reusable components that you copy and paste into your project.
+
+#### Key points about shadcn/ui:
+
+1. It's not installed as a package, but components are added to your project as needed.
+2. It uses Tailwind CSS for styling, which aligns with our existing setup.
+3. Components are fully customizable as they live in your project.
+4. It provides excellent accessibility out of the box.
+
+#### Adding components:
+
+To add a shadcn/ui component to the project:
+
+1. Use the shadcn/ui CLI:
+   ```
+   npx shadcn-ui@latest add [component-name]
+   ```
+   For example, to add a button component:
+   ```
+   npx shadcn-ui@latest add button
+   ```
+
+2. The component will be added to your `components/ui` directory.
+
+3. You can now import and use the component in your pages or other components:
+   ```tsx
+   import { Button } from "@/components/ui/button"
+   
+   export default function Page() {
+     return (
+       <Button>Click me</Button>
+     )
+   }
+   ```
+
+#### Customization:
+
+You can customize the components by editing the files in your `components/ui` directory. This allows for easy theming and modification to fit our specific needs.
+
+#### Best Practices:
+
+- Use shadcn/ui components as a starting point, customizing them as needed for our game's specific requirements.
+- Maintain consistency by using these components throughout the project where applicable.
+- When adding new UI elements, check if a shadcn/ui component exists before creating a custom one from scratch.
+
+For more information and a full list of available components, refer to the [shadcn/ui documentation](https://ui.shadcn.com/docs).
 
 ## 7. State Management
 
@@ -234,7 +283,52 @@ When adding new features, consider:
 
 ## 9. Data Storage
 
-We use YAML and Markdown with front matter for data storage. These files are stored in the `/data` directory and parsed using the utility function in `src/utils/dataParser.ts`.
+Our project uses a combination of file-based storage and Vercel Postgres with Prisma ORM for data management:
+
+### File-based Storage
+- YAML and Markdown files with front matter are used for static content and configuration.
+- These files are stored in the `/data` directory and parsed using the utility function (to be written).
+- Ideal for content that doesn't change frequently, such as game rules, character descriptions, or level layouts.
+
+### Vercel Postgres with Prisma ORM
+We use Vercel Postgres with Prisma ORM for storing and managing dynamic game data, user information, and other structured data that requires frequent updates or complex queries.
+
+#### Setting up Prisma with Vercel Postgres
+1. Install Prisma:
+   ```
+   npm install prisma --save-dev
+   ```
+2. Initialize Prisma in your project:
+   ```
+   npx prisma init
+   ```
+3. Configure your `schema.prisma` file with your Vercel Postgres connection string.
+4. Define your data models in the `schema.prisma` file.
+5. Generate Prisma Client:
+   ```
+   npx prisma generate
+   ```
+
+#### Using Prisma in your code
+Here's an example of how to use Prisma in an API route:
+
+```typescript
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+export default async function handler(req, res) {
+  const users = await prisma.user.findMany()
+  res.status(200).json(users)
+}
+```
+
+#### Best Practices
+- Use Prisma migrations for managing database schema changes.
+- Leverage Prisma's type-safe queries for better developer experience and fewer runtime errors.
+- Use Prisma Studio for visualizing and editing your data during development.
+
+For more information on using Prisma with Vercel Postgres, refer to the [Prisma documentation](https://www.prisma.io/docs) and [Vercel Postgres documentation](https://vercel.com/docs/storage/vercel-postgres).
 
 ## 10. Version Control and Changelog Management
 
@@ -293,7 +387,26 @@ To create a new release:
 
 ## 12. Deployment
 
-(Deployment will be handled through Vercel. Specific instructions to be added when available.)
+Our project is now integrated with Vercel for automatic deployments.
+
+### Deployment Process
+
+1. Every push to the main branch on GitHub triggers a new deployment on Vercel.
+2. Vercel automatically builds and deploys the project.
+3. You can view deployment logs and status in the Vercel dashboard.
+
+### Accessing the Deployed Application
+
+- The latest version of the main branch is always available at our project's Vercel URL.
+- Each pull request gets its own preview deployment for easy testing and review.
+
+### Best Practices
+
+- Always test your changes locally before pushing to GitHub.
+- Review the Vercel deployment logs for any build or runtime errors.
+- Use Vercel's preview deployments to test and share new features before merging to main.
+
+For more detailed information on Vercel deployments, refer to the [Vercel Documentation](https://vercel.com/docs).
 
 ## 13. Contributing
 

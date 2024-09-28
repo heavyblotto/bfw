@@ -8,7 +8,7 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-- Set up the project structure and development environment.
+- Set up the project structure and development environment. in progress
 
 ## Hit List
 1. Create initial data files (YAML and Markdown). - in progress

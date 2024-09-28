@@ -50,7 +50,7 @@
 
 # Documentation
 - rule: "Update documentation in src/docs"
-  description: "Keep design.md, developer-guide.md, and todo.md up to date"
+  description: "Keep technical-design.md, developer-guide.md, and todo.md up to date"
 
 # Version control
 - rule: "Write meaningful commit messages"

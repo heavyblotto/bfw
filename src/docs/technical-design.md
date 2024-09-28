@@ -23,6 +23,7 @@ This document outlines the initial design and architecture decisions for a singl
 ### Additional Tools and Libraries
 - Linting: ESLint
 - Formatting: Prettier
+- Shadcn: UI components
 - API Routes: Next.js built-in API routes
 - Image Optimization: Next.js Image component
 - SEO: Next.js Head component and dynamic metadata
@@ -30,7 +31,15 @@ This document outlines the initial design and architecture decisions for a singl
 ## Data Management
 - Character data, level descriptions, and game mechanics stored in YAML files.
 - Longer descriptions and narratives stored in Markdown files with YAML front matter.
+- Vercel Postgres used for storing dynamic game data, user information, and other structured data that requires frequent updates or complex queries.
+- Prisma ORM used as an interface for database operations and schema management with Vercel Postgres.
 - Data accessed and served through Next.js API routes.
+- File-based data (YAML and Markdown) used for static content and configuration.
+- Vercel Postgres used for:
+  - User profiles and authentication data
+  - Game state and progress
+  - Leaderboards and statistics
+  - Any other data requiring relational database capabilities
 
 ## Routing and Navigation
 - Page-based routing using Next.js file-system based routing.
@@ -70,7 +79,10 @@ This document outlines the initial design and architecture decisions for a singl
 
 ## Deployment and CI/CD
 - Vercel for hosting and automatic deployments.
-- GitHub Actions for additional CI/CD processes (if needed).
+  - Integrated with our GitHub repository for continuous deployment.
+  - Automatic deployments triggered on pushes to the main branch.
+  - Preview deployments for pull requests.
+- GitHub Actions for additional CI/CD processes (if needed in the future).
 
 ## Security Considerations
 - CSRF protection.
