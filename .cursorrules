@@ -1,0 +1,75 @@
+# Cursor AI rules for Next.js game project
+
+# General rules
+- rule: "Use TypeScript for all new files"
+  description: "Ensure type safety throughout the project"
+
+- rule: "Follow ESLint rules"
+  description: "Maintain consistent code style"
+
+# Next.js specific rules
+- rule: "Use Next.js file-system based routing"
+  description: "Create pages in the src/pages directory"
+
+- rule: "Implement API routes in src/pages/api"
+  description: "Use Next.js API routes for backend functionality"
+
+# Game-specific rules
+- rule: "Store game data in YAML and Markdown files"
+  description: "Use src/data directory for YAML and Markdown files"
+
+- rule: "Parse data files using src/utils/dataParser.ts"
+  description: "Utilize the custom data parser for YAML and Markdown files"
+
+# Component rules
+- rule: "Create reusable components in src/components"
+  description: "Keep components modular and reusable"
+
+- rule: "Use React hooks for state management"
+  description: "Prefer hooks over class components"
+
+# State management
+- rule: "Use React Context API for global state"
+  description: "Implement game state using Context API"
+
+# Authentication
+- rule: "Implement authentication with NextAuth.js"
+  description: "Set up authentication in src/pages/api/auth"
+
+# Testing
+- rule: "Write tests using Jest and React Testing Library"
+  description: "Place test files adjacent to the components they test"
+
+# Performance
+- rule: "Optimize images using Next.js Image component"
+  description: "Use next/image for efficient image loading"
+
+# Styling
+- rule: "Use Tailwind CSS for styling"
+  description: "Apply Tailwind classes in components"
+
+# Documentation
+- rule: "Update documentation in src/docs"
+  description: "Keep design.md, developer-guide.md, and todo.md up to date"
+
+# Version control
+- rule: "Write meaningful commit messages"
+  description: "Follow conventional commit format for standard-version compatibility"
+
+- rule: "Use standard-version for releases"
+  description: "Run npm run release to update version, generate changelog, and create git tag"
+
+# Changelog management
+- rule: "Update CHANGELOG.md using standard-version"
+  description: "Do not manually edit CHANGELOG.md, use standard-version instead"
+
+- rule: "Review generated changelog before pushing"
+  description: "Ensure all important changes are documented correctly in CHANGELOG.md"
+
+# Security
+- rule: "Implement API rate limiting"
+  description: "Protect API routes from abuse"
+
+# Deployment
+- rule: "Prepare for deployment on Vercel"
+  description: "Ensure compatibility with Vercel hosting"
