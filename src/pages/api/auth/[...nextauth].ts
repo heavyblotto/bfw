@@ -1,12 +1,21 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions, User as NextAuthUser } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import bcrypt from "bcrypt"
 import prisma from "../../../lib/prismadb"
 
-export default NextAuth({
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_SECRET,
+interface User extends NextAuthUser {
+  id: string
+  username: string | null  // Change this line
+  email?: string | null
+}
+
+declare module "next-auth" {
+  interface Session {
+    user: User
+  }
+}
+
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -28,28 +37,30 @@ export default NextAuth({
         if (!isPasswordValid) {
           return null
         }
-        return { id: user.id.toString(), name: user.username, email: user.email }
+        return { id: user.id.toString(), name: user.username, email: user.email, username: user.username }
       }
     })
   ],
-  session: {
-    strategy: "jwt"
-  },
-  pages: {
-    signIn: "/login"
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
+        token.id = user.id;
+        token.username = user.username;
       }
-      return token
+      return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string
+        session.user.id = token.id as string;
+        session.user.username = token.username as string | null;  // This line is now correct
       }
-      return session
+      return session;
     }
-  }
-})
+  },
+  pages: {
+    signIn: '/login',
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+}
+
+export default NextAuth(authOptions)

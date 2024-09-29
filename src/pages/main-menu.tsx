@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { useState } from 'react'
 import { Trophy } from 'lucide-react'
+import UpdateUserForm from '@/components/UpdateUserForm'
 
 // Dummy data for the current Bigfoot (replace with actual data fetching later)
 const currentBigfoot = {
@@ -80,13 +81,7 @@ const settings = {
   notifications: true,
 }
 
-// Update the accountSettings dummy data
-const accountSettings = {
-  email: "player@example.com",
-  username: "BigfootHunter",
-  accountCreated: "2024-01-15",
-  lastLogin: "2024-03-20",
-}
+// Remove the accountSettings variable declaration
 
 // Add this dummy data for the leaderboard
 const leaderboardData = [
@@ -333,41 +328,16 @@ export default function MainMenu() {
               </Button>
             </div>
 
-            {/* Account Section */}
+            {/* Account Section with UpdateUserForm component */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
               <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Account</h3>
-              <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
-                <div>
-                  <p className="font-bold">Username:</p>
-                  <p>{accountSettings.username}</p>
-                </div>
-                <div>
-                  <p className="font-bold">Email:</p>
-                  <p>{accountSettings.email}</p>
-                </div>
-                <div>
-                  <p className="font-bold">Account Created:</p>
-                  <p>{accountSettings.accountCreated}</p>
-                </div>
-                <div>
-                  <p className="font-bold">Last Login:</p>
-                  <p>{accountSettings.lastLogin}</p>
-                </div>
-              </div>
-              <div className="mt-4 space-y-2">
-                <Button className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                  Update Email
-                </Button>
-                <Button className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                  Change Password
-                </Button>
-                <Button 
-                  className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
-                  onClick={() => signOut()}
-                >
-                  Logout
-                </Button>
-              </div>
+              <UpdateUserForm />
+              <Button 
+                className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
+                onClick={() => signOut()}
+              >
+                Logout
+              </Button>
             </div>
           </div>
           
