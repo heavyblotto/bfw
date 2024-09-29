@@ -45,8 +45,8 @@ export default function LoginForm() {
           <form onSubmit={handleSubmit}>
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email" className="text-stone-300 font-pixel">Email</Label>
-                <Input id="email" type="email" placeholder="Enter your email" required className="bg-stone-700 text-stone-200 border-stone-600" />
+                <Label htmlFor="username" className="text-stone-300 font-pixel">Username</Label>
+                <Input id="username" type="text" placeholder="Enter your username" required className="bg-stone-700 text-stone-200 border-stone-600" />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password" className="text-stone-300 font-pixel">Password</Label>

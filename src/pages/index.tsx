@@ -23,10 +23,13 @@ export default function SplashPage() {
           />
         </div>
         {/* Overlay to darken the background */}
-        <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+        <div className="absolute inset-0 bg-black opacity-70 z-10"></div>
         {/* Content */}
         <Card className="w-full max-w-4xl bg-stone-800/80 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20 backdrop-blur-sm">
           <CardHeader className="text-center p-0">
+            <h1 className="text-6xl font-bold mb-4 text-amber-400 font-pixel relative z-10 transform -rotate-2 skew-x-2 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+              Bigfoot War!
+            </h1>
             <div className="relative w-full h-48 mb-6">
               <Image
                 src="/images/bigfoot-war-logo.png"
@@ -36,9 +39,8 @@ export default function SplashPage() {
                 priority
               />
             </div>
-            <CardTitle className="text-4xl font-bold mb-2 text-amber-400 font-pixel">Welcome to Bigfoot War</CardTitle>
             <p className="text-xl font-pixel">
-              Battle AI opponents in this thrilling card game featuring mythical Bigfoot creatures!
+              Battle opponents in this fast-paced card game featuring mythical Bigfoot creatures!
             </p>
           </CardHeader>
           <CardContent className="text-center">
@@ -68,7 +70,12 @@ export default function SplashPage() {
             </Card>
           </CardContent>
           <CardFooter className="text-center text-xs font-pixel text-stone-400">
-            © 2024 Bigfoot War. All rights reserved.
+            <div className="w-full flex justify-between items-center">
+              <span>© 2024 Bigfoot War. All rights reserved.</span>
+              <Link href="/release-notes" className="text-amber-400 hover:text-amber-300">
+                Release Notes
+              </Link>
+            </div>
           </CardFooter>
         </Card>
       </div>
