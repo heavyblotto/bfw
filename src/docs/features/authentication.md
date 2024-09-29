@@ -102,15 +102,14 @@ The authentication system is deployed as part of the overall application on Verc
 
 7. Integrate authentication with existing pages
    - ✅ Update main menu page to use authentication state and implement logout
-   - Update splash page to show login/register buttons or user info
-   - Create a user profile page
+   - ✅ Update splash page to show login/register buttons or user info
 
 8. Implement error handling and validation
-   - Add form validation to SignIn and Register components
-   - Implement error messages for failed authentication attempts
+   - ✅ Add form validation to SignIn and Register components
+   - ✅ Implement error messages for failed authentication attempts
 
 9. Test authentication flow
-   - Manual testing of registration, login, update, and delete processes
+   - ✅ Manual testing of registration, login, update, and delete processes
    - Write unit tests for authentication components and API routes
 
 10. Implement security measures
