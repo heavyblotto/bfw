@@ -8,7 +8,10 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-1. Implement and Style Main Menu page
+1. Complete implementation and styling of Main Menu page
+   - Finalize layout and design
+   - Implement remaining components (e.g., Bigfoot Selection, Match Selection)
+   - Integrate with game state management
 
 ## Menu (Main Menu) Page
 - **Components**:
@@ -70,4 +73,8 @@ priority: High
 - Create initial documentation (developer guide, design document, todo list).
 - Set up image optimization using Next.js Image component.
 - Set up authentication with NextAuth.js.
-- Set up the project structure and development environment. in progress
+- Implement full authentication system including registration, login, account management, and protected routes.
+- Integrate authentication with main menu and splash pages.
+- Implement error handling and validation for authentication forms.
+- Set up Vercel Postgres for user data storage and management.
+- Configure environment variables for production security.

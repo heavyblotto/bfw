@@ -26,14 +26,16 @@
     - **Level**
     - **XP display**
     - **Gold display**
+    - **Points display**
     - **Inventory display**
     - **Match Log**: Shows the Player's match history
     - **Trending Stats**: Shows the top stats for the Player's Bigfoot character
     - **Achievements**: Shows the Player's achievements
+    - **Leaderboard**: Button to access the Leaderboard page
     - **Account**: Button to manage the Player's Profile and Account Settings
   - **Bigfoot Selection**: Based on the Player's Level, they can choose from available Bigfoot characters to represent them in the game.
     - The selected Bigfoot character is the **Player Bigfoot**.
-    - At **Level 1**, the Player’s Bigfoot is **Sasquatch**.
+    - At **Level 1**, the Player's Bigfoot is **Sasquatch**.
     - Higher levels unlock additional Bigfoot characters (e.g., Yeti, Skunk Ape, etc.).
   - **Match Selection**: Select from available Opponents to play, based on Player's level. Matches take place in the **Arena**.
     - Matches are displayed in a linear map (see below).
@@ -116,6 +118,73 @@ Once they select a Match in, Players are taken to the **Arena** page, where they
   - **User Journey**:
   1. The Player can view the current settings for the game.
   2. The Player can change the settings for the game.
+
+### Leaderboard System
+
+The Leaderboard System provides a competitive aspect to Bigfoot War, allowing players to compare their performance with others on various metrics.
+
+#### Types of Leaderboards
+
+1. **Global Leaderboard**:
+   - Ranks all players based on their total points.
+   - Updated in real-time as players earn or lose points.
+   - Displays the top 100 players.
+
+2. **Friend Leaderboard**:
+   - Shows the ranking of the player and their friends.
+   - Encourages friendly competition and social interaction.
+
+3. **Seasonal Leaderboard**:
+   - Resets at the beginning of each season (e.g., monthly).
+   - Provides a fresh start for competition regularly.
+   - Offers special rewards for top performers at the end of each season.
+
+4. **Bigfoot-specific Leaderboards**:
+   - Separate leaderboards for each Bigfoot character.
+   - Ranks players based on their performance with specific Bigfoots.
+
+5. **Achievement Leaderboard**:
+   - Ranks players based on the number and difficulty of achievements completed.
+
+#### Leaderboard Components
+
+Each leaderboard entry typically includes:
+- Player's rank
+- Player's username
+- Player's Bigfoot avatar
+- Player's level
+- Player's total points (or relevant metric for the specific leaderboard)
+- Change in rank since last update (e.g., up or down arrows)
+
+#### Leaderboard Page
+
+The Leaderboard page accessible from the Main Menu includes:
+- Tabs to switch between different leaderboard types
+- Search function to find specific players
+- Filters (e.g., by region, level range)
+- The player's current rank and nearby competitors
+- Option to view detailed stats for each player on the leaderboard
+
+#### Leaderboard Updates
+
+- Global and Friend Leaderboards update in real-time.
+- Seasonal Leaderboards update daily to prevent constant fluctuations.
+- Players receive notifications when they achieve a significant rank improvement.
+
+#### Leaderboard Rewards
+
+1. **Seasonal Rewards**:
+   - Top players on the Seasonal Leaderboard receive exclusive rewards.
+   - Rewards may include special Bigfoot skins, titles, or in-game currency.
+
+2. **Achievement Milestones**:
+   - Players earn rewards for reaching certain ranks on the Global Leaderboard.
+   - Milestones might be set at ranks like 1000, 500, 100, 50, 10, and 1.
+
+3. **Bigfoot-specific Rewards**:
+   - Top players on each Bigfoot-specific leaderboard receive character-specific rewards.
+
+The Leaderboard System adds a competitive element to Bigfoot War, encouraging players to improve their skills and engage with the game regularly. It also provides additional goals for players to strive for beyond individual match victories.
 
 ## Game Logic
 
@@ -367,8 +436,9 @@ Each Bigfoot character unlocks special abilities as the Player levels up. Some e
 Players will have specific properties that affect gameplay:
 1. **Experience Points (XP)**: Players earn XP by winning rounds and battles. Accumulating XP allows the Player to level up and unlock new Bigfoot characters.
 2. **Level**: Player levels are tied to the number of games won and experience points earned. Higher levels unlock more Bigfoots and abilities.
+3. **Points**: Players earn points through various gameplay actions and achievements. Points contribute to leaderboards and can be used for special rewards.
 4. **Bigfoot Selection**: As Players progress, they unlock more powerful Bigfoots with unique stats and abilities.
-6. **Win Pile Management**: Players must strategically decide when to collect cards into their win pile and when to risk attacking.
+5. **Win Pile Management**: Players must strategically decide when to collect cards into their win pile and when to risk attacking.
 
 ### Bigfoot Character Properties for Gameplay
 - **Name**: The name of the Bigfoot character (e.g. Sasquatch, Skunk Ape, Yowie, Yeti, Orang Mawas, etc.)
@@ -392,6 +462,54 @@ Players will have specific properties that affect gameplay:
     - **Dwarf**: high
     - **Squatch**: medium
     - **Giant**: low
+
+### Points System
+
+The Points System adds an additional layer of progression and competition to Bigfoot War. Points are separate from XP and Gold, serving as a measure of overall player achievement and skill.
+
+#### Earning Points
+Players can earn points through various actions and achievements:
+
+1. **Gameplay Actions**:
+   - Winning a round: 1 point
+   - Winning a War scenario: 3 points
+   - Winning a match: 10 points
+   - Knockout victory: 15 points
+   - Successfully attacking the opponent: 2 points
+   - Collecting cards: 1 point per card collected
+
+2. **Achievements**:
+   - Unlocking a new Bigfoot character: 50 points
+   - Reaching a new player level: 25 points
+   - Winning streak bonuses: 5 points for every consecutive win (resets on loss)
+   - Completing daily challenges: 10-30 points depending on difficulty
+
+3. **Special Events**:
+   - Participating in seasonal events: 20 points
+   - Ranking in top positions during events: 50-100 points
+
+#### Using Points
+Points serve multiple purposes in the game:
+
+1. **Leaderboards**: Players' total points contribute to their position on global and friend leaderboards.
+
+2. **Seasonal Rewards**: At the end of each season (e.g., monthly), players receive rewards based on their point totals.
+
+3. **Exclusive Content**: Certain cosmetic items or special Bigfoot variants may be unlocked by reaching specific point thresholds.
+
+4. **Matchmaking**: Points can be used as a factor in matchmaking to ensure fair and competitive matches.
+
+#### Point Decay
+To encourage continued play and maintain competitive leaderboards:
+
+- A small percentage of points (e.g., 5%) decay each week.
+- Points earned from achievements and special events are exempt from decay.
+
+#### Displaying Points
+- The player's current point total is displayed prominently on their profile and the main menu.
+- A breakdown of points earned is available in the player's match history and achievement log.
+
+This Points System adds an extra dimension to player progression and provides additional goals for players to strive for beyond just leveling up and earning Gold.
 
 ## Terminology
 

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { useState } from 'react'
+import { Trophy } from 'lucide-react'
 
 // Dummy data for the current Bigfoot (replace with actual data fetching later)
 const currentBigfoot = {
@@ -79,13 +80,22 @@ const settings = {
   notifications: true,
 }
 
-// Dummy data for account settings (replace with actual data fetching later)
+// Update the accountSettings dummy data
 const accountSettings = {
   email: "player@example.com",
   username: "BigfootHunter",
   accountCreated: "2024-01-15",
   lastLogin: "2024-03-20",
 }
+
+// Add this dummy data for the leaderboard
+const leaderboardData = [
+  { rank: 1, name: "BigfootHunter", score: 10000 },
+  { rank: 2, name: "SasquatchSeeker", score: 9500 },
+  { rank: 3, name: "YetiYeller", score: 9000 },
+  { rank: 4, name: "CryptoTracker", score: 8500 },
+  { rank: 5, name: "WildWanderer", score: 8000 },
+]
 
 export default function MainMenu() {
   const { data: session, status } = useSession()
@@ -136,16 +146,7 @@ export default function MainMenu() {
               </div>
             </div>
 
-            {/* Username display with New Game CTA */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h2 className="text-2xl font-bold text-amber-400 font-pixel mb-4">{username}</h2>
-              <Button 
-                asChild 
-                className="w-full bg-red-600 hover:bg-red-500 text-stone-200 border-2 border-stone-400 font-pixel text-base sm:text-lg px-4 sm:px-6 py-2 sm:py-3 whitespace-nowrap animate-pulse"
-              >
-                <Link href="/arena">New Game</Link>
-              </Button>
-            </div>
+            {/* Remove the username display section */}
 
             {/* Current Bigfoot Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
@@ -170,11 +171,14 @@ export default function MainMenu() {
                 <p>Luck: {currentBigfoot.luck}</p>
               </div>
               <div className="mt-4 flex gap-2">
-                <Button asChild className="flex-1 bg-green-700 hover:bg-green-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+                <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                   <Link href="/bigfoot-selection">Select New Bigfoot</Link>
                 </Button>
-                <Button asChild className="flex-1 bg-blue-700 hover:bg-blue-600 text-stone-200 border border-stone-400 font-pixel text-xs">
-                  <Link href="/bigfoot-details">Bigfoot Details</Link>
+                <Button 
+                  asChild 
+                  className="flex-1 bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 whitespace-nowrap"
+                >
+                  <Link href="/arena">Start New Game</Link>
                 </Button>
               </div>
             </div>
@@ -187,10 +191,10 @@ export default function MainMenu() {
                 <p>XP: 1250 / 2000</p>
                 <p>Gold: 500</p>
                 <div className="col-span-2 flex gap-2">
-                  <Button asChild className="flex-1 bg-green-700 hover:bg-green-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                     <Link href="/inventory">View Inventory</Link>
                   </Button>
-                  <Button asChild className="flex-1 bg-blue-700 hover:bg-blue-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                     <Link href="/shop">Shop</Link>
                   </Button>
                 </div>
@@ -208,7 +212,7 @@ export default function MainMenu() {
                 <h4 className="font-bold">Next to Unlock:</h4>
                 <p>{nextAchievement.title} - {nextAchievement.description}</p>
               </div>
-              <Button asChild className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                 <Link href="/achievements">View All Achievements</Link>
               </Button>
             </div>
@@ -237,7 +241,7 @@ export default function MainMenu() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="w-full mt-4 bg-green-700 hover:bg-green-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                 <Link href="/match-log">View Full Match Log</Link>
               </Button>
             </div>
@@ -271,8 +275,38 @@ export default function MainMenu() {
                   <p>{trendingStats.highestWinStreak}</p>
                 </div>
               </div>
-              <Button asChild className="w-full mt-4 bg-blue-700 hover:bg-blue-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                 <Link href="/stats">View Full Stats</Link>
+              </Button>
+            </div>
+
+            {/* Leaderboard Section */}
+            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
+              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4 flex items-center">
+                <Trophy className="mr-2" /> Leaderboard
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-stone-200 font-pixel">
+                  <thead>
+                    <tr className="border-b border-stone-600">
+                      <th className="py-2 text-left">Rank</th>
+                      <th className="py-2 text-left">Name</th>
+                      <th className="py-2 text-right">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {leaderboardData.map((player) => (
+                      <tr key={player.rank} className="border-b border-stone-700">
+                        <td className="py-2">{player.rank}</td>
+                        <td className="py-2">{player.name}</td>
+                        <td className="py-2 text-right">{player.score}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+                <Link href="/leaderboard">View Full Leaderboard</Link>
               </Button>
             </div>
 
@@ -297,7 +331,7 @@ export default function MainMenu() {
                   <p>{settings.notifications ? "On" : "Off"}</p>
                 </div>
               </div>
-              <Button asChild className="w-full mt-4 bg-purple-700 hover:bg-purple-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                 <Link href="/settings">Adjust Settings</Link>
               </Button>
             </div>
@@ -307,12 +341,12 @@ export default function MainMenu() {
               <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Account</h3>
               <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
                 <div>
-                  <p className="font-bold">Email:</p>
-                  <p>{accountSettings.email}</p>
-                </div>
-                <div>
                   <p className="font-bold">Username:</p>
                   <p>{accountSettings.username}</p>
+                </div>
+                <div>
+                  <p className="font-bold">Email:</p>
+                  <p>{accountSettings.email}</p>
                 </div>
                 <div>
                   <p className="font-bold">Account Created:</p>
@@ -324,14 +358,14 @@ export default function MainMenu() {
                 </div>
               </div>
               <div className="mt-4 space-y-2">
-                <Button className="w-full bg-blue-700 hover:bg-blue-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+                <Button className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                   Update Email
                 </Button>
-                <Button className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border border-stone-400 font-pixel text-xs">
+                <Button className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
                   Change Password
                 </Button>
                 <Button 
-                  className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border border-stone-400 font-pixel text-xs"
+                  className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
                   onClick={() => signOut()}
                 >
                   Logout
