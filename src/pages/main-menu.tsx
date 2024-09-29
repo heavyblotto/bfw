@@ -111,9 +111,6 @@ export default function MainMenu() {
     return null
   }
 
-  // Extract username from session
-  const username = session.user?.name || 'Player'
-
   return (
     <>
       <Head>
