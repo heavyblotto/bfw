@@ -1,13 +1,13 @@
 ---
-title: Next.js Game Project: Initial Design Document
-lastUpdated: 2023-04-21
-version: 0.2.0
+title: Next.js Game Project: Technical Design Document
+lastUpdated: 2023-04-22
+version: 0.3.0
 ---
 
-# Next.js Game Project: Initial Design Document
+# Next.js Game Project: Technical Design Document
 
 ## Project Overview
-This document outlines the initial design and architecture decisions for a single-player, turn-based game developed using Next.js. The game will feature different characters, levels, and game mechanics, with a focus on maintainability, scalability, and performance.
+This document outlines the current design and architecture decisions for our single-player, turn-based game developed using Next.js. The game features different Bigfoot characters, levels, and game mechanics, with a focus on maintainability, scalability, and performance.
 
 ## Technology Stack
 
@@ -16,17 +16,19 @@ This document outlines the initial design and architecture decisions for a singl
 - **Language**: TypeScript
 - **Hosting/Deployment**: Vercel
 - **Authentication**: NextAuth.js
-- **State Management**: React Context API with Zustand 
-- **Data Storage**: YAML and Markdown with front matter
-- **Testing**: Jest with React Testing Library
+- **State Management**: Zustand
+- **Data Storage**: YAML and Markdown with front matter, Vercel Postgres
+- **Testing**: Jest with React Testing Library (to be implemented)
 
 ### Additional Tools and Libraries
 - Linting: ESLint
 - Formatting: Prettier
-- Shadcn: UI components
+- UI Components: shadcn/ui
 - API Routes: Next.js built-in API routes
 - Image Optimization: Next.js Image component
 - SEO: Next.js Head component and dynamic metadata
+- ORM: Prisma (for Vercel Postgres)
+- Fonts: next/font
 
 ## Data Management
 - Character data, level descriptions, and game mechanics stored in YAML files.
@@ -69,8 +71,14 @@ This document outlines the initial design and architecture decisions for a singl
 ## Performance Optimization
 - Code splitting using dynamic imports.
 - Image optimization with Next.js Image component.
-- Font optimization.
+- Font optimization using next/font.
 - Efficient loading of third-party scripts.
+
+## UI Components and Styling
+- shadcn/ui for reusable UI components.
+- Tailwind CSS for custom styling and responsive design.
+- Custom pixel font (Press Start 2P) for headings and important text.
+- Consistent color palette and design system as defined in the style guide.
 
 ## Testing Strategy - to be implemented
 - Jest for unit and integration testing.
@@ -90,11 +98,18 @@ This document outlines the initial design and architecture decisions for a singl
 - Secure headers.
 - API rate limiting.
 
+## Implemented Features
+- Splash page with responsive design and game introduction.
+- Release notes page with dynamic content loading from Markdown files.
+- Basic routing between splash, login, and registration pages.
+- Pixel font implementation for consistent typography.
+- Image optimization for background and logo images.
+
 ## Future Considerations
 - WebSocket support for real-time features.
-- Database integration for persistent data storage.
 - Progressive Web App (PWA) capabilities.
 - Internationalization (i18n) support.
 - Advanced state management with Zustand.
+- Implement remaining game pages and features as outlined in the game design document.
 
-This design document serves as a starting point and should be updated as the project evolves and new decisions are made.
+This design document serves as a living document and will be updated as the project evolves and new decisions are made.

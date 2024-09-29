@@ -1,8 +1,23 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { Button } from "@/components/ui/button";
 
 const MenuPage: React.FC = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <p>Loading...</p>
+  }
+
+  if (!session) {
+    router.push('/login');
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -15,7 +30,7 @@ const MenuPage: React.FC = () => {
         {/* Player Profile */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Player Profile</h2>
-          {/* Add player profile components here */}
+          <p>Welcome, {session.user?.name}!</p>
         </section>
 
         {/* Bigfoot Selection */}
@@ -32,10 +47,18 @@ const MenuPage: React.FC = () => {
 
         {/* Navigation Buttons */}
         <nav className="flex flex-col space-y-4">
-          <Link href="/match-log" className="btn btn-primary">Match Log</Link>
-          <Link href="/shop" className="btn btn-primary">Shop</Link>
-          <Link href="/settings" className="btn btn-primary">Game Settings</Link>
-          <button className="btn btn-secondary">Logout</button>
+          <Button asChild>
+            <Link href="/match-log">Match Log</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/shop">Shop</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/settings">Game Settings</Link>
+          </Button>
+          <Button variant="destructive" onClick={() => signOut({ callbackUrl: '/' })}>
+            Logout
+          </Button>
         </nav>
       </main>
     </>

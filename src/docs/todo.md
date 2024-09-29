@@ -8,17 +8,17 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
+- Set up authentication with NextAuth.js.
 - Set up the project structure and development environment. in progress
 
 ## Hit List
 1. Create initial data files (YAML and Markdown). - in progress
 2. Implement basic routing and navigation.
-3. Set up authentication with NextAuth.js.
-4. Develop core game components and logic using Zustand store. - In Progress
-5. Implement API routes for data access and game state management.
-6. Set up testing environment and write initial tests.
-7. Optimize performance and implement security measures.
-8. Deploy to Vercel and set up CI/CD pipeline.
+3. Develop core game components and logic using Zustand store. - In Progress
+4. Implement API routes for data access and game state management.
+5. Set up testing environment and write initial tests.
+6. Optimize performance and implement security measures.
+7. Deploy to Vercel and set up CI/CD pipeline.
 
 ## Next Steps
 1. Create detailed component hierarchy.
@@ -34,3 +34,12 @@ priority: High
 - Set up linting and formatting.
 - Create initial data files (YAML and Markdown).
 - Set up Zustand for state management and create initial game store.
+- Implement splash page with responsive design.
+- Create login and registration pages with forms.
+- Set up basic routing between splash, login, and registration pages.
+- Implement UI components using shadcn/ui.
+- Create Layout component for consistent page structure.
+- Set up release notes page and functionality.
+- Implement pixel font styling for headings and important text.
+- Create initial documentation (developer guide, design document, todo list).
+- Set up image optimization using Next.js Image component.

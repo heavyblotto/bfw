@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import LoginForm from '@/components/Login'
+import SignIn from '@/components/SignIn'
 
 export default function LoginPage() {
   return (
@@ -8,7 +8,7 @@ export default function LoginPage() {
         <title>Login - Bigfoot War</title>
         <meta name="description" content="Login to your Bigfoot War account" />
       </Head>
-      <LoginForm />
+      <SignIn />
     </>
   )
 }
