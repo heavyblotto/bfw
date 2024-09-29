@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.username = token.username as string | null;  // This line is now correct
+        session.user.email = token.email as string | null;  // Add this line
       }
       return session;
     }

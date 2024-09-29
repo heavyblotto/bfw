@@ -138,13 +138,6 @@ export default function MainMenu() {
               </div>
             </div>
 
-            {/* Welcome message */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <p className="text-xl text-stone-200 font-pixel">
-                Welcome, {session?.user?.name || 'Cryptid Hunter'}! Ready for your next adventure?
-              </p>
-            </div>
-
             {/* Current Bigfoot Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
               <div className="flex items-center mb-4">
@@ -336,6 +329,11 @@ export default function MainMenu() {
             {/* Account Section with UpdateUserForm component */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
               <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Account</h3>
+              {/* Add username and email display */}
+              <div className="mb-4 text-stone-200 font-pixel">
+                <p>Username: {session?.user?.username || 'N/A'}</p>
+                <p>Email: {session?.user?.email || 'N/A'}</p>
+              </div>
               <UpdateUserForm />
               <Button 
                 className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
