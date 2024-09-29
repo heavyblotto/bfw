@@ -138,7 +138,12 @@ export default function MainMenu() {
               </div>
             </div>
 
-            {/* Remove the username display section */}
+            {/* Welcome message */}
+            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
+              <p className="text-xl text-stone-200 font-pixel">
+                Welcome, {session?.user?.name || 'Cryptid Hunter'}! Ready for your next adventure?
+              </p>
+            </div>
 
             {/* Current Bigfoot Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
