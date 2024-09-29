@@ -51,13 +51,13 @@ Our project uses Next.js with TypeScript. Here's an overview of the key director
 
 - `/src`: Contains the main source code
   - `/components`: Reusable React components
+  - `/data`: YAML and Markdown files for data storage
   - `/pages`: Next.js pages
   - `/styles`: CSS and styling files
   - `/utils`: Utility functions
   - `/docs`: Documentation files (including this guide)
   - `/stores`: Zustand stores for state management
 - `/public`: Static assets
-- `/data`: YAML and Markdown files for data storage
 
 ## 5. Development Workflow
 

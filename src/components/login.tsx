@@ -100,7 +100,7 @@ export default function LoginForm() {
           </Link>
           <div className="text-sm text-stone-400 font-pixel">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="font-medium text-amber-400 hover:underline">
+            <Link href="/Register" className="font-medium text-amber-400 hover:underline">
               Register here
             </Link>
           </div>

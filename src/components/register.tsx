@@ -127,7 +127,7 @@ export default function RegisterForm() {
         <CardFooter className="flex justify-center">
           <div className="text-sm text-stone-400 font-pixel">
             Already have an account?{' '}
-            <Link href="/login" className="font-medium text-amber-400 hover:underline">
+            <Link href="/Login" className="font-medium text-amber-400 hover:underline">
               Login here
             </Link>
           </div>
