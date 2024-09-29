@@ -54,8 +54,27 @@ This document outlines the current design and architecture decisions for our sin
 - React hooks for local component state.
 
 ## Authentication
-- NextAuth.js for user authentication.
-- Protected routes and API endpoints.
+- NextAuth.js for user authentication, fully implemented and working in production.
+- Credentials provider configured for username/password authentication.
+- Protected routes and API endpoints to ensure secure access.
+- User data stored in Vercel Postgres, accessed via Prisma ORM.
+- Passwords hashed using bcrypt for security.
+- Environment variables (NEXTAUTH_SECRET and NEXTAUTH_URL) properly configured in Vercel for production security.
+- Zustand used for client-side authentication state management.
+
+## Rendering Strategies
+- Mix of Client-Side Rendering (CSR) and Server-Side Rendering (SSR).
+- CSR for dynamic game components and authenticated user interactions.
+- SSR for initial game state, static content, and SEO-critical pages.
+- Protected routes implemented using Next.js middleware and NextAuth.js session management.
+
+## API Design
+- RESTful API endpoints using Next.js API routes.
+- Authentication-related endpoints:
+  - /api/auth/[...nextauth]: NextAuth.js configuration
+  - /api/auth/register: User registration
+  - /api/auth/update: Update user information
+  - /api/auth/delete: Delete user account
 
 ## Rendering Strategies
 - Mix of Client-Side Rendering (CSR) and Server-Side Rendering (SSR).
@@ -102,6 +121,14 @@ This document outlines the current design and architecture decisions for our sin
 - Splash page with responsive design and game introduction.
 - Release notes page with dynamic content loading from Markdown files.
 - Basic routing between splash, login, and registration pages.
+- Pixel font implementation for consistent typography.
+- Image optimization for background and logo images.
+- Full authentication system including registration, login, account management, and protected routes.
+- Integration with Vercel Postgres for user data storage and management.
+- Zustand store implementation for client-side authentication state management.
+- Secure password hashing using bcrypt.
+- Environment variable configuration for production security.
+- Basic routing between splash, login, registration, and main menu pages.
 - Pixel font implementation for consistent typography.
 - Image optimization for background and logo images.
 
