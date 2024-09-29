@@ -1,115 +1,77 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+import { Button } from "../components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
+import Image from "next/image"
+import Link from "next/link"
+import Head from 'next/head'
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-export default function Home() {
+export default function SplashPage() {
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <Head>
+        <title>Bigfoot War - Card Battle Game</title>
+        <meta name="description" content="Battle AI opponents in this thrilling card game featuring mythical Bigfoot creatures!" />
+      </Head>
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/index-bg.webp"
+            alt="Forest Background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        {/* Overlay to darken the background */}
+        <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+        {/* Content */}
+        <Card className="w-full max-w-4xl bg-stone-800/80 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20 backdrop-blur-sm">
+          <CardHeader className="text-center p-0">
+            <div className="relative w-full h-48 mb-6">
+              <Image
+                src="/images/bigfoot-war-logo.png"
+                alt="Bigfoot War Logo"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
+                priority
+              />
+            </div>
+            <CardTitle className="text-4xl font-bold mb-2 text-amber-400 font-pixel">Welcome to Bigfoot War</CardTitle>
+            <p className="text-xl font-pixel">
+              Battle AI opponents in this thrilling card game featuring mythical Bigfoot creatures!
+            </p>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="mb-6 font-pixel">
+              Collect cards, unleash powerful attacks, and become the ultimate Bigfoot warrior.
+            </p>
+            <div className="flex justify-center space-x-4 mb-8">
+              <Button asChild variant="default" className="bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel">
+                <Link href="/register">Register</Link>
+              </Button>
+              <Button asChild variant="outline" className="bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel">
+                <Link href="/login">Login</Link>
+              </Button>
+            </div>
+            <Card className="bg-stone-700/50 border-2 border-stone-600">
+              <CardHeader>
+                <CardTitle className="text-2xl text-amber-400 font-pixel">How to Get Started:</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ol className="list-decimal list-inside text-left font-pixel text-sm">
+                  <li>Register for a new account or log in</li>
+                  <li>Choose your Bigfoot character</li>
+                  <li>Select a match and enter the arena</li>
+                  <li>Battle opponents, collect cards, and earn rewards!</li>
+                </ol>
+              </CardContent>
+            </Card>
+          </CardContent>
+          <CardFooter className="text-center text-xs font-pixel text-stone-400">
+            © 2024 Bigfoot War. All rights reserved.
+          </CardFooter>
+        </Card>
+      </div>
+    </>
+  )
 }

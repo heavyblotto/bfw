@@ -44,6 +44,9 @@
 - rule: "Optimize images using Next.js Image component"
   description: "Use next/image for efficient image loading"
 
+- rule: "Validate use of Next.js Image component"
+  description: "Ensure all images are optimized using the Next.js Image component"
+
 # Styling
 - rule: "Use Tailwind CSS for styling"
   description: "Apply Tailwind classes in components"

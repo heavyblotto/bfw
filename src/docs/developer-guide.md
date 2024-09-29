@@ -12,6 +12,8 @@ lastUpdated: 2023-04-21
 4. Project Structure
 5. Development Workflow
 6. Coding Standards and UI Components
+   6.1 UI Components with shadcn/ui
+   6.2 Page Design and Styling
 7. State Management
    7.1 Using Zustand in Components
    7.2 Zustand and Next.js Integration
@@ -26,6 +28,7 @@ lastUpdated: 2023-04-21
 11. Testing
 12. Deployment
 13. Contributing
+14. Image Optimization
 
 ## 1. Introduction
 
@@ -115,6 +118,78 @@ You can customize the components by editing the files in your `components/ui` di
 - When adding new UI elements, check if a shadcn/ui component exists before creating a custom one from scratch.
 
 For more information and a full list of available components, refer to the [shadcn/ui documentation](https://ui.shadcn.com/docs).
+
+### 6.2 Page Design and Styling
+
+We've established a consistent design pattern for our pages, particularly for the splash page. Here are the key elements:
+
+1. **Background:**
+   - Use a full-screen background image.
+   - Apply a gradient overlay for better text contrast.
+   - Example:
+     ```tsx
+     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+       <div className="absolute inset-0 z-0">
+         <Image
+           src="/images/index.bg.webp"
+           alt="Forest Background"
+           fill
+           style={{ objectFit: 'cover', objectPosition: 'center' }}
+           priority
+         />
+       </div>
+       <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
+       {/* Content goes here */}
+     </div>
+     ```
+
+2. **Main Content Card:**
+   - Use a semi-transparent card with a blur effect for the main content.
+   - Apply earthy color schemes as defined in the style guide.
+   - Example:
+     ```tsx
+     <Card className="w-full max-w-4xl bg-stone-800/80 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20 backdrop-blur-sm">
+       {/* Card content */}
+     </Card>
+     ```
+
+3. **Typography:**
+   - Use the "Press Start 2P" pixel font for headings and important text.
+   - Apply the font using the `font-pixel` class.
+   - Adjust font sizes for readability, as pixel fonts can appear smaller.
+   - Example:
+     ```tsx
+     <CardTitle className="text-4xl font-bold mb-2 text-amber-400 font-pixel">Welcome to Bigfoot War</CardTitle>
+     <p className="text-xl font-pixel">Battle AI opponents in this thrilling card game!</p>
+     ```
+
+4. **Buttons:**
+   - Style buttons to match the earthy, natural theme.
+   - Use green for primary actions and stone colors for secondary actions.
+   - Example:
+     ```tsx
+     <Button asChild variant="default" className="bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel">
+       <Link href="/register">Register</Link>
+     </Button>
+     ```
+
+5. **Images:**
+   - Use the Next.js Image component for optimization.
+   - Adjust image positioning using `objectPosition` when necessary.
+   - Example:
+     ```tsx
+     <div className="relative w-full h-48 mb-6">
+       <Image
+         src="/images/bigfoot-war-logo.png"
+         alt="Bigfoot War Logo"
+         fill
+         style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
+         priority
+       />
+     </div>
+     ```
+
+When implementing new pages or components, refer to these patterns to maintain consistency throughout the game. Adjust colors, sizes, and layouts as needed while keeping the overall aesthetic consistent with the established design.
 
 ## 7. State Management
 
@@ -417,3 +492,76 @@ For more detailed information on Vercel deployments, refer to the [Vercel Docume
 5. Submit a pull request with a clear description of your changes.
 
 If you have any questions, don't hesitate to ask the project maintainers.
+
+## 14. Image Optimization
+
+Next.js provides an `Image` component that automatically optimizes images for better performance. This component offers several benefits, including automatic resizing, lazy loading, and support for modern image formats like WebP.
+
+### Using the Next.js Image Component
+
+To use the `Image` component, follow these steps:
+
+1. **Import the Image Component:**
+
+   ```typescript
+   import Image from 'next/image'
+   ```
+
+2. **Add the Image Component to Your Page or Component:**
+
+   ```typescript
+   export default function MyPage() {
+     return (
+       <div>
+         <h1>My Page</h1>
+         <Image
+           src="/path/to/image.jpg"
+           alt="Description of image"
+           width={500}
+           height={300}
+         />
+       </div>
+     )
+   }
+   ```
+
+   - `src`: The path to the image. This can be a local path or a URL.
+   - `alt`: A description of the image for accessibility.
+   - `width` and `height`: The dimensions of the image. These are required to prevent layout shifts.
+
+### Benefits of Using the Image Component
+
+- **Automatic Optimization:** Images are automatically optimized and served in the most efficient format.
+- **Responsive Images:** The component generates multiple sizes of the image and serves the appropriate size based on the device's screen size.
+- **Lazy Loading:** Images are loaded lazily by default, which improves page load times.
+- **Modern Formats:** The component supports modern image formats like WebP, which offer better compression than traditional formats like JPEG and PNG.
+
+### Example
+
+Here's an example of using the `Image` component in a Next.js page:
+
+```typescript
+import Image from 'next/image'
+
+export default function HomePage() {
+  return (
+    <div>
+      <h1>Welcome to My Site</h1>
+      <Image
+        src="/images/hero.jpg"
+        alt="Hero Image"
+        width={1200}
+        height={600}
+      />
+    </div>
+  )
+}
+```
+
+### Best Practices
+
+- **Use Descriptive Alt Text:** Always provide descriptive alt text for accessibility.
+- **Specify Dimensions:** Always specify the width and height to prevent layout shifts.
+- **Optimize Source Images:** Use optimized source images to further improve performance.
+
+For more information, refer to the [Next.js Image Optimization documentation](https://nextjs.org/docs/basic-features/image-optimization).
