@@ -95,7 +95,6 @@ const leaderboardData = [
 export default function MainMenu() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   if (status === "loading") {
     return <p>Loading...</p>
@@ -127,15 +126,9 @@ export default function MainMenu() {
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
             {/* Bigfoot War title */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <div className="flex items-center justify-between">
-                <h1 className="text-6xl font-bold text-amber-400 font-pixel whitespace-nowrap">Bigfoot War!</h1>
-                <button 
-                  className="md:hidden text-stone-200 font-pixel"
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                  {isMenuOpen ? 'Close' : 'Menu'}
-                </button>
-              </div>
+              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center">
+                Bigfoot War!
+              </h1>
             </div>
 
             {/* Current Bigfoot Section */}
