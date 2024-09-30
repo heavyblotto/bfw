@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,18 +6,11 @@ import useAuthStore from '@/stores/authStore';
 
 export default function UpdateUserForm({ onEmailUpdate, currentEmail }: { onEmailUpdate: (newEmail: string) => void, currentEmail: string }) {
   const updateUser = useAuthStore((state) => state.updateUser);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(currentEmail);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const user = useAuthStore((state) => state.user);
-
-  useEffect(() => {
-    if (user?.email) {
-      setEmail(user.email);
-    }
-  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,11 +34,12 @@ export default function UpdateUserForm({ onEmailUpdate, currentEmail }: { onEmai
       }
 
       setSuccess('User updated successfully');
-      if (email) {
+      if (email !== currentEmail) {
         updateUser({ email });
         onEmailUpdate(email);
-        setEmail('');  // Clear the email field after successful update
       }
+      setPassword('');
+      setConfirmPassword('');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -58,13 +52,13 @@ export default function UpdateUserForm({ onEmailUpdate, currentEmail }: { onEmai
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="email" className="text-stone-200 font-pixel">New Email</Label>
+        <Label htmlFor="email" className="text-stone-200 font-pixel">Email</Label>
         <Input
           id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="New email address"
+          placeholder="Email address"
           className="bg-stone-700 text-stone-200 border-stone-600 font-pixel"
         />
       </div>
