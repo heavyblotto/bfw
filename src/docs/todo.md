@@ -8,7 +8,8 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-1. Complete implementation of Main Menu page
+1. Implement Bigfoot Character System
+2. Complete implementation of Main Menu page
 
    - Implement remaining components (e.g., Bigfoot Selection, Match Selection)
    - Integrate with game state management
