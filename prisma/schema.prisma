@@ -17,4 +17,18 @@ model User {
   email     String?  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  playerProfile PlayerProfile?
+}
+
+model PlayerProfile {
+  id              Int           @id @default(autoincrement())
+  userId          Int           @unique
+  user            User          @relation(fields: [userId], references: [id])
+  level           Int           @default(1)
+  xp              Int           @default(0)
+  gold            Int           @default(0)
+  points          Int           @default(0)
+  selectedBigfoot String        @default("Sasquatch")
+  unlockedBigfoots String[]     @default(["Sasquatch"])
+  aiDifficulty    String        @default("Medium")
 }

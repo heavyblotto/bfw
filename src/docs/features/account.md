@@ -35,21 +35,20 @@ See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 - password: password for the user.
 - createdAt: date and time when the user was created.
 - updatedAt: date and time when the user was last updated.
-- playerProfile: player profile for the user. (to be implemented in future)
+- playerProfile: player profile for the user.
 
 ### Schema
 
 ```prisma
 model User {
-  id          Int           @id @default(autoincrement())
-  username    String        @unique
-  email       String        @unique
-  password    String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-//  playerProfile PlayerProfile? to be implemented in future
+  id            Int           @id @default(autoincrement())
+  username      String        @unique
+  password      String
+  email         String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  playerProfile PlayerProfile?
 }
-```
 
 Related data models:
 - PlayerProfile
@@ -394,3 +393,4 @@ The authentication system is deployed as part of the overall application on Verc
 - Ensure secure storage of user passwords (hashing + salting)
 - Implement CSRF protection for form submissions
 - Use secure session management with NextAuth.js (?)
+

@@ -19,10 +19,21 @@ See also:
 
 See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 
+### User
+
+- id: unique identifier for the user
+- username: unique username for the user
+- password: hashed password for the user
+- email: unique email address for the user (optional)
+- createdAt: timestamp of user creation
+- updatedAt: timestamp of last user update
+- playerProfile: relation to the PlayerProfile model
+
 ### PlayerProfile
 
 - id: unique identifier for the player profile
-- userId: unique identifier for the user
+- userId: unique identifier for the associated user
+- user: relation to the User model
 - level: level of the player profile
 - xp: experience points for the player profile
 - gold: gold for the player profile
@@ -38,6 +49,16 @@ See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 ### Schema
 
 ```prisma
+model User {
+  id            Int           @id @default(autoincrement())
+  username      String        @unique
+  password      String
+  email         String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  playerProfile PlayerProfile?
+}
+
 model PlayerProfile {
   id              Int           @id @default(autoincrement())
   userId          Int           @unique
@@ -48,13 +69,14 @@ model PlayerProfile {
   points          Int           @default(0)
   selectedBigfoot String        @default("Sasquatch")
   unlockedBigfoots String[]     @default(["Sasquatch"])
-  inventory       Inventory?
-  matchLog        MatchLog[]
-  achievements    Achievement[]
-  statistics      Statistics?
+  // inventory       Inventory?
+  // matchLog        MatchLog[]
+  // achievements    Achievement[]
+  // statistics      Statistics?
   aiDifficulty    String        @default("Medium")
 }
 ```
+
 Related data models:
 - User
 - Inventory
