@@ -4,7 +4,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import { Trophy } from 'lucide-react'
+import { 
+  Trophy, 
+  User, 
+  UserCircle, 
+  Medal, 
+  History, 
+  TrendingUp, 
+  Settings, 
+  UserCog 
+} from 'lucide-react'
 import UpdateUserForm from '@/components/UpdateUserForm'
 import useAuthStore from '@/stores/authStore';
 import { useEffect, useState } from 'react';
@@ -132,26 +141,32 @@ export default function MainMenu() {
       </Head>
       <div className="min-h-screen flex flex-col relative overflow-hidden">
         <Image
-          src="/images/index-bg.webp"
+          src="/images/bigfoot-war-logo.png"
           alt="Misty forest background"
           fill
           style={{ objectFit: 'cover' }}
           priority
         />
-        {/* Dark overlay */}
+        {/* This creates a dark overlay that covers the entire screen */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
         
         <div className="relative z-10 flex-grow flex flex-col">
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
             {/* Bigfoot War title */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center">
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h1 className="text-4xl sm:text-6xl font-bold font-pixel text-center 
+                             bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
+                             text-transparent bg-clip-text 
+                             drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                 Bigfoot War!
               </h1>
             </div>
 
             {/* Current Bigfoot Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-2xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <User className="mr-2" /> Player Bigfoot
+              </h3>
               <div className="flex items-center mb-4">
                 <Image
                   src="/images/bigfoot-avatar.webp"
@@ -160,7 +175,7 @@ export default function MainMenu() {
                   height={64}
                   className="rounded-full mr-4"
                 />
-                <h3 className="text-xl font-bold text-amber-400 font-pixel">{currentBigfoot.name}</h3>
+                <h4 className="text-lg text-stone-200 font-pixel">{currentBigfoot.name}</h4>
               </div>
               <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
                 <p>Class: {currentBigfoot.class}</p>
@@ -186,8 +201,10 @@ export default function MainMenu() {
             </div>
 
             {/* Player Profile Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Player Profile</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <UserCircle className="mr-2" /> Player Profile
+              </h3>
               <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
                 <p>Level: 5</p>
                 <p>XP: 1250 / 2000</p>
@@ -204,8 +221,10 @@ export default function MainMenu() {
             </div>
 
             {/* Achievements Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Achievements</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <Medal className="mr-2" /> Achievements
+              </h3>
               <div className="text-stone-200 font-pixel mb-4">
                 <h4 className="font-bold">Latest Unlocked:</h4>
                 <p>{latestAchievement.title} - {latestAchievement.description}</p>
@@ -220,8 +239,10 @@ export default function MainMenu() {
             </div>
 
             {/* Match History Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Match History</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <History className="mr-2" /> Match History
+              </h3>
               <div className="max-h-60 overflow-y-auto">
                 {matchHistory.map((match, index) => (
                   <div key={index} className="bg-stone-700/50 p-2 rounded mb-2 text-stone-200 font-pixel text-xs">
@@ -249,8 +270,10 @@ export default function MainMenu() {
             </div>
 
             {/* Trending Stats Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Trending Stats</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <TrendingUp className="mr-2" /> Trending Stats
+              </h3>
               <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
                 <div>
                   <p className="font-bold">Games Played:</p>
@@ -283,8 +306,8 @@ export default function MainMenu() {
             </div>
 
             {/* Leaderboard Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4 flex items-center">
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
                 <Trophy className="mr-2" /> Leaderboard
               </h3>
               <div className="overflow-x-auto">
@@ -313,8 +336,10 @@ export default function MainMenu() {
             </div>
 
             {/* Settings Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Settings</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <Settings className="mr-2" /> Settings
+              </h3>
               <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
                 <div>
                   <p className="font-bold">AI Difficulty:</p>
@@ -339,8 +364,10 @@ export default function MainMenu() {
             </div>
 
             {/* Account Section with UpdateUserForm component */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Account</h3>
+            <div className="bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90 p-4 rounded-lg mb-8 shadow-[0_0_15px_rgba(255,255,255,0.5)] border border-stone-500">
+              <h3 className="text-xl font-bold text-stone-400 font-pixel mb-4 flex items-center">
+                <UserCog className="mr-2" /> Account
+              </h3>
               {/* Add username and email display */}
               <div className="mb-4 text-stone-200 font-pixel">
                 <p>Username: {session?.user?.username || 'N/A'}</p>
