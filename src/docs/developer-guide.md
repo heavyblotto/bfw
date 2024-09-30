@@ -213,7 +213,7 @@ For detailed information on setting up and using Prisma with Vercel Postgres, re
 
 ## 10. Authentication
 
-Our authentication system uses NextAuth.js, Zustand for state management, Prisma ORM, and Vercel Postgres for storage. It allows users to register, login, update their account, and delete their account. The system is now fully implemented and working in both local and production environments.
+Our authentication system uses NextAuth.js, Zustand for state management, Prisma ORM, and Vercel Postgres for storage. It allows users to register, login, update their account (including real-time email updates), and delete their account. The system is now fully implemented and working in both local and production environments.
 
 Key points:
 - NextAuth.js is configured with a Credentials provider
@@ -221,6 +221,7 @@ Key points:
 - User data is stored in Vercel Postgres
 - Protected routes ensure only authenticated users can access certain parts of the game
 - Environment variables (NEXTAUTH_SECRET and NEXTAUTH_URL) are properly set in Vercel
+- Real-time UI updates for email changes implemented in the main menu
 
 For detailed information on the authentication system, including API routes and components, refer to the [Authentication System Design](./features/authentication.md) document.
 

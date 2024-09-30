@@ -9,6 +9,7 @@ The authentication system for our game uses NextAuth.js, Zustand for state manag
 - Update email and password
 - Delete account
 - Protected game access
+- Real-time UI update for email changes
 
 ## Technology Stack
 - NextAuth.js for authentication
@@ -107,6 +108,7 @@ The authentication system is deployed as part of the overall application on Verc
 8. Implement error handling and validation
    - ✅ Add form validation to SignIn and Register components
    - ✅ Implement error messages for failed authentication attempts
+   - ✅ Add validation and error handling for email updates
 
 9. Test authentication flow
    - ✅ Manual testing of registration, login, update, and delete processes

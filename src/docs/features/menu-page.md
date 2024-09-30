@@ -58,11 +58,14 @@ The main menu page is a protected route, accessible only to authenticated users.
 - Add a news or announcements section
 
 ## Implementation Todo
-1. Finalize layout and design
-2. Implement remaining components (e.g., Bigfoot Selection, Match Selection)
-3. Integrate with game state management
-4. Implement data fetching for player stats and game information
-5. Add error handling for failed data fetches
-6. Optimize performance for smooth user experience
-7. Implement accessibility features (keyboard navigation, ARIA labels)
-8. Add unit and integration tests
+1. ✅ Finalize layout and design
+2. ✅ Implement remaining components (e.g., Bigfoot Selection, Match Selection)
+3. ✅ Integrate with game state management
+4. ✅ Implement data fetching for player stats and game information
+5. ✅ Add error handling for failed data fetches
+6. ✅ Optimize performance for smooth user experience
+7. ✅ Implement real-time email update display
+8. Implement accessibility features (keyboard navigation, ARIA labels)
+9. Add unit and integration tests
+
+## Real-time email update display

@@ -4,6 +4,7 @@
 - Basic authentication system implemented using NextAuth.js
 - API routes for registration, login, and user updates are in place
 - Main menu page displays user information
+- Email update functionality implemented and working
 
 ## Implementation Plan for User Update Functionality
 
@@ -60,3 +61,6 @@
 ## Notes
 - Ensure all changes maintain consistency with existing pixel art theme and game aesthetics
 - Consider adding additional fields for user customization in future iterations
+
+## Real-time UI Update:
+   - [x] Implement real-time email update in the main menu UI after successful change

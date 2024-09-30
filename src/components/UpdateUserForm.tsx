@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuthStore from '@/stores/authStore';
 
-export default function UpdateUserForm() {
-  const { data: session } = useSession();
+export default function UpdateUserForm({ onEmailUpdate, currentEmail }: { onEmailUpdate: (newEmail: string) => void, currentEmail: string }) {
   const updateUser = useAuthStore((state) => state.updateUser);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(currentEmail);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -36,13 +34,12 @@ export default function UpdateUserForm() {
       }
 
       setSuccess('User updated successfully');
-      if (email && session?.user) {
-        updateUser({ 
-          ...session.user, 
-          email,
-          username: session.user.username || undefined  // Add this line
-        });
+      if (email !== currentEmail) {
+        updateUser({ email });
+        onEmailUpdate(email);
       }
+      setPassword('');
+      setConfirmPassword('');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -55,13 +52,13 @@ export default function UpdateUserForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <Label htmlFor="email" className="text-stone-200 font-pixel">New Email</Label>
+        <Label htmlFor="email" className="text-stone-200 font-pixel">Email</Label>
         <Input
           id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="New email address"
+          placeholder="Email address"
           className="bg-stone-700 text-stone-200 border-stone-600 font-pixel"
         />
       </div>

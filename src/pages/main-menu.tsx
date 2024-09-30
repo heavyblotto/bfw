@@ -4,9 +4,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import { useState } from 'react'
 import { Trophy } from 'lucide-react'
 import UpdateUserForm from '@/components/UpdateUserForm'
+import useAuthStore from '@/stores/authStore';
+import { useEffect, useState } from 'react';
 
 // Dummy data for the current Bigfoot (replace with actual data fetching later)
 const currentBigfoot = {
@@ -95,7 +96,24 @@ const leaderboardData = [
 export default function MainMenu() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const user = useAuthStore((state) => state.user);
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      setEmail(session.user.email);
+    }
+  }, [session]);
+
+  useEffect(() => {
+    if (user?.email) {
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  const handleEmailUpdate = (newEmail: string) => {
+    setEmail(newEmail);
+  };
 
   if (status === "loading") {
     return <p>Loading...</p>
@@ -127,15 +145,9 @@ export default function MainMenu() {
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
             {/* Bigfoot War title */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <div className="flex items-center justify-between">
-                <h1 className="text-6xl font-bold text-amber-400 font-pixel whitespace-nowrap">Bigfoot War!</h1>
-                <button 
-                  className="md:hidden text-stone-200 font-pixel"
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                  {isMenuOpen ? 'Close' : 'Menu'}
-                </button>
-              </div>
+              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center">
+                Bigfoot War!
+              </h1>
             </div>
 
             {/* Current Bigfoot Section */}
@@ -332,9 +344,9 @@ export default function MainMenu() {
               {/* Add username and email display */}
               <div className="mb-4 text-stone-200 font-pixel">
                 <p>Username: {session?.user?.username || 'N/A'}</p>
-                <p>Email: {session?.user?.email || 'N/A'}</p>
+                <p>Email: {email || session?.user?.email || 'N/A'}</p>
               </div>
-              <UpdateUserForm />
+              <UpdateUserForm onEmailUpdate={handleEmailUpdate} currentEmail={email || session?.user?.email || ''} />
               <Button 
                 className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
                 onClick={() => signOut()}
