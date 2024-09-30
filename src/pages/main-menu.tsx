@@ -346,7 +346,7 @@ export default function MainMenu() {
                 <p>Username: {session?.user?.username || 'N/A'}</p>
                 <p>Email: {email || session?.user?.email || 'N/A'}</p>
               </div>
-              <UpdateUserForm onEmailUpdate={handleEmailUpdate} />
+              <UpdateUserForm onEmailUpdate={handleEmailUpdate} currentEmail={email || session?.user?.email || ''} />
               <Button 
                 className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
                 onClick={() => signOut()}

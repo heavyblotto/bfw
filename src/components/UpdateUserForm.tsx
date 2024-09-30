@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuthStore from '@/stores/authStore';
 
-export default function UpdateUserForm({ onEmailUpdate }: { onEmailUpdate: (newEmail: string) => void }) {
+export default function UpdateUserForm({ onEmailUpdate, currentEmail }: { onEmailUpdate: (newEmail: string) => void, currentEmail: string }) {
   const updateUser = useAuthStore((state) => state.updateUser);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,8 +43,8 @@ export default function UpdateUserForm({ onEmailUpdate }: { onEmailUpdate: (newE
       setSuccess('User updated successfully');
       if (email) {
         updateUser({ email });
-        setEmail(email);
-        onEmailUpdate(email);  // Call the callback function to update the parent component
+        onEmailUpdate(email);
+        setEmail('');  // Clear the email field after successful update
       }
     } catch (error) {
       if (error instanceof Error) {
