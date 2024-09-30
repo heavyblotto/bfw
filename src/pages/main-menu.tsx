@@ -132,20 +132,21 @@ export default function MainMenu() {
       </Head>
       <div className="min-h-screen flex flex-col relative overflow-hidden">
         <Image
-          src="/images/index-bg.webp"
+          src="/images/bigfoot-war-logo.png"
           alt="Misty forest background"
           fill
           style={{ objectFit: 'cover' }}
           priority
         />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+
         
         <div className="relative z-10 flex-grow flex flex-col">
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
-            {/* Bigfoot War title */}
+            {/* Updated Bigfoot War title */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center">
+              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center 
+                             [text-shadow:_2px_2px_0_#000,_-2px_-2px_0_#000,_2px_-2px_0_#000,_-2px_2px_0_#000,_0_2px_0_#000,_2px_0_0_#000,_0_-2px_0_#000,_-2px_0_0_#000]
+                             [filter:_drop-shadow(0_0_10px_rgba(245,158,11,0.8))]">
                 Bigfoot War!
               </h1>
             </div>

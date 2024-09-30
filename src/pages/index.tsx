@@ -35,7 +35,12 @@ export default function Home() {
         <div className="relative z-10 flex-grow flex flex-col">
           <div className="flex-grow flex items-center justify-center p-4">
             <div className="bg-stone-800/90 p-8 rounded-lg text-center max-w-3xl w-full">
-              <h1 className="text-6xl font-bold mb-4 text-amber-400 font-pixel whitespace-nowrap">Bigfoot War!</h1>
+              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center 
+                             [text-shadow:_2px_2px_0_#000,_-2px_-2px_0_#000,_2px_-2px_0_#000,_-2px_2px_0_#000,_0_2px_0_#000,_2px_0_0_#000,_0_-2px_0_#000,_-2px_0_0_#000]
+                             [filter:_drop-shadow(0_0_10px_rgba(245,158,11,0.8))]
+                             mb-4 whitespace-nowrap">
+                Bigfoot War!
+              </h1>
               <div className="relative w-full h-0 pb-[56.25%] mb-4 overflow-hidden">
                 <Image
                   src="/images/bigfoot-war-logo.png"
