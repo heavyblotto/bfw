@@ -3,7 +3,10 @@ import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
 export async function middleware(request: NextRequest) {
+  console.log('Middleware running for path:', request.nextUrl.pathname);
   const token = await getToken({ req: request })
+  console.log('Token:', token);
+
   const isAuthPage = request.nextUrl.pathname.startsWith('/login') || 
                      request.nextUrl.pathname.startsWith('/register')
 
@@ -22,5 +25,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/main-menu', '/game', '/profile', '/login', '/register']
+  matcher: ['/main-menu', '/game', '/profile', '/login', '/register', '/api/auth/update']
 }

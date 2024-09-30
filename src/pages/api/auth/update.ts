@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
-import { getSession } from 'next-auth/react'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./[...nextauth]"
 
 const prisma = new PrismaClient()
 
@@ -9,12 +10,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log('Received update request');
+  console.log('Request method:', req.method);
+  console.log('Request headers:', req.headers);
+
   if (req.method !== 'PUT') {
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const session = await getSession({ req })
-  if (!session) {
+  const session = await getServerSession(req, res, authOptions)
+  console.log('Session:', session);
+
+  if (!session || !session.user?.id) {
+    console.log('Unauthorized: No valid session');
     return res.status(401).json({ message: 'Unauthorized' })
   }
 
