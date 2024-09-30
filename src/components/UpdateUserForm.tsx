@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuthStore from '@/stores/authStore';
 
-export default function UpdateUserForm() {
-  const { data: session } = useSession();
+export default function UpdateUserForm({ onEmailUpdate }: { onEmailUpdate: (newEmail: string) => void }) {
   const updateUser = useAuthStore((state) => state.updateUser);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    if (user?.email) {
+      setEmail(user.email);
+    }
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +41,10 @@ export default function UpdateUserForm() {
       }
 
       setSuccess('User updated successfully');
-      if (email && session?.user) {
-        updateUser({ 
-          ...session.user, 
-          email,
-          username: session.user.username || undefined  // Add this line
-        });
+      if (email) {
+        updateUser({ email });
+        setEmail(email);
+        onEmailUpdate(email);  // Call the callback function to update the parent component
       }
     } catch (error) {
       if (error instanceof Error) {

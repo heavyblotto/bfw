@@ -8,8 +8,8 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-1. Complete implementation and styling of Main Menu page
-   - Finalize layout and design
+1. Complete implementation of Main Menu page
+
    - Implement remaining components (e.g., Bigfoot Selection, Match Selection)
    - Integrate with game state management
 
@@ -78,3 +78,5 @@ priority: High
 - Implement error handling and validation for authentication forms.
 - Set up Vercel Postgres for user data storage and management.
 - Configure environment variables for production security.
+- Implement real-time email update functionality in the main menu
+- Finalize layout and design for main menu page.
