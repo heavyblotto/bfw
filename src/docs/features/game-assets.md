@@ -1,4 +1,4 @@
-# Game Assets Management
+# Game Assets Management Design
 
 ## Overview
 This document outlines the approach for managing various game assets in Bigfoot War, including sound effects, music, images, and animations.

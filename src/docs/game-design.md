@@ -158,7 +158,7 @@ See:
 ## Game Logic
 
 See:
-- [Game Logic](src/docs/features/game-logic.md) for more details.
+- [Arena](src/docs/features/arena.md) for more details.
 
 ### Matches
 A game match is a single game session between two Participants. Players select a Match in the **Match Selection** page available from the Main Menu.
@@ -231,7 +231,7 @@ See [Attacks](src/docs/features/attacks.md) for more details.
 - **Collecting Cards**: Collects all cards played during the round, Player and Opponent.
 
 See also:
-- [Game Logic](src/docs/features/game-logic.md) for more details.
+- [Arena](src/docs/features/arena.md) for more details.
 
 ### Gold Feature
 

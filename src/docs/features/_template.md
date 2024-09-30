@@ -3,15 +3,11 @@
 ## Table of Contents
 - [Overview](#overview)
 - [Data Models](#data-models)
-- [Notes](#notes)
 - [Features](#features)
-- [Real-time UI Update](#real-time-ui-update)
-- [API Routes](#api-routes)
-- [Components](#components)
-- [Related Components and Files](#related-components-and-files)
-- [Security Considerations](#security-considerations)
-- [Current Status](#current-status)
-- [Implementation Plan for {{ Feature Name }}](#implementation-plan-for-{{ feature-name }})
+- [Architecture](#architecture)
+- [Assets](#assets)
+- [Component Integration](#component-integration)
+- [Implementation Plan](#implementation-plan)
 - [Future Enhancements](#future-enhancements)
 
 ## Overview
@@ -63,45 +59,36 @@ Related data models:
 ## Architecture
 
 ### Technology Stack
-- **NextAuth.js**: Handles user authentication and session management.
-- **Zustand**: Manages client-side authentication state.
-- **Prisma ORM**: Interfaces with the Vercel Postgres database.
-- **Vercel Postgres**: Stores user data and other related information.
-- **Next.js API Routes**: Implements backend functionality.
+- {{ Technology 1 }}: {{ Description 1 }}
+- {{ Technology 2 }}: {{ Description 2 }}
+- {{ Technology 3 }}: {{ Description 3 }}
+- {{ Technology 4 }}: {{ Description 4 }}
+- {{ Technology 5 }}: {{ Description 5 }}
+
+### Architecture Diagram
+
+```plaintext
+{{ Insert architecture diagram here }}
+```
 
 ### Data Flow of {{ Feature Name }}
-1. {{ Data Flow 1 }}
-2. {{ Data Flow 2 }}
-3. {{ Data Flow 3 }}
+1. {{ Data Flow Step 1 }}
+2. {{ Data Flow Step 2 }}
+3. {{ Data Flow Step 3 }}
+4. {{ Data Flow Step 4 }}
 
 ### How {{ Feature Name }} Works in the Game
-1. **User Registration**:
-   - Players register by filling out the registration form in `src/components/Register.tsx`.
-   - The form data is sent to the `POST /api/auth/register` endpoint (`src/pages/api/auth/register.ts`).
-   - Prisma ORM creates a new user record in the Vercel Postgres database.
+1. {{ Process Step 1 }}:
+   - {{ Detail 1 }}
+   - {{ Detail 2 }}
 
-2. **User Login**:
-   - Players log in using the login form in `src/components/SignIn.tsx`.
-   - The login data is sent to the `POST /api/auth/login` endpoint (`src/pages/api/auth/[...nextauth].ts`).
-   - NextAuth.js authenticates the user and creates a session.
+2. {{ Process Step 2 }}:
+   - {{ Detail 1 }}
+   - {{ Detail 2 }}
 
-3. **Session Management**:
-   - Zustand manages the client-side authentication state.
-   - Session information is retrieved from the `GET /api/auth/session` endpoint (`src/pages/api/auth/[...nextauth].ts`).
-
-4. **User Update**:
-   - Players can update their email and password using the form in `src/components/UpdateUserForm.tsx`.
-   - The update data is sent to the `PUT /api/auth/update` endpoint (`src/pages/api/auth/update.ts`).
-   - Prisma ORM updates the user record in the Vercel Postgres database.
-
-5. **User Deletion**:
-   - Players can delete their account by submitting a deletion request.
-   - The request is sent to the `DELETE /api/auth/delete` endpoint (`src/pages/api/auth/delete.ts`).
-   - Prisma ORM deletes the user record from the Vercel Postgres database.
-
-6. **Retrieve User Information**:
-   - User information can be requested from the `GET /api/auth/user` endpoint (`src/pages/api/auth/[...nextauth].ts`).
-   - Prisma ORM retrieves the user data from the Vercel Postgres database.
+3. {{ Process Step 3 }}:
+   - {{ Detail 1 }}
+   - {{ Detail 2 }}
 
 ### API Routes
 - **{{ Route Name 1 }}**: 
@@ -130,18 +117,44 @@ Related data models:
   - **File**: `src/components/{{ Component 3 }}.tsx`
 
 ### State Management
-Zustand is used to manage the authentication state on the client-side, syncing with NextAuth.js session.
+{{ Description of state management approach }}
 
 ### Security Considerations
-- Passwords are hashed using bcrypt before storage.
-- CSRF protection is handled by NextAuth.js.
-- API routes are protected against unauthorized access.
-- Prisma provides type-safe database access, reducing the risk of SQL injection.
+- {{ Security Consideration 1 }}
+- {{ Security Consideration 2 }}
+- {{ Security Consideration 3 }}
+- {{ Security Consideration 4 }}
 
 ### Integration with Game Flow
-1. Users start at the splash page (index.tsx) where they can choose to register or login.
-2. Upon successful authentication, users are redirected to the main menu (main-menu.tsx).
-3. The game state, including user progress and preferences, is associated with the authenticated user's account.
+1. {{ Integration Step 1 }}
+2. {{ Integration Step 2 }}
+3. {{ Integration Step 3 }}
+
+## Assets
+
+### Image Assets
+- **{{ Asset Type 1 }}**: 
+  - **Directory**: `public/images/{{ feature-name }}/`
+  - **Format**: {{ Image Format }}
+  - **Naming Convention**: `{{ naming_convention }}`
+
+### Audio Assets
+- **{{ Asset Type 2 }}**: 
+  - **Directory**: `public/audio/{{ feature-name }}/`
+  - **Format**: {{ Audio Format }}
+  - **Naming Convention**: `{{ naming_convention }}`
+
+### Video Assets
+- **{{ Asset Type 3 }}**: 
+  - **Directory**: `public/video/{{ feature-name }}/`
+  - **Format**: {{ Video Format }}
+  - **Naming Convention**: `{{ naming_convention }}`
+
+### Other Assets
+- **{{ Asset Type 4 }}**: 
+  - **Directory**: `public/{{ asset-type }}/{{ feature-name }}/`
+  - **Format**: {{ Other Format }}
+  - **Naming Convention**: `{{ naming_convention }}`
 
 ## Component Integration
 
@@ -160,20 +173,31 @@ Zustand is used to manage the authentication state on the client-side, syncing w
 - **Usage**: 
   - `src/pages/{{ usage3 }}.tsx`
 
-### Zustand Store
-- **File**: `src/stores/authStore.ts`
+### {{ Store or Context }}
+- **File**: `src/stores/{{ storeName }}.ts`
 - **Usage**: 
   - `src/pages/{{ usage4 }}.tsx`
   - `src/components/{{ usage5 }}.tsx`
   - `src/components/{{ usage6 }}.tsx`
 
+### API Routes
+- **{{ Route Name 1 }}**: 
+  - **File**: `src/pages/api/{{ route1 }}.ts`
+  - **Usage**: 
+    - `src/components/{{ usage7 }}.tsx`
+
+- **{{ Route Name 2 }}**: 
+  - **File**: `src/pages/api/{{ route2 }}.ts`
+  - **Usage**: 
+    - `src/components/{{ usage8 }}.tsx`
+
 ### Testing
-(Note: Testing framework not yet implemented. To be added in future iterations.)
+{{ Description of testing approach or placeholder for future testing plans }}
 
 ### Deployment
-The authentication system is deployed as part of the overall application on Vercel, utilizing Vercel Postgres for data storage.
+{{ Description of deployment process or considerations }}
 
-## Implementation Plan for {{ Feature Name }}
+## Implementation Plan
 
 ### Current Status
 - {{ Current Status }}
@@ -195,7 +219,7 @@ The authentication system is deployed as part of the overall application on Verc
    - [ ] {{ Subtask 2 }}
    - [ ] {{ Subtask 3 }}
 
-### Future Enhancements
+## Future Enhancements
 - {{ Enhancement 1 }}
 - {{ Enhancement 2 }}
 - {{ Enhancement 3 }}

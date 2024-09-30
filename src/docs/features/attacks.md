@@ -1,4 +1,4 @@
-# Attacks and Special Abilities System
+# Attacks and Special Abilities Design
 
 ## Overview
 The Attacks and Special Abilities system is a core gameplay mechanic in Bigfoot War, allowing players to use their cards strategically to deal damage, heal, defend, or apply status effects based on their Bigfoot character's abilities and the cards played.
@@ -39,19 +39,6 @@ model Ability {
   unlockLevel Int
   bigfootId   Int
   bigfoot     Bigfoot @relation(fields: [bigfootId], references: [id])
-}
-
-model Bigfoot {
-  id          Int    @id @default(autoincrement())
-  name        String
-  class       String // Dwarf, Squatch, or Giant
-  level       Int
-  hp          Int
-  attack      Int
-  defense     Int
-  luck        Int
-  attacks     Attack[]
-  abilities   Ability[]
 }
 
 model JokerEffect {

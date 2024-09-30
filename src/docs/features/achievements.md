@@ -1,4 +1,4 @@
-# Achievements System Design
+# Achievements Design
 
 ## Overview
 The Achievements system provides players with goals to strive for, rewards for their accomplishments, and a sense of progression beyond the main gameplay loop. Achievements are designed to encourage diverse gameplay styles and long-term engagement.

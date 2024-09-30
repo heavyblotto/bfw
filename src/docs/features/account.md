@@ -1,4 +1,4 @@
-# Account Management Feature
+# Account Management Design
 
 ## Table of Contents
 - [Overview](#overview)

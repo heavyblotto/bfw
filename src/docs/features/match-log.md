@@ -1,4 +1,4 @@
-# Match Log System Design
+# Match Log Design
 
 ## Overview
 The Match Log system records and displays the history of matches played by each player. It provides valuable insights into a player's performance and progression over time.

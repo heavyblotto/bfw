@@ -1,3 +1,5 @@
+# Arena Page Design
+
 ### Arena - Main Game Page
 Once they select a Match in, Players are taken to the **Arena** page, where they can begin the card game. The design includes:
 - **Deck Area**: The deck of the Player’s Bigfoot and the AI Opponent’s Bigfoot.

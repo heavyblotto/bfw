@@ -1,4 +1,4 @@
-# Gold System Design
+# Gold Design
 
 ## Overview
 The Gold system is a core economic mechanic in Bigfoot War, allowing players to earn and spend currency throughout their gameplay experience. Gold serves as a reward for various actions and can be used to unlock new content and enhance the player's gameplay options.

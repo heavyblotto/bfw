@@ -1,29 +1,44 @@
+# Items and Inventory
 
-# Items and Inventory System Design
+## Table of Contents
+- [Overview](#overview)
+- [Data Models](#data-models)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Assets](#assets)
+- [Component Integration](#component-integration)
+- [Implementation Plan](#implementation-plan)
+- [Future Enhancements](#future-enhancements)
 
 ## Overview
 The Items and Inventory system allows players to collect, store, and manage various items that can be used to enhance their gameplay experience in Bigfoot War.
 
-## Data Model
+See also:
+- [Game Design](game-design.md)
+
+## Data Models
+
+See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 
 ### Inventory
 
-id: unique identifier for the inventory.
-playerProfileId: unique identifier for the player profile.  
-playerProfile: player profile for the inventory.
-items: items for the inventory.
+- id: unique identifier for the inventory
+- playerProfileId: unique identifier for the player profile
+- playerProfile: player profile for the inventory
+- items: items for the inventory
 
 ### Item
 
-id: unique identifier for the item.
-name: name for the item.
-description: description for the item.
-type: type for the item.
-inventoryId: unique identifier for the inventory.
-inventory: inventory for the item.
+- id: unique identifier for the item
+- name: name for the item
+- description: description for the item
+- type: type for the item
+- inventoryId: unique identifier for the inventory
+- inventory: inventory for the item
 
 ### Schema
-```prisma   
+
+```prisma
 model Inventory {
   id              Int           @id @default(autoincrement())
   playerProfileId Int           @unique
@@ -40,78 +55,202 @@ model Item {
 }
 ```
 
+Related data models:
+- PlayerProfile
 
-## Item Properties
+## Features
 
-- **Name**: The unique identifier for each item
-- **Description**: A brief explanation of the item's purpose or effect
-- **Type**: The category of the item (e.g., Consumable, Equipment, Cosmetic)
-- **Effect**: The specific gameplay impact of the item
-- **Rarity**: The scarcity level of the item (e.g., Common, Rare, Epic, Legendary)
+1. Item Management
+   - Players can view, use, and manage items in their inventory
 
-## Item Types
+2. Item Types
+   - Consumables: One-time use items with temporary benefits
+   - Equipment: Permanent items that enhance Bigfoot abilities
+   - Cosmetics: Visual enhancements for Bigfoot characters or game interface
 
-1. **Consumables**: One-time use items that provide temporary benefits
-   - Health Potions: Restore HP during a match
-   - XP Boosters: Increase XP gain for a limited time
-   - Gold Multipliers: Increase Gold earned from matches
+3. Item Acquisition
+   - Shop purchases
+   - Rewards from achievements, challenges, or events
+   - Loot drops from winning matches
 
-2. **Equipment**: Permanent items that enhance Bigfoot abilities
-   - Amulets: Boost specific stats (e.g., Attack, Defense, Luck)
-   - Artifacts: Provide unique passive abilities
+4. Inventory Management
+   - Limited capacity
+   - Sorting and filtering options
 
-3. **Cosmetics**: Visual enhancements for Bigfoot characters or the game interface
-   - Skins: Alternative appearances for Bigfoot characters
-   - Card Backs: Custom designs for the player's card deck
+## Architecture
 
-## Inventory Management
+### Technology Stack
+- Next.js: React framework for building the user interface
+- Prisma: ORM for database management
+- TypeScript: For type-safe code
+- Zustand: For state management
 
-- Players can view their inventory from the main menu
-- The inventory has a limited capacity, encouraging strategic item management
-- Players can sort and filter items by type, rarity, or effect
+### Architecture Diagram
 
-## Acquiring Items
+```plaintext
+[Client]
+    |
+    v
+[Next.js API Routes]
+    |
+    v
+[Prisma ORM]
+    |
+    v
+[Database]
+```
 
-1. **Shop**: Players can purchase items using Gold
-2. **Rewards**: Items can be earned through achievements, daily challenges, or seasonal events
-3. **Loot Drops**: Rare items may be obtained as random drops after winning matches
+### Data Flow of Items and Inventory
+1. Client requests inventory data
+2. API route fetches data from the database using Prisma
+3. Data is returned to the client
+4. Client updates local state with Zustand
+
+### How Items and Inventory Works in the Game
+1. Inventory Management:
+   - Players access their inventory from the main menu
+   - Items are displayed with their properties and effects
+
+2. Item Usage:
+   - Players select items to use or equip
+   - Effects are applied based on item type
+
+3. Item Acquisition:
+   - Players obtain items through various means (shop, rewards, loot drops)
+   - New items are added to the inventory if space is available
+
+### API Routes
+- **Get Inventory**: 
+  - **Route**: `GET /api/inventory/:playerProfileId`
+  - **File**: `src/pages/api/inventory/[playerProfileId].ts`
+  - **Functionality**: Retrieve a player's inventory
+
+- **Add Item**: 
+  - **Route**: `POST /api/inventory/add-item`
+  - **File**: `src/pages/api/inventory/add-item.ts`
+  - **Functionality**: Add a new item to a player's inventory
+
+- **Remove Item**: 
+  - **Route**: `DELETE /api/inventory/remove-item`
+  - **File**: `src/pages/api/inventory/remove-item.ts`
+  - **Functionality**: Remove an item from a player's inventory
+
+### Components
+- **InventoryDisplay**: Shows an overview of the player's inventory
+  - **File**: `src/components/InventoryDisplay.tsx`
+
+- **ItemCard**: Displays information about a specific item
+  - **File**: `src/components/ItemCard.tsx`
+
+- **ItemUsageModal**: Allows players to use or equip items
+  - **File**: `src/components/ItemUsageModal.tsx`
+
+### State Management
+The player's inventory will be stored in the Zustand store and updated in real-time as items are acquired or used.
+
+### Security Considerations
+- Implement proper authentication for inventory-related API routes
+- Validate item usage and acquisition to prevent cheating
+- Ensure secure transmission of inventory data
+
+### Integration with Game Flow
+1. Access inventory from main menu
+2. Use items during gameplay
+3. Acquire items after matches or through in-game events
+
+## Assets
+
+### Image Assets
+- **Item Icons**: 
+  - **Directory**: `public/images/items/`
+  - **Format**: PNG
+  - **Naming Convention**: `item_name_icon.png`
+
+### Audio Assets
+- **Item Usage Sounds**: 
+  - **Directory**: `public/audio/items/`
+  - **Format**: MP3
+  - **Naming Convention**: `item_name_use.mp3`
+
+## Component Integration
+
+### InventoryDisplay
+- **File**: `src/components/InventoryDisplay.tsx`
+- **Usage**: 
+  - `src/pages/inventory.tsx`
+
+### ItemCard
+- **File**: `src/components/ItemCard.tsx`
+- **Usage**: 
+  - `src/components/InventoryDisplay.tsx`
+
+### ItemUsageModal
+- **File**: `src/components/ItemUsageModal.tsx`
+- **Usage**: 
+  - `src/components/InventoryDisplay.tsx`
+
+### Inventory Store
+- **File**: `src/stores/inventoryStore.ts`
+- **Usage**: 
+  - `src/pages/inventory.tsx`
+  - `src/components/InventoryDisplay.tsx`
+  - `src/components/ItemUsageModal.tsx`
+
+### API Routes
+- **Get Inventory**: 
+  - **File**: `src/pages/api/inventory/[playerProfileId].ts`
+  - **Usage**: 
+    - `src/pages/inventory.tsx`
+
+- **Add Item**: 
+  - **File**: `src/pages/api/inventory/add-item.ts`
+  - **Usage**: 
+    - `src/components/InventoryDisplay.tsx`
+
+### Testing
+Implement unit tests for inventory management functions and integration tests for API routes.
+
+### Deployment
+Ensure proper database migrations for the Inventory and Item models before deploying.
 
 ## Implementation Plan
 
-1. Create the Item and Inventory models in the Prisma schema
-2. Implement API routes for Inventory and Item data:
-   - GET /api/inventory/:playerProfileId: Retrieve a player's inventory
-   - POST /api/inventory/add-item: Add a new item to a player's inventory
-   - DELETE /api/inventory/remove-item: Remove an item from a player's inventory
-3. Create an InventoryDisplay component to show the player's inventory
-4. Implement an ItemCard component to display individual item information
-5. Add inventory management functionality to the main menu
-6. Integrate the shop system with the inventory for item purchases
-7. Implement item usage logic in the game mechanics
+### Current Status
+- Basic data models defined
 
-## Components
+### Plan
 
-- InventoryDisplay: Shows an overview of the player's inventory
-- ItemCard: Displays information about a specific item
-- ItemUsageModal: Allows players to use or equip items
+1. Set up database models and migrations:
+   - [ ] Create Prisma migrations for Inventory and Item models
+   - [ ] Apply migrations to the database
 
-## State Management
+2. Implement API routes:
+   - [ ] Create GET /api/inventory/:playerProfileId route
+   - [ ] Create POST /api/inventory/add-item route
+   - [ ] Create DELETE /api/inventory/remove-item route
 
-- Store the player's inventory in the Zustand store
-- Update inventory state in real-time as items are acquired or used
+3. Develop frontend components:
+   - [ ] Create InventoryDisplay component
+   - [ ] Create ItemCard component
+   - [ ] Create ItemUsageModal component
 
-## Next Steps
+4. Implement state management:
+   - [ ] Set up Zustand store for inventory management
+   - [ ] Integrate store with components and API calls
 
-1. Design and implement a diverse set of items with varying effects and rarities
-2. Create a balanced economy for item acquisition and usage
-3. Implement inventory expansion options (e.g., using Gold or achieving certain milestones)
-4. Add item crafting or upgrade systems for more depth
-5. Integrate items with the Bigfoot ability system for synergistic effects
-6. Implement item trading or gifting between players (if multiplayer features are added)
+5. Integrate with game mechanics:
+   - [ ] Implement item usage logic in gameplay
+   - [ ] Add inventory access to main menu
 
-## Considerations
+6. Testing and refinement:
+   - [ ] Write unit tests for inventory functions
+   - [ ] Write integration tests for API routes
+   - [ ] Perform user testing and gather feedback
 
-- Ensure item effects are balanced and don't create unfair advantages
-- Implement proper error handling for inventory management operations
-- Consider implementing item durability or expiration for certain types of items
-- Plan for future scalability, such as adding new item types or effects
+## Future Enhancements
+- Implement item crafting or upgrade systems for more depth
+- Add inventory expansion options (e.g., using Gold or achieving certain milestones)
+- Integrate items with the Bigfoot ability system for synergistic effects
+- Implement item trading or gifting between players (if multiplayer features are added)
+- Add item durability or expiration for certain types of items
+- Expand the variety of items and their effects

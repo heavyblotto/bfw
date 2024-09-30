@@ -1,4 +1,4 @@
-# Leaderboard System
+# Leaderboard Design
 
 ## Overview
 The Leaderboard System provides a competitive aspect to Bigfoot War, allowing players to compare their performance with others on various metrics.

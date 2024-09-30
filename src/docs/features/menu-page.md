@@ -1,71 +1,197 @@
-# Main Menu Page Design
+# Main Menu Page
+
+## Table of Contents
+- [Overview](#overview)
+- [Data Models](#data-models)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Component Integration](#component-integration)
+- [Implementation Plan](#implementation-plan)
+- [Future Enhancements](#future-enhancements)
 
 ## Overview
 The main menu page serves as the central hub for players after logging in. It provides access to various game features, displays player information, and offers navigation to different sections of the game.
 
+See also:
+- [Game Design](game-design.md)
+
+## Data Models
+
+The page integrates various components with respective data models. The page itself has no data model for the menu screen, but the components do.
+
+See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
+
 ## Features
-- Display current Bigfoot information
-- Show player profile and stats
-- Present recent achievements and match history
-- Offer quick access to game modes and settings
-- Display leaderboard information
-- Provide account management options
 
-## Technology Stack
-- Next.js for page rendering
-- React for component structure
-- Tailwind CSS for styling
-- Shadcn UI for UI components
-- Next-Auth for session management
+1. Current Bigfoot Display
+   - Shows the player's currently selected Bigfoot character
 
-## Components
-- Current Bigfoot display
-- Player Profile section
-- Achievements section
-- Match History section
-- Trending Stats section
-- Leaderboard section
-- Settings section
-- Account management section
+2. Player Profile Section
+   - Displays user information, level, and stats
 
-## State Management
-- Uses Next-Auth session for user authentication state
-- Local React state for menu interactions
+3. Achievements Section
+   - Showcases recent achievements and overall progress
 
-## Protected Route
-The main menu page is a protected route, accessible only to authenticated users.
+4. Match History Section
+   - Lists recent matches and their outcomes
 
-## Authentication Integration
-- The page checks for user authentication status using Next-Auth
-- If the user is not authenticated, they are redirected to the login page
-- User information (username, level, etc.) is displayed based on the authenticated user's data
-- Logout functionality is implemented, allowing users to end their session
+5. Trending Stats Section
+   - Displays current game statistics and trends
 
-## Layout and Styling
-- Responsive design using Tailwind CSS
-- Dark theme with semi-transparent backgrounds
-- Pixel font for game-like appearance
-- Background image with overlay for atmospheric effect
+6. Leaderboard Section
+   - Shows top players and the user's ranking
 
-## Navigation
-- Links to various game sections (Arena, Bigfoot Selection, Inventory, Shop, etc.)
-- Logout button to end the user's session
+7. Settings Section
+   - Displays current game settings
+   - Provides a link to adjust game settings
 
-## Future Improvements
+8. Account Management Section
+   - Provides options for account-related actions
+
+## Architecture
+
+### Technology Stack
+- Next.js: For page rendering and routing
+- React: For component structure and UI
+- Tailwind CSS: For styling and responsive design
+- Shadcn UI: For pre-built UI components
+- Next-Auth: For session management and authentication
+
+### Architecture Diagram
+
+```plaintext
+[User] -> [Next.js Server]
+           |
+           v
+[Main Menu Page (React Components)]
+  |
+  +-- [Current Bigfoot Display]
+  |
+  +-- [Player Profile Section]
+  |
+  +-- [Achievements Section]
+  |
+  +-- [Match History Section]
+  |
+  +-- [Trending Stats Section]
+  |
+  +-- [Leaderboard Section]
+  |
+  +-- [Settings Section]
+  |
+  +-- [Account Management Section]
+  |
+  v
+[Next-Auth] <-> [Database]
+```
+
+### Data Flow of Main Menu Page
+1. User logs in and is redirected to the main menu page
+2. Next.js server renders the page with initial data
+3. React components fetch additional data as needed
+4. User interacts with various sections, triggering state updates
+
+### How Main Menu Page Works in the Game
+1. Authentication Check:
+   - Next-Auth verifies user session
+   - If not authenticated, redirect to login page
+
+2. Data Fetching:
+   - Fetch user profile, achievements, match history, and game stats
+   - Load current Bigfoot information
+
+3. Rendering:
+   - Display all sections with fetched data
+   - Update real-time information (e.g., updated email results) periodically
+
+### API Routes
+- `/api/auth/[...nextauth].ts`: Handles authentication
+- `/api/auth/update.ts`: Handles user email updates
+
+### Components
+
+See [Component Integration](#component-integration).
+
+### State Management
+Uses Next-Auth session for user authentication state and local React state for menu interactions
+
+### Security Considerations
+- Implement API rate limiting to prevent abuse
+- Ensure all API routes are protected and require authentication
+- Validate and sanitize user input on both client and server sides
+- Use HTTPS for all communications
+
+### Integration with Game Flow
+1. Main menu serves as the starting point after login
+2. Provides navigation to other game sections (Arena, Bigfoot Selection, etc.)
+3. Updates in real-time to reflect changes in user stats and game state
+
+## Component Integration
+
+The main menu page (`src/pages/main-menu.tsx`) integrates various components to create a comprehensive user interface. Here's how the components are integrated:
+
+1. CurrentBigfootDisplay: Embedded directly in the main menu page
+2. PlayerProfileSection: Embedded directly in the main menu page
+3. AchievementsSection: Embedded directly in the main menu page
+4. MatchHistorySection: Embedded directly in the main menu page
+5. TrendingStatsSection: Embedded directly in the main menu page
+6. LeaderboardSection: Embedded directly in the main menu page
+7. SettingsSection: Embedded directly in the main menu page
+8. UpdateUserForm: Imported and used in the Account section of the main menu page
+
+The page uses a combination of hardcoded dummy data and dynamic data from the session for demonstration purposes. In a production environment, these components would fetch data from the appropriate API endpoints.
+
+### Testing
+Implement unit tests for individual components and integration tests for the entire menu page functionality
+
+### Deployment
+Ensure compatibility with Vercel hosting for seamless deployment
+
+## Implementation Plan
+
+### Current Status
+- Basic layout and design implemented
+- Core components created and integrated
+- Authentication integration completed
+- Real-time email update functionality implemented
+
+### Plan
+
+1. Replace dummy data with real data:
+   - [ ] Implement API routes for fetching player profile, achievements, match history, and game stats
+   - [ ] Update components to use real data from API calls
+
+2. Implement remaining interactive features:
+   - [ ] Create GameSettingsDisplay component
+   - [ ] Create GameSettingsForm component
+   - [ ] Implement Settings page with GameSettingsForm
+   - [ ] Update Settings section in main menu to use GameSettingsDisplay
+
+3. Enhance state management:
+   - [ ] Implement global state for user data using Zustand
+   - [ ] Set up real-time updates for dynamic content
+
+4. Improve error handling and loading states:
+   - [ ] Add loading indicators for data fetching operations
+   - [ ] Implement error handling for failed API calls
+
+5. Optimize performance:
+   - [ ] Implement code splitting for faster initial load
+   - [ ] Optimize component re-renders
+
+6. Enhance accessibility:
+   - [ ] Add keyboard navigation support
+   - [ ] Implement ARIA labels for all interactive elements
+
+7. Implement testing:
+   - [ ] Write unit tests for individual components
+   - [ ] Create integration tests for the entire main menu page
+
+## Future Enhancements
 - Implement real-time data fetching for all sections
 - Add animations for smoother transitions between sections
 - Implement push notifications for important updates
 - Add a news or announcements section
-
-## Implementation Todo
-1. ✅ Finalize layout and design
-2. ✅ Implement remaining components (e.g., Bigfoot Selection, Match Selection)
-3. ✅ Integrate with game state management
-4. ✅ Implement data fetching for player stats and game information
-5. ✅ Add error handling for failed data fetches
-6. ✅ Optimize performance for smooth user experience
-7. ✅ Implement real-time email update display
-8. Implement accessibility features (keyboard navigation, ARIA labels)
-9. Add unit and integration tests
-
-## Real-time email update display
+- Enhance personalization based on user preferences and play style
+- Add more customizable settings (e.g., graphics quality, language preferences)
+- Implement preset setting profiles for quick switching
