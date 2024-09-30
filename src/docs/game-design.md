@@ -6,120 +6,417 @@
 
 ## Game Flow
 
+### Game Pages Overview
+
+| Splash Page | all access
+-- | Login Page | all access
+-- | Register Page | all access
+-- | Release Notes | all access
+| Main Menu | auth
+-- | Bigfoot Selection | auth
+-- | Match Selection | auth
+-- | Match Log | auth
+-- | Inventory | auth
+-- | Shop | auth
+-- | Achievements | auth
+-- | Leaderboard | auth
+-- | Statistics | auth
+| Arena | auth
+-- | Results | auth
+
 ### Splash Page
-- **Components**: 
-  - Registration button
-  - Login button
-  - Splash image
-  - Brief game description
 - **Purpose**: Introduce the game, allow users to quickly log in or register.
 - **User Journey**:
   1. A visitor arrives at [bigfootwar.com](https://bigfootwar.com).
   2. The visitor is greeted with a minimalistic splash page featuring a prominent game logo and two clear options: Register or Login.
   3. Below the buttons is a brief game description and instructions on how to get started.
+  **Links to**:
+  - Login Page
+  - Register Page
+  - Release Notes
+
+See:
+- [Splash Page](src/docs/features/splash-page.md) for more details.
+
+### Register Page
+- **Purpose**: Allow users to register for the game.
+- **User Journey**:
+  1. The Player arrives at the Register page.
+  2. The Player fills out the registration form and submits it.
+  3. The Player is redirected to the Login page.
+
+See:
+- [Account Management](src/docs/features/account.md) for more details.
+
+### Login Page
+- **Purpose**: Allow users to login to the game.
+- **User Journey**:
+  1. The Player arrives at the Login page.
+  2. The Player fills out the login form and submits it.
+  3. The Player is redirected to the Main Menu.
+
+  See:
+- [Account Management](src/docs/features/account.md) for more details.
 
 ### Menu (Main Menu) Page
-- **Components**:
-  - Player **Profile** display
-    - **Username**
-    - **Bigfoot avatar** for selected Bigfoot (Sasquatch at Level 1)
-    - **Level**
-    - **XP display**
-    - **Gold display**
-    - **Points display**
-    - **Inventory display**
-    - **Match Log**: Shows the Player's match history
-    - **Trending Stats**: Shows the top stats for the Player's Bigfoot character
-    - **Achievements**: Shows the Player's achievements
-    - **Leaderboard**: Button to access the Leaderboard page
-    - **Account**: Button to manage the Player's Profile and Account Settings
-  - **Bigfoot Selection**: Based on the Player's Level, they can choose from available Bigfoot characters to represent them in the game.
-    - The selected Bigfoot character is the **Player Bigfoot**.
-    - At **Level 1**, the Player's Bigfoot is **Sasquatch**.
-    - Higher levels unlock additional Bigfoot characters (e.g., Yeti, Skunk Ape, etc.).
-  - **Match Selection**: Select from available Opponents to play, based on Player's level. Matches take place in the **Arena**.
-    - Matches are displayed in a linear map (see below).
-    - Matches against locked Bigfoot characters require the Player to spend Gold to play.
-    - When the Player selects a Match, the **Arena** page is displayed.
-  - **Match Log**: Button to view the Player's Match history.
-  - **Shop**: Button to access the Shop page.
-  - **Game Settings**: Button to access the Game Settings page.
-  - **Logout**: Button to log out of the game.
 - **Purpose**: Main menu after logging in, providing quick access to the game.
 - **User Journey**:
   1. The Player logs in and is taken to the **Menu** page.
   2. The Player selects an Opponent from the **Match Selection** list.
   3. The Player is taken to the **Arena** page.
+- **Links to**:
+  - [Match Selection](src/docs/features/match-selection.md)
+  - [Arena](src/docs/features/arena-page.md)
+
+See:
+- [Menu Page](src/docs/features/menu-page.md) for more details.
 
 ### Arena - Main Game Page
-Once they select a Match in, Players are taken to the **Arena** page, where they can begin the card game. The design includes:
-- **Deck Area**: The deck of the Player’s Bigfoot and the AI Opponent’s Bigfoot.
-- **Battlefield**: Where cards are played, showing the Player’s and Opponent’s cards during a round.
-- **Controls**:
-  - **Draw** button: Allows the Player to draw and play the next card.
-  - **War Scenario (if tie)**: Trigger for the "War" phase.
-  - **Attack/Collect Cards Option**: After winning a round, the winning Participant chooses between collecting the cards or attacking the Opponent.
-  - **End Game**: When the game ends, the Player is taken to the **Results** page.
-
+Once they select a Match in, Players are taken to the **Arena** page, where they can begin the card game. 
 - **Purpose**: The Arena is the main game page, where the Player can play the game. The Arena theme is based on the Opponent's selected Bigfoot character.
 - **User Journey**:
   1. The Player selects a Match and enters the Arena.
   2. The Player draws and plays cards, collecting cards and attacking the Opponent.
   3. The Player wins or loses the game, and is taken to the **Results** page.
+  **Links to**:
+  - [Results](src/docs/features/results-page.md)
+
+See:
+- [Arena Page](src/docs/features/arena-page.md) for more details.
 
 ### Results - Game Results Page
-- **Components**:
-  - **Results Display**: Shows the outcome of the game.
-  - **Gold Earned**: Shows the amount of Gold earned in the game.
-  - **XP Earned**: Shows the amount of XP earned in the game.
-  - **Next Match**: Shows the next Match the Player can play.
-  - **Replay Match**: Button to replay the same Match.
-  - **Menu**: Button to go back to the Menu.
   - **Purpose**: The Results page shows the outcome of the game and provides options to continue playing.
   - **User Journey**:
   1. The Player wins or loses the game, and is taken to the **Results** page.
   2. The Player can choose to replay the same Match or go back to the Menu.
 
+  **Links to**:
+  - [Match Selection](src/docs/features/match-selection.md)
+  - [Menu](src/docs/features/menu-page.md)
+
+See:
+- [Results Page](src/docs/features/results-page.md) for more details.
+
 ### Match Log - Match Log Page
 - The Match Log shows the Player's match history.
-- The Match Log is displayed in a list of matches with the following information:
-  - **Opponent**: The Opponent Bigfoot character.
-  - **Result**: The result of the match.
-  - **Gold Earned**: The amount of Gold earned in the match.
-  - **XP Earned**: The amount of XP earned in the match.
-  - **Date**: The date the match was played.
-  - **Time**: The time the match was played.
-  - **Duration**: The duration of the match.
-  - **Cards**: The number of cards collected in the match.
-  - **Attacks**: The number of attacks made in the match.
-  - **Wins**: The number of wins in the match.
-  - **Losses**: The number of losses in the match.
-  - **Purpose**: The Match Log page shows the Player's match history.
+- The Match Log is displayed in a list of matches
   - **User Journey**:
   1. The Player can view their match history in the Match Log.
   2. The Player can click on a match to view more details about the match.
 
+  **Links to**:
+  - [Match Selection](src/docs/features/match-selection.md)
+  - [Menu](src/docs/features/menu-page.md)
+
+See:
+- [Match Log](src/docs/features/match-log.md) for more details.
+
+### Inventory - Inventory Page
+  - **Purpose**: The Inventory page shows the Player's inventory.
+  - **User Journey**:
+  1. The Player can view the items in their inventory.
+  2. The Player can click on an item to view more details about the item.
+
+See:
+- [Items](src/docs/features/items-and-inventory.md) for more details.
+
 ### Shop - Shop Page
-- **Components**:
-  - **Shop Display**: Shows the items available to purchase.
-  - **Gold Display**: Shows the amount of Gold the Player has.
-  - **Purchase Button**: Button to purchase an item.
-  - **Back Button**: Button to go back to the Menu.
   - **Purpose**: The Shop page allows the Player to purchase items with Gold.
   - **User Journey**:
   1. The Player can view the items available to purchase in the Shop.
   2. The Player can purchase an item by clicking on the item and then clicking the Purchase button.
 
-### Game Settings - Game Settings Page
-- **Components**:
-  - **Game Settings Display**: Shows the current settings for the game.
-  - **Back Button**: Button to go back to the Menu.
-  - **Purpose**: The Game Settings page allows the Player to change the settings for the game.
+See:
+- [Shop Page](src/docs/features/shop-page.md) for more details.
+
+### Acheivements Page
+  - **Purpose**: The Acheivements page shows the achievements the Player has achieved.
   - **User Journey**:
-  1. The Player can view the current settings for the game.
-  2. The Player can change the settings for the game.
+  1. The Player can view the achievements they have achieved.
+  2. The Player can click on an achievement to view more details about the achievement.
+
+See:
+- [Acheivements Page](src/docs/features/achievements-page.md) for more details. 
+
+### Leaderboard Page
+  - **Purpose**: The Leaderboard page shows the Leaderboard for the game.
+  - **User Journey**:
+  1. The Player can view the Leaderboard for the game.
+
+See:
+- [Leaderboard Page](src/docs/features/leaderboard-page.md) for more details.
+
+### Statistics Page
+  - **Purpose**: The Statistics page shows the statistics for the game.
+  - **User Journey**:
+  1. The Player can view the statistics for the game.
+
+See:
+- [Statistics Page](src/docs/features/statistics-page.md) for more details.
+
+
+## Game Logic
+
+See:
+- [Game Logic](src/docs/features/game-logic.md) for more details.
+
+### Matches
+A game match is a single game session between two Participants. Players select a Match in the **Match Selection** page available from the Main Menu.
+
+Players also select a Bigfoot character for them to use in the Match to play against the Opponent Bigfoot character.
+
+See:
+- [Bigfoot Character Selection](src/docs/features/bigfoot-character-selection.md) for more details.
+- [Match Selection](src/docs/features/match-selection.md) for more details.
+- [Match Log](src/docs/features/match-log.md) for more details.
+
+### Basic Rules
+- **Deck Setup**: Both the Player and AI Opponent start with a full 52-card deck, including two Jokers.
+- **Turn Cycle**:
+  1. Both Participants draw the top card from their respective decks.
+  2. The higher card wins the round.
+  3. When the Participant wins a round, they can choose to collect the cards or attack the Opponent.
+  4. Collecting cards gives the Participant Gold and moves them closer to depleting the Opponent's deck.
+  5. Attacking the Opponent deals damage and moves them closer to being knocked out.
+    - Attacks earn less Gold than collecting cards.
+    - The Participant only collects his own cards; the Opponent's cards are destroyed and removed from play.
+  6. In case of a tie (War scenario), both Participants draw three additional cards, and the fourth card determines the winner.
+  7. The game continues until one Participant collects all cards or the game ends by knockout.
+
+- **Jokers**: Jokers act as wild cards and can amplify effects like Gold rewards or Attack power.
+
+### Pre-Game Setup
+- Players select their Bigfoot based on their level.
+- Player selects the Match to play and enter the Arena.
+- Player pays the Gold to play matches against locked Opponent Bigfoot characters.
+
+### 1. Game Start
+- Each Participant starts with 52 cards in their decks, including two Jokers.
+- Both decks are shown face-down.
+- The Player's Bigfoot is displayed on the battlefield.
+- The AI's Bigfoot is displayed on the battlefield.
+
+### 2. Drawing Cards
+- On each turn, both the Player and AI draw a card.
+- The Participant sees both cards in the battlefield area.
+- The higher card wins.
+- The winner can choose to collect the cards or attack the Opponent.
+- Win cards are added to the Participant's win pile.
+
+### 3. War Scenario
+- If the cards drawn by both Participants are of the same rank:
+  1. Both Participants draw three additional cards face down.
+  2. A fourth card is drawn face up to determine the winner of the war.
+  3. In case of another tie, the process repeats with additional cards drawn face down and up until a winner is determined.
+
+### 4. Shuffling
+- When a Participant runs out of cards in their draw deck, the win pile is automatically shuffled to become the new deck.
+
+### 5. Knockout Victory
+- If a Participant reduces their Opponent’s HP to zero through Attacks, they achieve a **knockout victory**, ending the game immediately.
+- **Gold Bonus**: Knockout victories provide a large Gold bonus (e.g., 100 Gold).
+
+### 6. Game End
+- The game ends when one Participant collects all cards or the game ends by knockout.
+
+## Game Features
+
+### Attacks Feature
+After winning a round, Participants can choose to Attack the Opponent’s Bigfoot instead of collecting the cards. The attack's effectiveness is based on the Bigfoot’s abilities, the suit of the winning card, and the card’s value.
+
+See [Attacks](src/docs/features/attacks.md) for more details.
+
+### Collecting Cards Feature
+- **Gold Bonus**: Collecting cards earns more Gold than Attacks.
+- **Collecting Cards**: Collects all cards played during the round, Player and Opponent.
+
+See also:
+- [Game Logic](src/docs/features/game-logic.md) for more details.
+
+### Gold Feature
+
+See also:
+- [Gold](src/docs/features/gold.md) for more details.
+
+#### Earning Gold
+Gold is earned during gameplay through various actions:
+- **Attacks**: Attacks yield Gold based on the card’s suit and value, but less than collecting cards.
+- **Collecting Cards**: Earns more Gold than Attacks.
+- **Knockout Victory**: Large Gold bonus (e.g., 100 Gold) for winning by knockout.
+- **Achievements**: Earn Gold for achieving milestones, like completing a certain number of games or winning a certain number of rounds.
+
+#### Using Gold
+Gold can be used for:
+1. **Purchasing items in the Shop**.
+2. **Unlocking Matches against locked Opponent Bigfoot characters**.
+
+### Player Levels Feature
+
+See also:
+- [Player Levels](src/docs/features/player-levels.md) for more details.
+
+#### Leveling System
+- XP bar showing Player's progress towards the next level.
+- Wins and achievements unlock new Player Levels with new Matches and new Player Bigfoot Characters.
+- Players start at **Level 1** with access to **Sasquatch** as their Player Bigfoot.
+- Levels are displayed on a linear map, with waypoints for each Level.
+- Players must defeat all Opponent Bigfoot characters at a Level in order to unlock the next Level.
+- A Player needs to defeat an Opponent Bigfoot character in order to unlock that character in the game as the Player Bigfoot.
+
+#### XP Feature
+- As the Player levels up, they gain **XP** through winning games and attacking effectively. The higher the level, the more complex the abilities the Player can use.
+- **Win a Match**: Gain a large amount of XP.
+- **Defeat Opponent Bigfoot**: Gain XP for defeating an Opponent Bigfoot.
+- **Win a Round**: Gain XP for winning a round.
+- **Collect Cards**: Gain XP for collecting cards.
+- **Attack Opponent**: Gain XP for attacking the Opponent.
+- **Achievements**: Gain XP for achieving milestones, like completing a certain number of games or winning a certain number of rounds.
+
+### Bigfoot Characters Feature
+
+See also:
+- [Bigfoot Characters](src/docs/features/bigfoot-characters.md) for more details.
+
+#### Bigfoot Characters (Sample Progression)
+- **Level 1**: Sasquatch (default Bigfoot)
+- **Level 2**: Skunk Ape
+- **Level 3**: Yowie
+- **Level 4**: Yeti
+- **Level 5**: Orang Mawas
+- And so on, expanding to include different regional and mythical Bigfoots.
+
+#### Bigfoot Character Abilities
+Each Bigfoot Character has unique abilities tied to **Player Level**, allowing progression and strategy as the game progresses. Players unlock new Player Bigfoots and abilities as they level up. Here’s how these abilities could work:
+
+- **Level 1 Bigfoot (e.g., Sasquatch)**: 
+  - Basic abilities tied to the suits, but with no additional special effects.
+  - Example ability: **Ground Smash** (Clubs): Deals damage and stuns for one turn.
+
+- **Level 2 Bigfoot (e.g., Skunk Ape)**:
+  - Special abilities tied to each suit unlock as the Player progresses.
+  - Example ability: **Poison Cloud** (Spades): Poisons enemies over time.
+
+- **Level 3 Bigfoot (e.g., Yowie)**: 
+  - Special abilities that introduce defensive tactics.
+  - Example ability: **Thorny Vines** (Diamonds): Reduces damage taken and reflects some damage to the Opponent.
+
+- **Level 4 Bigfoot (e.g., Yeti)**: 
+  - The Player unlocks new abilities related to ice and freezing mechanics.
+  - Example ability: **Blizzard’s Fury** (Spades): Freezes all enemies and reduces their attack.
+
+- **Level 5+ Bigfoots (e.g., Orang Mawas, Almas, etc.)**:
+  - More complex abilities that combine attacks, defense, and utility. At this level, Players begin unlocking combinations of abilities, offering strategic depth.
+  - Example ability: **Jungle Regeneration** (Hearts): Heal while also applying a poison to enemies.
+
+#### Bigfoot Leveling Feature
+- Each Bigfoot has a **Primary Ability** (tied to their theme) that scales as they progress, unlocking **Secondary Abilities** at higher levels.
+
+#### Unlocking New Bigfoots and Their Abilities
+- As the Player gains levels, new Bigfoot characters are unlocked, allowing access to new cards and abilities.
+- Each Bigfoot may offer a unique twist in gameplay, pushing the Player to experiment with new strategies.
+- Higher-level Bigfoots have more complex abilities, offering more tactical depth to the game as Players progress.
+
+### Attacks and Special Abilities
+
+See also:
+- [Attacks](src/docs/features/attacks.md) for more details.
+
+#### General Card-Based Attacks
+
+Each card played (including its **suit** and **number**) will trigger specific effects based on the Participant’s Bigfoot character and the card's attributes. The suits will represent different playstyles, while the card number will modify the potency of that play.
+
+Face cards represent stronger abilities and more strategic gameplay. They will have unique mechanics based on the Bigfoot’s **class** and **suit**. These can trigger unique attacks, defense mechanisms, or utility moves that are more powerful than the number cards.
+
+Each Bigfoot character unlocks special abilities as the Player levels up. 
+
+### Player Properties for Gameplay
+
+See also:
+- [Player Profiles](src/docs/features/player-profiles.md) for more details.
+
+Players will have specific properties that affect gameplay:
+1. **Experience Points (XP)**: Players earn XP by winning rounds and battles. Accumulating XP allows the Player to level up and unlock new Bigfoot characters.
+2. **Level**: Player levels are tied to the number of games won and experience points earned. Higher levels unlock more Bigfoots and abilities.
+3. **Points**: Players earn points through various gameplay actions and achievements. Points contribute to leaderboards and can be used for special rewards.
+4. **Bigfoot Selection**: As Players progress, they unlock more powerful Bigfoots with unique stats and abilities.
+5. **Win Pile Management**: Players must strategically decide when to collect cards into their win pile and when to risk attacking.
+
+### Bigfoot Character Properties for Gameplay
+
+See also:
+- [Bigfoot Characters](src/docs/features/bigfoot-characters.md) for more details.
+
+- **Name**: The name of the Bigfoot character (e.g. Sasquatch, Skunk Ape, Yowie, Yeti, Orang Mawas, etc.)
+- **Class**: Dwarf, Squatch, or Giant
+- **Level**: The level at which the Bigfoot character is unlocked.
+- **Primary Ability**: The unique ability of the Bigfoot character.
+- **Secondary Ability**: The secondary ability of the Bigfoot character.
+- **HP**: The health points of the Bigfoot character, associated with their class and level. Determines how much damage they can take.
+    - **Dwarf**: low
+    - **Squatch**: medium
+    - **Giant**: high
+- **Attack**: The attack of the Bigfoot character, associated with their class and level. Determines how much damage they can deal.
+    - **Dwarf**: low
+    - **Squatch**: medium
+    - **Giant**: high
+- **Defense**: The defense of the Bigfoot character, associated with their class and level. Determines how much damage they can absorb.
+    - **Dwarf**: high
+    - **Squatch**: medium
+    - **Giant**: low
+- **Luck**: The luck of the Bigfoot character, associated with their class and level. Influences the amount of Gold and XP earned.
+    - **Dwarf**: high
+    - **Squatch**: medium
+    - **Giant**: low
+
+### Points Feature
+
+See also:
+- [Points](src/docs/features/points.md) for more details.
+
+The Points System adds an additional layer of progression and competition to Bigfoot War. Points are separate from XP and Gold, serving as a measure of overall player achievement and skill.
+
+#### Earning Points
+Players can earn points through various actions and achievements:
+
+1. **Gameplay Actions**:
+   - Winning a round: 1 point
+   - Winning a War scenario: 3 points
+   - Winning a match: 10 points
+   - Knockout victory: 15 points
+   - Successfully attacking the opponent: 2 points
+   - Collecting cards: 1 point per card collected
+
+2. **Achievements**:
+   - Unlocking a new Bigfoot character: 50 points
+   - Reaching a new player level: 25 points
+   - Winning streak bonuses: 5 points for every consecutive win (resets on loss)
+   - Completing daily challenges: 10-30 points depending on difficulty
+
+3. **Special Events**:
+   - Participating in seasonal events: 20 points
+   - Ranking in top positions during events: 50-100 points
+
+#### Using Points
+Points serve multiple purposes in the game:
+
+1. **Leaderboards**: Players' total points contribute to their position on global and friend leaderboards.
+
+2. **Seasonal Rewards**: At the end of each season (e.g., monthly), players receive rewards based on their point totals.
+
+3. **Exclusive Content**: Certain cosmetic items or special Bigfoot variants may be unlocked by reaching specific point thresholds.
+
+4. **Matchmaking**: Points can be used as a factor in matchmaking to ensure fair and competitive matches.
+
+#### Displaying Points
+- The player's current point total is displayed prominently on their profile and the main menu.
+- A breakdown of points earned is available in the player's match history and achievement log.
+
+This Points System adds an extra dimension to player progression and provides additional goals for players to strive for beyond just leveling up and earning Gold.
 
 ### Leaderboard System
+
+See also:
+- [Leaderboard](src/docs/features/leaderboard.md) for more details.
 
 The Leaderboard System provides a competitive aspect to Bigfoot War, allowing players to compare their performance with others on various metrics.
 
@@ -185,331 +482,6 @@ The Leaderboard page accessible from the Main Menu includes:
    - Top players on each Bigfoot-specific leaderboard receive character-specific rewards.
 
 The Leaderboard System adds a competitive element to Bigfoot War, encouraging players to improve their skills and engage with the game regularly. It also provides additional goals for players to strive for beyond individual match victories.
-
-## Game Logic
-
-### Basic Rules
-- **Deck Setup**: Both the Player and AI Opponent start with a full 52-card deck, including two Jokers.
-- **Turn Cycle**:
-  1. Both Participants draw the top card from their respective decks.
-  2. The higher card wins the round.
-  3. When the Participant wins a round, they can choose to collect the cards or attack the Opponent.
-  4. Collecting cards gives the Participant Gold and moves them closer to depleting the Opponent's deck.
-  5. Attacking the Opponent deals damage and moves them closer to being knocked out.
-    - Attacks earn less Gold than collecting cards.
-    - The Participant only collects his own cards; the Opponent's cards are destroyed and removed from play.
-  6. In case of a tie (War scenario), both Participants draw three additional cards, and the fourth card determines the winner.
-  7. The game continues until one Participant collects all cards or the game ends by knockout.
-
-- **Jokers**: Jokers act as wild cards and can amplify effects like Gold rewards or Attack power.
-
-### Pre-Game Setup
-- Players select their Bigfoot based on their level.
-- Player selects the Match to play and enter the Arena.
-- Player pays the Gold to play matches against locked Opponent Bigfoot characters.
-
-### 1. Game Start
-- Each Participant starts with 52 cards in their decks, including two Jokers.
-- Both decks are shown face-down.
-- The Player's Bigfoot is displayed on the battlefield.
-- The AI's Bigfoot is displayed on the battlefield.
-
-### 2. Drawing Cards
-- On each turn, both the Player and AI draw a card.
-- The Participant sees both cards in the battlefield area.
-- The higher card wins.
-- The winner can choose to collect the cards or attack the Opponent.
-- Win cards are added to the Participant's win pile.
-
-### 3. War Scenario
-- If the cards drawn by both Participants are of the same rank:
-  1. Both Participants draw three additional cards face down.
-  2. A fourth card is drawn face up to determine the winner of the war.
-  3. In case of another tie, the process repeats with additional cards drawn face down and up until a winner is determined.
-
-### 4. Shuffling
-- When a Participant runs out of cards in their draw deck, the win pile is automatically shuffled to become the new deck.
-
-### 5. Knockout Victory
-- If a Participant reduces their Opponent’s HP to zero through Attacks, they achieve a **knockout victory**, ending the game immediately.
-- **Gold Bonus**: Knockout victories provide a large Gold bonus (e.g., 100 Gold).
-
-### 6. Game End
-- The game ends when one Participant collects all cards or the game ends by knockout.
-
-### Matches
-- A match is a game session between two Participants.
-- A Player selects a Bigfoot character to use in the Match (Player Bigfoot).
-- Players can select from a list of available Matches.
-- For each level, there Matches for each available Opponent Bigfoot character.
-- Players pay Gold to play Matches against locked Opponent Bigfoot characters.
-- Matches are displayed in a linear map with waypoints for each Player Level.
-  - Players advance along the map by winning Matches within each Level.
-  - Waypoints contain the Matches for each of the available Bigfoot character opponents for that Level.
-  - For example, Level 1 is the first waypoint on the map, and contains the Matches for the Level 1 Bigfoot character (Sasquatch). At Level 2, the waypoint will contain the Matches for the Level 2 Bigfoot characters (Sasquatch and Skunk Ape).
-  - When a Player reaches a waypoint, they can select the Match to play.
-  - Players can repeat Matches to earn Gold and XP.
-  - Players must defeat an Opponent Bigfoot character in order to unlock that Bigfoot character to be available as a Player Bigfoot in future Matches.
-- When the Player selects a Match (and pays the Gold if the Opponent Bigfoot is locked), the player can proceed to the **Arena** page to start the game.
-
-### Attack vs. Collect Cards
-
-#### Attacks
-After winning a round, Participants can choose to Attack the Opponent’s Bigfoot instead of collecting the cards. The attack's effectiveness is based on the Bigfoot’s abilities, the suit of the winning card, and the card’s value.
-
-- **Attack Mechanics**:
-  - **Hearts**: Healing moves that restore HP.
-  - **Clubs**: Offensive attacks that deal damage.
-  - **Diamonds**: Defensive moves that reduce incoming damage or increase defense.
-  - **Spades**: Poisonous or weakening attacks that reduce the Opponent’s abilities over time.
-  - **Face Cards**: Trigger powerful special abilities specific to the Bigfoot character.
-
-- **Knockout Victory**: If a Participant reduces the Opponent’s HP to Zero through Attacks, they win the game by knockout.
-- **XP Bonus**: Attacks earn more XP than collecting cards.
-- **Collecting Cards**: When a Participant Attacks, they collect only their own cards played during that round. The Opponent's cards are destroyed and removed from play.
-
-#### Collecting Cards
-- **Gold Bonus**: Collecting cards earns more Gold than Attacks.
-- **Collecting Cards**: Collects all cards played during the round, Player and Opponent.
-
-### Gold System
-
-#### Earning Gold
-Gold is earned during gameplay through various actions:
-- **Attacks**: Attacks yield Gold based on the card’s suit and value, but less than collecting cards.
-- **Collecting Cards**: Earns more Gold than Attacks.
-- **Knockout Victory**: Large Gold bonus (e.g., 100 Gold) for winning by knockout.
-- **Achievements**: Earn Gold for achieving milestones, like completing a certain number of games or winning a certain number of rounds.
-
-#### Using Gold
-Gold can be used for:
-1. **Purchasing items in the Shop**.
-2. **Unlocking Matches against locked Opponent Bigfoot characters**.
-
-### Player Levels
-
-#### Leveling System
-- XP bar showing Player's progress towards the next level.
-- Wins and achievements unlock new Player Levels with new Matches and new Player Bigfoot Characters.
-- Players start at **Level 1** with access to **Sasquatch** as their Player Bigfoot.
-- Levels are displayed on a linear map, with waypoints for each Level.
-- Players must defeat all Opponent Bigfoot characters at a Level in order to unlock the next Level.
-- A Player needs to defeat an Opponent Bigfoot character in order to unlock that character in the game as the Player Bigfoot.
-
-#### XP System
-- As the Player levels up, they gain **XP** through winning games and attacking effectively. The higher the level, the more complex the abilities the Player can use.
-- **Win a Match**: Gain a large amount of XP.
-- **Defeat Opponent Bigfoot**: Gain XP for defeating an Opponent Bigfoot.
-- **Win a Round**: Gain XP for winning a round.
-- **Collect Cards**: Gain XP for collecting cards.
-- **Attack Opponent**: Gain XP for attacking the Opponent.
-- **Achievements**: Gain XP for achieving milestones, like completing a certain number of games or winning a certain number of rounds.
-
-### Bigfoot Characters
-
-#### Bigfoot Characters (Sample Progression)
-- **Level 1**: Sasquatch (default Bigfoot)
-- **Level 2**: Skunk Ape
-- **Level 3**: Yowie
-- **Level 4**: Yeti
-- **Level 5**: Orang Mawas
-- And so on, expanding to include different regional and mythical Bigfoots.
-
-#### Bigfoot Character Abilities
-Each Bigfoot Character has unique abilities tied to **Player Level**, allowing progression and strategy as the game progresses. Players unlock new Player Bigfoots and abilities as they level up. Here’s how these abilities could work:
-
-- **Level 1 Bigfoot (e.g., Sasquatch)**: 
-  - Basic abilities tied to the suits, but with no additional special effects.
-  - Example ability: **Ground Smash** (Clubs): Deals damage and stuns for one turn.
-
-- **Level 2 Bigfoot (e.g., Skunk Ape)**:
-  - Special abilities tied to each suit unlock as the Player progresses.
-  - Example ability: **Poison Cloud** (Spades): Poisons enemies over time.
-
-- **Level 3 Bigfoot (e.g., Yowie)**: 
-  - Special abilities that introduce defensive tactics.
-  - Example ability: **Thorny Vines** (Diamonds): Reduces damage taken and reflects some damage to the Opponent.
-
-- **Level 4 Bigfoot (e.g., Yeti)**: 
-  - The Player unlocks new abilities related to ice and freezing mechanics.
-  - Example ability: **Blizzard’s Fury** (Spades): Freezes all enemies and reduces their attack.
-
-- **Level 5+ Bigfoots (e.g., Orang Mawas, Almas, etc.)**:
-  - More complex abilities that combine attacks, defense, and utility. At this level, Players begin unlocking combinations of abilities, offering strategic depth.
-  - Example ability: **Jungle Regeneration** (Hearts): Heal while also applying a poison to enemies.
-
-#### Bigfoot Leveling System
-- Each Bigfoot has a **Primary Ability** (tied to their theme) that scales as they progress, unlocking **Secondary Abilities** at higher levels.
-
-#### Unlocking New Bigfoots and Their Abilities
-- As the Player gains levels, new Bigfoot characters are unlocked, allowing access to new cards and abilities.
-- Each Bigfoot may offer a unique twist in gameplay, pushing the Player to experiment with new strategies.
-- Higher-level Bigfoots have more complex abilities, offering more tactical depth to the game as Players progress.
-
-### Attacks and Special Abilities
-
-#### General Card-Based Attacks
-
-Each card played (including its **suit** and **number**) will trigger specific effects based on the Participant’s Bigfoot character and the card's attributes. The suits will represent different playstyles, while the card number will modify the potency of that play.
-
-##### Suits and Their General Functions
-1. **Hearts (Healing)**
-   - Healing actions that recover the health of the Participant's Bigfoot character.
-   - Higher-numbered cards increase the amount of HP restored.
-2. **Clubs (Offensive Attacks)**
-   - Physical and aggressive attacks that damage the Opponent’s Bigfoot character.
-   - Higher-numbered cards increase damage output.
-3. **Diamonds (Defensive Plays)**
-   - Defensive actions that boost the Participant’s defense, shielding them from damage or reducing damage taken.
-   - Higher-numbered cards increase the strength or duration of the defense.
-4. **Spades (Status and Special Effects)**
-   - Cards that trigger status effects (e.g., poison, stuns, debuffs, buffs, etc.) or special tactical actions.
-   - Higher-numbered cards increase the potency or length of the effect.
-
-##### Number Cards (2-10, aka Rank)
-The number of the card influences the strength of the action performed. For example:
-- **2**: Minor effect (small heal, low damage, short-duration effect).
-- **10**: Major effect (large heal, high damage, long-duration effect).
-
-The attacks and abilities will scale depending on the card number drawn. Here's an example for each suit:
-
-- **Hearts (Healing)**: 
-   - 2 of Hearts: Heal 2 HP.
-   - 10 of Hearts: Heal 10 HP.
-
-- **Clubs (Offensive Attacks)**: 
-   - 2 of Clubs: Deal 2 damage.
-   - 10 of Clubs: Deal 10 damage.
-
-- **Diamonds (Defensive Plays)**: 
-   - 2 of Diamonds: Increase defense by 2 points for 1 turn.
-   - 10 of Diamonds: Increase defense by 10 points for 3 turns.
-
-- **Spades (Status Effects)**: 
-   - 2 of Spades: Apply a minor poison that deals 1 damage over time.
-   - 10 of Spades: Apply a strong poison that deals 5 damage over time.
-
-#### Special Abilities for Face Cards
-
-Face cards represent stronger abilities and more strategic gameplay. They will have unique mechanics based on the Bigfoot’s **class** and **suit**. These can trigger unique attacks, defense mechanisms, or utility moves that are more powerful than the number cards.
-
-##### Jack, Queen, King, and Ace Abilities
-1. **Jack**: Aggressive multipliers or fast-paced attacks.
-   - **Hearts (Jack)**: Strong healing ability that may heal other conditions like status effects or add a temporary HP boost.
-   - **Clubs (Jack)**: Rapid, multi-hit attack that targets a single opponent multiple times.
-   - **Diamonds (Jack)**: Instant defense boost with a small counterattack on the Opponent.
-   - **Spades (Jack)**: A quick status effect (e.g., freeze or stun) that disables the Opponent for one turn.
-
-2. **Queen**: Supportive abilities or defensive buffs.
-   - **Hearts (Queen)**: Heal a significant amount of HP for the Participant's Bigfoot or create a large, temporary HP boost.
-   - **Clubs (Queen)**: A powerful single-target attack that deals high damage and may stun the Opponent.
-   - **Diamonds (Queen)**: A defensive shield that significantly boosts the Participant’s defense while reducing damage taken.
-   - **Spades (Queen)**: A strong debuff (e.g., poison the Opponent or reduce their attack power for several turns).
-
-3. **King**: Ultimate ability for each suit.
-   - **Hearts (King)**: A massive healing burst that completely heals the Participant’s Bigfoot.
-   - **Clubs (King)**: Devastating single-target attack that deals massive damage.
-   - **Diamonds (King)**: Create a shield that lasts for multiple turns, reducing damage significantly.
-   - **Spades (King)**: Apply a powerful, long-lasting debuff that severely hampers the Opponent (e.g., poison, reduce defense, or block healing).
-
-4. **Ace**: The most powerful, game-changing cards that shift the balance of power.
-   - **Hearts (Ace)**: Full HP recovery and cleanse all status effects.
-   - **Clubs (Ace)**: Deal a massive single-target attack that deals critical damage.
-   - **Diamonds (Ace)**: Create an unbreakable shield for several turns, nullifying all damage.
-   - **Spades (Ace)**: Unleash a catastrophic status effect (e.g., freeze all enemies for two turns, poison all enemies).
-
-#### Special Effects for Jokers
-- Two Jokers are included in each deck. Each card has a special effect that can change the outcome of a battle.
-- One Joker is black and one is red.
-  1. **Black Joker**: 
-     - **Gold Multiplier**: Multiply the amount of Gold earned in the current match by a factor depending on the Bigfoot's abilities and current level.
-  2. **Red Joker**: 
-     - **XP Multiplier**: Multiply the amount of XP earned in the current match by a factor depending on the Bigfoot's abilities and current level.
-
-#### Bigfoot-Specific Abilities
-Each Bigfoot character unlocks special abilities as the Player levels up. Some examples include:
-- **Level 1 (Sasquatch)**: "Forest Regeneration" - Sasquatch can heal every time they play a Hearts card.
-- **Level 5 (Yeti)**: "Blizzard Fury" - Each Clubs card attack has a chance to freeze the Opponent for one turn.
-- **Level 10 (Skunk Ape)**: "Swamp Strike" - Playing Spades causes additional poison damage over time.
-
-### Player Properties for Gameplay
-Players will have specific properties that affect gameplay:
-1. **Experience Points (XP)**: Players earn XP by winning rounds and battles. Accumulating XP allows the Player to level up and unlock new Bigfoot characters.
-2. **Level**: Player levels are tied to the number of games won and experience points earned. Higher levels unlock more Bigfoots and abilities.
-3. **Points**: Players earn points through various gameplay actions and achievements. Points contribute to leaderboards and can be used for special rewards.
-4. **Bigfoot Selection**: As Players progress, they unlock more powerful Bigfoots with unique stats and abilities.
-5. **Win Pile Management**: Players must strategically decide when to collect cards into their win pile and when to risk attacking.
-
-### Bigfoot Character Properties for Gameplay
-- **Name**: The name of the Bigfoot character (e.g. Sasquatch, Skunk Ape, Yowie, Yeti, Orang Mawas, etc.)
-- **Class**: Dwarf, Squatch, or Giant
-- **Level**: The level at which the Bigfoot character is unlocked.
-- **Primary Ability**: The unique ability of the Bigfoot character.
-- **Secondary Ability**: The secondary ability of the Bigfoot character.
-- **HP**: The health points of the Bigfoot character, associated with their class and level. Determines how much damage they can take.
-    - **Dwarf**: low
-    - **Squatch**: medium
-    - **Giant**: high
-- **Attack**: The attack of the Bigfoot character, associated with their class and level. Determines how much damage they can deal.
-    - **Dwarf**: low
-    - **Squatch**: medium
-    - **Giant**: high
-- **Defense**: The defense of the Bigfoot character, associated with their class and level. Determines how much damage they can absorb.
-    - **Dwarf**: high
-    - **Squatch**: medium
-    - **Giant**: low
-- **Luck**: The luck of the Bigfoot character, associated with their class and level. Influences the amount of Gold and XP earned.
-    - **Dwarf**: high
-    - **Squatch**: medium
-    - **Giant**: low
-
-### Points System
-
-The Points System adds an additional layer of progression and competition to Bigfoot War. Points are separate from XP and Gold, serving as a measure of overall player achievement and skill.
-
-#### Earning Points
-Players can earn points through various actions and achievements:
-
-1. **Gameplay Actions**:
-   - Winning a round: 1 point
-   - Winning a War scenario: 3 points
-   - Winning a match: 10 points
-   - Knockout victory: 15 points
-   - Successfully attacking the opponent: 2 points
-   - Collecting cards: 1 point per card collected
-
-2. **Achievements**:
-   - Unlocking a new Bigfoot character: 50 points
-   - Reaching a new player level: 25 points
-   - Winning streak bonuses: 5 points for every consecutive win (resets on loss)
-   - Completing daily challenges: 10-30 points depending on difficulty
-
-3. **Special Events**:
-   - Participating in seasonal events: 20 points
-   - Ranking in top positions during events: 50-100 points
-
-#### Using Points
-Points serve multiple purposes in the game:
-
-1. **Leaderboards**: Players' total points contribute to their position on global and friend leaderboards.
-
-2. **Seasonal Rewards**: At the end of each season (e.g., monthly), players receive rewards based on their point totals.
-
-3. **Exclusive Content**: Certain cosmetic items or special Bigfoot variants may be unlocked by reaching specific point thresholds.
-
-4. **Matchmaking**: Points can be used as a factor in matchmaking to ensure fair and competitive matches.
-
-#### Point Decay
-To encourage continued play and maintain competitive leaderboards:
-
-- A small percentage of points (e.g., 5%) decay each week.
-- Points earned from achievements and special events are exempt from decay.
-
-#### Displaying Points
-- The player's current point total is displayed prominently on their profile and the main menu.
-- A breakdown of points earned is available in the player's match history and achievement log.
-
-This Points System adds an extra dimension to player progression and provides additional goals for players to strive for beyond just leveling up and earning Gold.
 
 ## Terminology
 

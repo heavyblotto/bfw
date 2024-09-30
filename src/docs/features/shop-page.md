@@ -1,0 +1,5 @@
+- **Components**:
+  - **Shop Display**: Shows the items available to purchase.
+  - **Gold Display**: Shows the amount of Gold the Player has.
+  - **Purchase Button**: Button to purchase an item.
+  - **Back Button**: Button to go back to the Menu.

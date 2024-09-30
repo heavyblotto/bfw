@@ -204,7 +204,7 @@ Our project uses a combination of file-based storage and Vercel Postgres with Pr
 ### File-based Storage
 - YAML and Markdown files with front matter are used for static content and configuration.
 - These files are stored in the `/data` directory and parsed using the utility function (to be written).
-- Ideal for content that doesn't change frequently, such as game rules, character descriptions, or level layouts.
+- Ideal for content that doesn't change frequently.
 
 ### Vercel Postgres with Prisma ORM
 We use Vercel Postgres with Prisma ORM for storing and managing dynamic game data, user information, and other structured data that requires frequent updates or complex queries.

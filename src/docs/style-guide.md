@@ -1,38 +1,37 @@
 # *Bigfoot War* Style Guide
 
-The game's visual identity blends retro pixel art with immersive, natural elements, ensuring the player feels fully embedded in a world where Bigfoot-like creatures roam dense forests, misty swamps, and desolate mountain peaks.
-
-Our UI and HUD design reflects these natural, earthy environments, using textures and colors that mimic wood, stone, moss, and dirt. The goal is to create an interface that is not only functional but also seamlessly integrated into the game's setting—every button, health bar, and ability icon should feel like it belongs in the wilds.
-
-The aesthetic focuses on delivering a minimalistic but efficient user experience, where essential gameplay information is presented clearly but without disrupting immersion. Interactions with the UI should feel organic and in tune with the natural environments, emphasizing accessibility while maintaining an adventurous, raw, and mythic quality throughout.
+The game's visual identity blends retro pixel art with immersive, natural elements, creating a dark, mysterious atmosphere that reflects the world of Bigfoot creatures. Our UI and HUD design uses a dark color scheme with gradient backgrounds, emphasizing the game's mythical and adventurous qualities.
 
 ## Color Palette
 
 - Primary Colors: 
-  - Green: `#15803d` (bg-green-700)
-  - Brown: `#78350f` (bg-brown-800)
-  - Stone: `#1c1917` (bg-stone-900)
+  - Dark Stone: `#1c1917` (bg-stone-900)
+  - Neutral: `#262626` (bg-neutral-800)
+  - Slate: `#0f172a` (bg-slate-900)
 - Accent Colors:
+  - Green: `#15803d` (bg-green-700)
   - Amber: `#fbbf24` (text-amber-400)
   - Stone: `#e7e5e4` (text-stone-200)
+- Gradient Text:
+  - `bg-gradient-to-r from-purple-400 via-pink-500 to-red-500`
 
 ## Typography
 
-- Primary Font: "Press Start 2P" (pixel font)
+- Primary Font: "Press Start 2P" (pixel font, referred to as `font-pixel`)
 - Fallback Font: sans-serif
 - Font Sizes:
-  - Headings: text-4xl (36px)
-  - Subheadings: text-2xl (24px)
-  - Body Text: text-xl (20px)
-  - Small Text: text-sm (14px)
+  - Main Heading: text-4xl sm:text-6xl
+  - Subheadings: text-2xl
+  - Body Text: text-xl
+  - Small Text: text-sm
 
 ## UI Components
 
-### Cards
-- Background: `bg-stone-800/90` (semi-transparent dark stone)
-- Border: `border-2 border-stone-600`
-- Text Color: `text-stone-200`
-- Shadow: `shadow-lg`
+### Cards/Containers
+- Background: `bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90`
+- Border: `border border-stone-500`
+- Shadow: `shadow-[0_0_15px_rgba(255,255,255,0.5)]`
+- Rounded corners: `rounded-lg`
 
 ### Buttons
 - Primary Button:
@@ -45,38 +44,53 @@ The aesthetic focuses on delivering a minimalistic but efficient user experience
   - Border: `border-2 border-stone-400`
 
 ### Text
-- Headings: `text-amber-400`
+- Headings: Gradient text with drop shadow
+  ```css
+  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
+  text-transparent bg-clip-text 
+  drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]
+  ```
 - Body Text: `text-stone-200`
 - Muted Text: `text-stone-400`
+- Links: `text-amber-400 hover:text-amber-300`
 
 ## Layout
 
 - Use flexbox for centering and alignment
-- Maintain consistent padding and margins
-- Utilize `max-w-4xl` for content width on larger screens
+- Full-height layouts: `min-h-screen flex flex-col`
+- Content width on larger screens: `max-w-3xl w-full`
 
 ## Backgrounds
 
-- Use gradient backgrounds with natural colors:
-  ```css
-  bg-gradient-to-br from-green-900 via-brown-800 to-green-700
+- Full-page background image:
+  ```jsx
+  <Image
+    src="/images/background-image.webp"
+    alt="Background description"
+    fill
+    style={{ objectFit: 'cover' }}
+    priority
+  />
   ```
-- Overlay textures or patterns for added depth:
-  ```css
-  bg-[url('data:image/svg+xml;base64,...')] opacity-20
-  ```
+- Overlay the background with a semi-transparent container
 
 ## Images
 
 - Use the Next.js Image component for optimization
-- Apply `object-fit: cover` for consistent image sizing
+- For card-like images:
+  ```css
+  relative w-full h-0 pb-[56.25%] overflow-hidden rounded-lg
+  shadow-[0_0_10px_rgba(255,255,255,0.3)]
+  ```
 - Use `priority` prop for above-the-fold images
 
 ## Animations and Transitions
 
 - Use subtle hover effects on interactive elements
-- Implement smooth transitions for state changes
-- Consider adding subtle particle effects or ambient animations to enhance the wilderness theme
+- Implement smooth transitions for state changes:
+  ```css
+  transition-colors duration-200
+  ```
 
 ## Accessibility
 
@@ -89,4 +103,12 @@ The aesthetic focuses on delivering a minimalistic but efficient user experience
 - Design for mobile-first, then scale up for larger screens
 - Use Tailwind's responsive classes to adjust layouts and font sizes
 
-This style guide aims to create a consistent, immersive, and visually appealing experience that aligns with the Bigfoot War theme. When implementing new features or components, refer to this guide to maintain consistency throughout the game.
+## Footer
+
+- Background: `bg-gradient-to-r from-stone-900/90 via-neutral-800/90 to-slate-900/90`
+- Border: `border-t border-stone-500`
+- Shadow: `shadow-[0_0_15px_rgba(255,255,255,0.5)]`
+- Text: `text-stone-200`
+- Links: `text-amber-400 hover:text-amber-300`
+
+This updated style guide reflects the dark, mysterious atmosphere of the Bigfoot War game, emphasizing the use of gradients, semi-transparent overlays, and pixel-style fonts. When implementing new features or components, refer to this guide to maintain consistency throughout the game.
