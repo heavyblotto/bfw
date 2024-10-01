@@ -70,6 +70,8 @@ interface Bigfoot {
 
 These properties define the characteristics, abilities, and gameplay mechanics associated with each Bigfoot character. The combination of these properties creates unique gameplay experiences for each Bigfoot, encouraging players to try different strategies and playstyles.
 
+Note: The description, habitat, location, and other properties of each Bigfoot should directly influence the design of their attacks and abilities. This ensures that each Bigfoot's gameplay style is thematically consistent with their lore and characteristics.
+
 ### Attack Data Structure
 
 ```typescript
@@ -532,8 +534,11 @@ By leveraging the utility functions and adhering to the defined data models, the
 ## Implementation Plan
 
 1. Create data files:
-   - [ ] Create `src/data/attacks.ts`, `src/data/abilities.ts`, and `src/data/jokerEffects.ts`
+   - [x] Create `src/data/abilities.ts`
+   - [ ] Create `src/data/attacks.ts` and `src/data/jokerEffects.ts`
    - [ ] Create individual Bigfoot files in `src/data/bigfoots/`
+      - [x] Create `sasquatch.ts`
+      - [ ] Add more Bigfoot characters based on the provided list
 
 2. Implement utility functions:
    - [ ] Create `src/utils/bigfootUtils.ts` with necessary functions
