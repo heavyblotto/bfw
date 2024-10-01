@@ -31,15 +31,15 @@ priority: High
 ## Next Steps
 1. Implement API Routes:
    - [x] Create player-profile.ts API route
-   - [ ] Update player-profile.ts to create a default profile if one doesn't exist
+   - [x] Update player-profile.ts to create a default profile if one doesn't exist
 2. Create React Components:
    - [x] Implement basic PlayerProfileDisplay component
-   - [ ] Enhance PlayerProfileDisplay with XP bar and more details
+   - [ ] Enhance PlayerProfileDisplay with XP bar
 3. Set up State Management:
    - [ ] Create Zustand store for PlayerProfile
    - [ ] Implement actions for updating PlayerProfile state
 4. Integrate Components:
-   - [ ] Add PlayerProfileDisplay to Main Menu page
+   - [x] Add PlayerProfileDisplay to Main Menu page
 5. Implement core game loop:
    - [ ] Create API route for updating player XP and gold
    - [ ] Implement mock game function to simulate XP and gold gain
