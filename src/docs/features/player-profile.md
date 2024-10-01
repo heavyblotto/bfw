@@ -253,8 +253,8 @@ Ensure all player profile related components and API routes are properly bundled
 
 1. Update Prisma Schema:
    - [x] Create PlayerProfile model
-   - [ ] Create related models (Inventory, MatchLog, Achievement, Statistics)
-   - [ ] Update User model with relation to PlayerProfile
+   - [x] Create related models (Inventory, MatchLog, Achievement, Statistics)
+   - [x] Update User model with relation to PlayerProfile
 
 2. Implement API Routes:
    - [ ] Create player-profile.ts API route

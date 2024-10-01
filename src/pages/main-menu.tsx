@@ -8,6 +8,7 @@ import { Trophy } from 'lucide-react'
 import UpdateUserForm from '@/components/UpdateUserForm'
 import useAuthStore from '@/stores/authStore';
 import { useEffect, useState } from 'react';
+import PlayerProfile from '@/components/PlayerProfile'
 
 // Dummy data for the current Bigfoot (replace with actual data fetching later)
 const currentBigfoot = {
@@ -190,20 +191,7 @@ export default function MainMenu() {
 
             {/* Player Profile Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Player Profile</h3>
-              <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
-                <p>Level: 5</p>
-                <p>XP: 1250 / 2000</p>
-                <p>Gold: 500</p>
-                <div className="col-span-2 flex gap-2">
-                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                    <Link href="/inventory">View Inventory</Link>
-                  </Button>
-                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                    <Link href="/shop">Shop</Link>
-                  </Button>
-                </div>
-              </div>
+              <PlayerProfile />
             </div>
 
             {/* Achievements Section */}

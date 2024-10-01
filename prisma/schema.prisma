@@ -11,12 +11,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  password  String
-  email     String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int           @id @default(autoincrement())
+  username      String        @unique
+  password      String
+  email         String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
   playerProfile PlayerProfile?
 }
 
@@ -31,4 +31,74 @@ model PlayerProfile {
   selectedBigfoot String        @default("Sasquatch")
   unlockedBigfoots String[]     @default(["Sasquatch"])
   aiDifficulty    String        @default("Medium")
+  playerLevel     PlayerLevel?
+  inventory       Inventory?
+  matchLog        MatchLog[]
+  achievements    Achievement[]
+  statistics      Statistics?
+}
+
+// New models
+model PlayerLevel {
+  id              Int              @id @default(autoincrement())
+  playerProfileId Int              @unique
+  playerProfile   PlayerProfile    @relation(fields: [playerProfileId], references: [id])
+  level           Int              @default(1)
+  currentXP       Int              @default(0)
+  xpToNextLevel   Int
+  xpGains         XPGain[]
+}
+
+model XPGain {
+  id              Int              @id @default(autoincrement())
+  playerLevelId   Int
+  playerLevel     PlayerLevel      @relation(fields: [playerLevelId], references: [id])
+  amount          Int
+  source          String
+  timestamp       DateTime         @default(now())
+}
+
+model Inventory {
+  id              Int           @id @default(autoincrement())
+  playerProfileId Int           @unique
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id])
+  items           Item[]
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  inventoryId Int
+  inventory   Inventory @relation(fields: [inventoryId], references: [id])
+}
+
+model MatchLog {
+  id              Int           @id @default(autoincrement())
+  playerProfileId Int
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id])
+  opponent        String
+  result          String
+  goldEarned      Int
+  xpEarned        Int
+  date            DateTime      @default(now())
+}
+
+model Achievement {
+  id              Int           @id @default(autoincrement())
+  playerProfileId Int
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id])
+  name            String
+  description     String
+  unlockedAt      DateTime?
+}
+
+model Statistics {
+  id              Int           @id @default(autoincrement())
+  playerProfileId Int           @unique
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id])
+  gamesPlayed     Int           @default(0)
+  gamesWon        Int           @default(0)
+  totalGoldEarned Int           @default(0)
+  totalXpEarned   Int           @default(0)
 }

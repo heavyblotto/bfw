@@ -8,9 +8,14 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-1. Implement Player system
+1. Implement Player Profile system
+   - Update Prisma Schema with PlayerProfile model and related models
+   - Implement API routes for player profile data
+   - Create React components for player profile display and management
+   - Set up state management for player profile
 2. Implement Bigfoot Character System
 3. Complete implementation of Main Menu page
+   - Integrate player profile components
    - Implement remaining components (e.g., Bigfoot Selection, Match Selection)
    - Integrate with game state management
 
@@ -24,12 +29,27 @@ priority: High
 7. Deploy to Vercel and set up CI/CD pipeline.
 
 ## Next Steps
-1. Create detailed component hierarchy.
-2. Design database schema (if needed).
-3. Create API endpoint specifications.
-4. Develop user stories and game flow diagrams.
-5. Set up development environment with all necessary tools and libraries.
-6. Expand Zustand store to cover all necessary game states and actions.
+1. Implement API Routes:
+   - [x] Create player-profile.ts API route
+   - [ ] Update player-profile.ts to create a default profile if one doesn't exist
+2. Create React Components:
+   - [x] Implement basic PlayerProfileDisplay component
+   - [ ] Enhance PlayerProfileDisplay with XP bar and more details
+3. Set up State Management:
+   - [ ] Create Zustand store for PlayerProfile
+   - [ ] Implement actions for updating PlayerProfile state
+4. Integrate Components:
+   - [ ] Add PlayerProfileDisplay to Main Menu page
+5. Implement core game loop:
+   - [ ] Create API route for updating player XP and gold
+   - [ ] Implement mock game function to simulate XP and gold gain
+   - [ ] Add "Play Game" button to main menu to test core loop
+6. Implement Inventory System:
+   - [ ] Create inventory.ts API route
+   - [ ] Update PlayerProfileDisplay to show basic inventory
+7. Implement Match Log:
+   - [ ] Create match-log.ts API route
+   - [ ] Add recent matches display to PlayerProfileDisplay
 
 ## Done
 - Set up Next.js project with TypeScript.
