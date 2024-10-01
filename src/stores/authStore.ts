@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
+import { signOut, getSession } from 'next-auth/react';
 
 type User = {
   id: string
@@ -12,6 +13,7 @@ interface AuthState {
   login: (user: User) => void
   logout: () => void
   updateUser: (updatedUser: Partial<User>) => void
+  deleteAccount: () => Promise<void>;
 }
 
 const useAuthStore = create<AuthState>((set) => ({
@@ -22,6 +24,31 @@ const useAuthStore = create<AuthState>((set) => ({
   updateUser: (updatedUser) => set((state) => ({
     user: state.user ? { ...state.user, ...updatedUser } : null
   })),
-}))
+  deleteAccount: async () => {
+    try {
+      const session = await getSession();
+      if (!session) {
+        throw new Error('No active session');
+      }
 
-export default useAuthStore
+      const response = await fetch('/api/auth/delete', {
+        method: 'DELETE',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.user.id}` // Add this line
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete account');
+      }
+
+      await signOut({ callbackUrl: '/' });
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      throw error;
+    }
+  },
+}));
+
+export default useAuthStore;

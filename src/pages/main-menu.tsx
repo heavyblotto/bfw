@@ -98,6 +98,7 @@ export default function MainMenu() {
   const router = useRouter()
   const user = useAuthStore((state) => state.user);
   const [email, setEmail] = useState('');
+  const [showDeleteContainer, setShowDeleteContainer] = useState(false);
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -130,17 +131,18 @@ export default function MainMenu() {
         <title>Bigfoot War - Main Menu</title>
         <meta name="description" content="Choose your Bigfoot and start your adventure!" />
       </Head>
-      <div className="min-h-screen flex flex-col relative overflow-hidden">
-        <Image
-          src="/images/bigfoot-war-logo.png"
-          alt="Misty forest background"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+      <div className="h-screen flex flex-col relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/bigfoot-war-logo.png"
+            alt="Misty forest background"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
 
-        
-        <div className="relative z-10 flex-grow flex flex-col">
+        <div className="relative z-10 flex-grow flex flex-col overflow-y-auto">
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
             {/* Updated Bigfoot War title */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
@@ -348,12 +350,40 @@ export default function MainMenu() {
                 <p>Email: {email || session?.user?.email || 'N/A'}</p>
               </div>
               <UpdateUserForm onEmailUpdate={handleEmailUpdate} currentEmail={email || session?.user?.email || ''} />
-              <Button 
-                className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
-                onClick={() => signOut()}
-              >
-                Logout
-              </Button>
+              
+              {/* New container for warning and sensitive actions */}
+              <div className="mt-6 bg-red-900/30 border-2 border-red-700 p-4 rounded-lg">
+                <p className="text-yellow-400 font-pixel text-xs text-center mb-4">
+                  Warning: Changes to your account are permanent!
+                </p>
+                <div className="flex flex-col space-y-2">
+                  <Button 
+                    className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
+                    onClick={() => signOut()}
+                  >
+                    Logout
+                  </Button>
+                  <Button
+                    onClick={() => setShowDeleteContainer(!showDeleteContainer)}
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-pixel text-xs"
+                  >
+                    Account Deletion
+                  </Button>
+                  {showDeleteContainer && (
+                    <div className="bg-red-100 p-2 rounded">
+                      <p className="text-red-600 font-pixel text-xs mb-2">Warning: This action cannot be undone!</p>
+                      <Button
+                        onClick={() => {
+                          // Add account deletion logic here
+                        }}
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-pixel text-xs"
+                      >
+                        Delete Account
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           

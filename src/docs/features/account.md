@@ -373,18 +373,19 @@ The authentication system is deployed as part of the overall application on Verc
    - ✅ Manual testing of registration, login, update, and delete processes
    - Write unit tests for authentication components and API routes
 
-10. Implement security measures
+11. - Add option for users to delete their account
+
+11. Implement security measures
     - Set up CSRF protection
     - Implement rate limiting for API routes
     - Ensure secure password hashing with bcrypt
 
-11. Update documentation
+12. Update documentation
     - Update developer guide with authentication implementation details
     - Update technical design document if necessary
 
 ### Future Enhancements
 - Implement password reset functionality
-- Add option for users to delete their account
 - Integrate with external authentication providers (e.g., Google, Facebook)
 - Two-factor authentication
 - Implement proper input validation and sanitization

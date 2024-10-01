@@ -1,6 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
-import { getSession } from 'next-auth/react'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./[...nextauth]"
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const prisma = new PrismaClient()
 
@@ -12,7 +13,7 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const session = await getSession({ req })
+  const session = await getServerSession(req, res, authOptions)
   if (!session) {
     return res.status(401).json({ message: 'Unauthorized' })
   }
