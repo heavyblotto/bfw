@@ -34,10 +34,11 @@ priority: High
    - [x] Update player-profile.ts to create a default profile if one doesn't exist
 2. Create React Components:
    - [x] Implement basic PlayerProfileDisplay component
-   - [ ] Enhance PlayerProfileDisplay with XP bar
+   - [x] Polish PlayerProfileDisplay with icons and improved layout
+   - [x] Install and integrate react-icons package
 3. Set up State Management:
-   - [ ] Create Zustand store for PlayerProfile
-   - [ ] Implement actions for updating PlayerProfile state
+   - [x] Create Zustand store for PlayerProfile
+   - [x] Implement actions for updating PlayerProfile state
 4. Integrate Components:
    - [x] Add PlayerProfileDisplay to Main Menu page
 5. Implement core game loop:

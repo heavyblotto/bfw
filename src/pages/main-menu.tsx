@@ -9,6 +9,21 @@ import UpdateUserForm from '@/components/UpdateUserForm'
 import useAuthStore from '@/stores/authStore';
 import { useEffect, useState } from 'react';
 import PlayerProfile from '@/components/PlayerProfile'
+import DevDashboard from '@/components/DevDashboard'
+
+interface MatchHistoryItem {
+  opponent: string
+  result: string
+  goldEarned: number
+  xpEarned: number
+  date: string
+  time: string
+  duration: string
+  cardsCollected: number
+  attacks: number
+  wins: number
+  losses: number
+}
 
 // Dummy data for the current Bigfoot (replace with actual data fetching later)
 const currentBigfoot = {
@@ -35,7 +50,7 @@ const nextAchievement = {
 }
 
 // Dummy data for match history (replace with actual data fetching later)
-const matchHistory = [
+const matchHistory: MatchHistoryItem[] = [
   {
     opponent: "Yeti",
     result: "Win",
@@ -383,6 +398,7 @@ export default function MainMenu() {
           </footer>
         </div>
       </div>
+      <DevDashboard />
     </>
   )
 }

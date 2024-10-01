@@ -19,10 +19,11 @@ lastUpdated: 2023-04-21
 9. Data Storage
 10. Authentication
 11. Version Control and Changelog Management
-12. Testing
-13. Deployment
-14. Contributing
-15. Image Optimization
+12. Authentication Best Practices
+13. Testing
+14. Deployment
+15. Contributing
+16. Image Optimization
 
 ## 1. Introduction
 
@@ -231,17 +232,75 @@ We use `standard-version` to automate versioning and changelog generation. This 
 
 For detailed information on our version control and changelog management process, refer to the Technical Design Document.
 
-## 12. Testing
+## 12. Authentication Best Practices
+
+When implementing new features or modifying existing ones that involve authentication, follow these best practices to ensure consistency and avoid common pitfalls:
+
+1. **Use getServerSession for API Routes**: 
+   - Always use `getServerSession` from "next-auth/next" in API routes instead of `getSession` from "next-auth/react".
+   - Example:
+     ```typescript
+     import { getServerSession } from "next-auth/next"
+     import { authOptions } from "./auth/[...nextauth]"
+
+     const session = await getServerSession(req, res, authOptions)
+     ```
+
+2. **Include Credentials in Fetch Requests**:
+   - When making fetch requests to authenticated API routes, always include the `credentials: 'include'` option.
+   - Example:
+     ```typescript
+     const response = await fetch('/api/protected-route', { 
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       credentials: 'include',
+       body: JSON.stringify(data)
+     })
+     ```
+
+3. **Consistent Session Handling**:
+   - Ensure that all protected routes and API endpoints check for a valid session before proceeding.
+   - Use a consistent method for checking session validity across the application.
+
+4. **Error Handling for Unauthorized Access**:
+   - Implement proper error handling for cases where a user is not authenticated.
+   - Return appropriate status codes (e.g., 401 for Unauthorized) and error messages.
+
+5. **Type Safety with Session Data**:
+   - Use TypeScript to ensure type safety when working with session data.
+   - Define and use interfaces for session user data to prevent runtime errors.
+
+6. **Environment Variables**:
+   - Always use environment variables for sensitive information like `NEXTAUTH_SECRET`.
+   - Ensure these are properly set in both development and production environments.
+
+7. **Client-Side Authentication State**:
+   - Use Zustand for managing client-side authentication state.
+   - Keep the authentication state in sync with the server-side session.
+
+8. **Protected API Routes**:
+   - Implement middleware or HOCs to protect API routes that require authentication.
+   - Consistently apply this protection across all relevant routes.
+
+9. **Session Expiry and Refresh**:
+   - Implement proper handling for session expiry and refresh to ensure a smooth user experience.
+
+10. **Testing Authentication**:
+    - Write tests that cover both authenticated and unauthenticated scenarios for API routes and components.
+
+By following these practices, we can maintain a consistent and secure authentication system throughout our application, reducing the likelihood of authentication-related issues in new features or modifications.
+
+## 13. Testing
 
 (Note: Testing framework not yet implemented. To be added in future iterations as outlined in the Technical Design Document.)
 
-## 13. Deployment
+## 14. Deployment
 
 Our project is integrated with Vercel for automatic deployments.
 
 For detailed information on our deployment process, refer to the Technical Design Document.
 
-## 14. Contributing
+## 15. Contributing
 
 1. Review the [Technical Design Document](./technical-design.md) to understand the project architecture and decisions.
 2. Check the [Todo List](./todo.md) for current priorities and tasks.
@@ -251,7 +310,7 @@ For detailed information on our deployment process, refer to the Technical Desig
 
 If you have any questions, don't hesitate to ask the project maintainers.
 
-## 15. Image Optimization
+## 16. Image Optimization
 
 Next.js provides an `Image` component that automatically optimizes images for better performance. This component offers several benefits, including automatic resizing, lazy loading, and support for modern image formats like WebP.
 

@@ -1,34 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { FaStar, FaCoins } from 'react-icons/fa'
 import { GiUpgrade } from 'react-icons/gi'
-
-interface PlayerProfileData {
-  level: number
-  xp: number
-  gold: number
-}
+import usePlayerProfileStore from '@/stores/playerProfileStore'
 
 export default function PlayerProfile() {
   const { data: session } = useSession()
-  const [playerData, setPlayerData] = useState<PlayerProfileData | null>(null)
+  const { playerProfile, isLoading, error, fetchPlayerProfile } = usePlayerProfileStore()
 
   useEffect(() => {
-    const fetchPlayerProfile = async () => {
-      const response = await fetch('/api/player-profile')
-      if (response.ok) {
-        const data = await response.json()
-        setPlayerData(data)
-      }
-    }
-
     if (session) {
       fetchPlayerProfile()
     }
-  }, [session])
+  }, [session, fetchPlayerProfile])
 
-  if (!playerData) {
+  if (isLoading) {
     return <div className="text-stone-200 font-pixel">Loading...</div>
+  }
+
+  if (error) {
+    return <div className="text-red-500 font-pixel">Error: {error}</div>
+  }
+
+  if (!playerProfile) {
+    return null
   }
 
   return (
@@ -40,22 +35,22 @@ export default function PlayerProfile() {
       <div className="grid grid-cols-3 gap-4">
         <div className="flex items-center">
           <GiUpgrade className="text-amber-400 mr-2" />
-          <span>Level: {playerData.level}</span>
+          <span>Level: {playerProfile.level}</span>
         </div>
         <div className="flex items-center">
           <FaStar className="text-amber-400 mr-2" />
-          <span>XP: {playerData.xp}</span>
+          <span>XP: {playerProfile.xp}</span>
         </div>
         <div className="flex items-center">
           <FaCoins className="text-amber-400 mr-2" />
-          <span>Gold: {playerData.gold}</span>
+          <span>Gold: {playerProfile.gold}</span>
         </div>
       </div>
       <div className="mt-4">
         <div className="bg-stone-600 h-2 rounded-full">
           <div
             className="bg-amber-400 h-2 rounded-full"
-            style={{ width: `${(playerData.xp % 100) / 100 * 100}%` }}
+            style={{ width: `${(playerProfile.xp % 100) / 100 * 100}%` }}
           ></div>
         </div>
         <p className="text-xs mt-1 text-center">XP Progress</p>
