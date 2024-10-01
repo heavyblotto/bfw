@@ -75,23 +75,55 @@ This document outlines the current design and architecture decisions for our sin
   - /api/auth/register: User registration
   - /api/auth/update: Update user information
   - /api/auth/delete: Delete user account
+- Player profile endpoints:
+  - GET /api/player-profile: Fetch player profile
+  - PUT /api/player-profile: Update player profile
+- Planned endpoints:
+  - /api/bigfoots: Bigfoot character data
+  - /api/player-level: Player leveling system
+  - /api/attacks: Attack system
 
-## Rendering Strategies
-- Mix of Client-Side Rendering (CSR) and Server-Side Rendering (SSR).
-- CSR for dynamic game components.
-- SSR for initial game state and static content.
+## Data Models
+- User: Stores user authentication information
+- PlayerProfile: Stores player-specific data (level, XP, gold)
+- Planned models:
+  - Bigfoot: Represents Bigfoot characters
+  - PlayerLevel: Tracks player progression
+  - Attack: Defines attack types and mechanics
 
-## API Design
-- RESTful API endpoints using Next.js API routes.
-- API routes for game state management, character data, level information.
-- Authentication middleware for protected endpoints.
-- Rate limiting to prevent abuse.
+## State Management
+- Zustand for global state management
+- PlayerProfileStore implemented for managing player profile data
+- Planned stores:
+  - BigfootStore: For managing Bigfoot character data
+  - GameStore: For managing game state during gameplay
+
+## UI Components
+- PlayerProfileDisplay: Shows player information
+- Planned components:
+  - BigfootCard and BigfootSelection: For Bigfoot character system
+  - LevelProgressDisplay: For player leveling system
+  - GameBoard: For core gameplay UI
+
+## Game Logic
+- Basic player profile system implemented
+- Planned implementations:
+  - Turn-based game loop
+  - Attack system
+  - AI opponent logic
+  - XP gain and leveling system
+
+## Testing Strategy
+- Jest with React Testing Library planned for unit and integration testing
+- API route testing to be implemented
+
+## Deployment
+- Vercel for hosting and deployment
+- Continuous deployment set up with GitHub integration
 
 ## Performance Optimization
-- Code splitting using dynamic imports.
-- Image optimization with Next.js Image component.
-- Font optimization using next/font.
-- Efficient loading of third-party scripts.
+- Next.js Image component for image optimization
+- Code splitting to be implemented for faster initial load times
 
 ## UI Components and Styling
 - shadcn/ui for reusable UI components.

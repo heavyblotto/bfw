@@ -19,71 +19,6 @@ See also:
 
 See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 
-### User
-
-- id: unique identifier for the user
-- username: unique username for the user
-- password: hashed password for the user
-- email: unique email address for the user (optional)
-- createdAt: timestamp of user creation
-- updatedAt: timestamp of last user update
-- playerProfile: relation to the PlayerProfile model
-
-### PlayerProfile
-
-- id: unique identifier for the player profile
-- userId: unique identifier for the associated user
-- user: relation to the User model
-- level: level of the player profile
-- xp: experience points for the player profile
-- gold: gold for the player profile
-- points: points for the player profile
-- selectedBigfoot: selected bigfoot for the player profile
-- unlockedBigfoots: array of unlocked Bigfoot characters
-- inventory: inventory for the player profile
-- matchLog: match history for the player profile
-- achievements: achievements for the player profile
-- statistics: statistics for the player profile
-- aiDifficulty: AI difficulty setting for the player
-
-### Schema
-
-```prisma
-model User {
-  id            Int           @id @default(autoincrement())
-  username      String        @unique
-  password      String
-  email         String?       @unique
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  playerProfile PlayerProfile?
-}
-
-model PlayerProfile {
-  id              Int           @id @default(autoincrement())
-  userId          Int           @unique
-  user            User          @relation(fields: [userId], references: [id])
-  level           Int           @default(1)
-  xp              Int           @default(0)
-  gold            Int           @default(0)
-  points          Int           @default(0)
-  selectedBigfoot String        @default("Sasquatch")
-  unlockedBigfoots String[]     @default(["Sasquatch"])
-  // inventory       Inventory?
-  // matchLog        MatchLog[]
-  // achievements    Achievement[]
-  // statistics      Statistics?
-  aiDifficulty    String        @default("Medium")
-}
-```
-
-Related data models:
-- User
-- Inventory
-- MatchLog
-- Achievement
-- Statistics
-
 ## Features
 
 1. Player Information Display
@@ -153,39 +88,9 @@ Related data models:
   - **File**: `src/pages/api/player-profile.ts`
   - **Functionality**: Update player profile information
 
-- **Get Inventory**: 
-  - **Route**: `GET /api/inventory`
-  - **File**: `src/pages/api/inventory.ts`
-  - **Functionality**: Retrieve player's inventory items
-
-- **Get Game Settings**: 
-  - **Route**: `GET /api/settings`
-  - **File**: `src/pages/api/settings.ts`
-  - **Functionality**: Retrieve game settings for the player
-
-- **Update Game Settings**: 
-  - **Route**: `PUT /api/settings`
-  - **File**: `src/pages/api/settings.ts`
-  - **Functionality**: Update game settings for the player
-
 ### Components
-- **PlayerProfileDisplay**: Main component to show player information
-  - **File**: `src/components/PlayerProfileDisplay.tsx`
-
-- **InventoryDisplay**: Component to display player's inventory
-  - **File**: `src/components/InventoryDisplay.tsx`
-
-- **MatchLogDisplay**: Component to show recent matches
-  - **File**: `src/components/MatchLogDisplay.tsx`
-
-- **AchievementsDisplay**: Component to display player achievements
-  - **File**: `src/components/AchievementsDisplay.tsx`
-
-- **GameSettingsDisplay**: Component to show current game settings
-  - **File**: `src/components/GameSettingsDisplay.tsx`
-
-- **GameSettingsForm**: Component to update game settings
-  - **File**: `src/components/GameSettingsForm.tsx`
+- **PlayerProfile**: Main component to show player information
+  - **File**: `src/components/PlayerProfile.tsx`
 
 ### State Management
 We'll use Zustand to manage the Player Profile state on the client-side. This will include current player profile information, inventory items, recent match history, and achievements.
@@ -203,28 +108,11 @@ We'll use Zustand to manage the Player Profile state on the client-side. This wi
 
 ## Component Integration
 
-### PlayerProfileDisplay
-- **File**: `src/components/PlayerProfileDisplay.tsx`
+### PlayerProfile
+- **File**: `src/components/PlayerProfile.tsx`
 - **Usage**: 
   - `src/pages/main-menu.tsx`
   - `src/pages/profile.tsx`
-
-### InventoryDisplay
-- **File**: `src/components/InventoryDisplay.tsx`
-- **Usage**: 
-  - `src/pages/inventory.tsx`
-
-### MatchLogDisplay
-- **File**: `src/components/MatchLogDisplay.tsx`
-- **Usage**: 
-  - `src/pages/match-history.tsx`
-
-### PlayerProfileStore
-- **File**: `src/stores/playerProfileStore.ts`
-- **Usage**: 
-  - `src/pages/main-menu.tsx`
-  - `src/components/PlayerProfileDisplay.tsx`
-  - `src/components/InventoryDisplay.tsx`
 
 ### API Routes
 - **Get Player Profile**: 
@@ -253,49 +141,20 @@ Ensure all player profile related components and API routes are properly bundled
 
 1. Update Prisma Schema:
    - [x] Create PlayerProfile model
-   - [x] Create related models (Inventory, MatchLog, Achievement, Statistics)
    - [x] Update User model with relation to PlayerProfile
 
 2. Implement API Routes:
-   - [ ] Create player-profile.ts API route
-   - [ ] Create inventory.ts API route
-   - [ ] Create match-log.ts API route
-   - [ ] Create achievements.ts API route
+   - [x] Create player-profile.ts API route
 
 3. Create React Components:
-   - [ ] Implement PlayerProfileDisplay component
-   - [ ] Implement InventoryDisplay component
-   - [ ] Implement MatchLogDisplay component
-   - [ ] Implement AchievementsDisplay component
-   - [ ] Implement BigfootSelection component
+   - [x] Implement PlayerProfile component
 
 4. Set up State Management:
-   - [ ] Create Zustand store for PlayerProfile
-   - [ ] Implement actions for updating PlayerProfile state
+   - [x] Create Zustand store for PlayerProfile
+   - [x] Implement actions for updating PlayerProfile state
 
 5. Integrate Components:
-   - [ ] Add PlayerProfileDisplay to Main Menu page
-   - [ ] Create dedicated Profile page
-   - [ ] Create Inventory page
-   - [ ] Create Match History page
-
-6. Implement Bigfoot Character System:
-   - [ ] Create Bigfoot model in Prisma schema
-   - [ ] Implement API routes for Bigfoot data and selection
-   - [ ] Create BigfootSelectionDisplay component
-   - [ ] Implement logic for unlocking new Bigfoot characters
-
-7. Implement Statistics System:
-   - [ ] Create Statistics model in Prisma schema
-   - [ ] Implement API route for Statistics data
-   - [ ] Create StatisticsDisplay component
-   - [ ] Implement logic for updating statistics after each game
-
-8. Implement Game Settings:
-   - [ ] Update PlayerProfile model with aiDifficulty field
-   - [ ] Create API routes for game settings
-   - [ ] Implement GameSettingsDisplay and GameSettingsForm components
-   - [ ] Integrate game settings with player profile management
+   - [x] Add PlayerProfileto Main Menu page
 
 ## Future Enhancements
 - Implement a leveling system with rewards

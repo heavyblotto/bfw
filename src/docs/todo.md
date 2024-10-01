@@ -8,16 +8,49 @@ priority: High
 ## Development Workflow
 
 ## Current Focus
-1. Implement Player Profile system
-   - Update Prisma Schema with PlayerProfile model and related models
-   - Implement API routes for player profile data
-   - Create React components for player profile display and management
-   - Set up state management for player profile
+1. Complete Player Profile system
+   - [x] Update Prisma Schema with PlayerProfile model
+   - [x] Implement basic API routes for player profile data
+   - [x] Create player-profile.ts API route
+   - [x] Update player-profile.ts to create a default profile if one doesn't exist
+   - [x] Implement basic PlayerProfileDisplay component
+   - [x] Polish PlayerProfileDisplay with icons and improved layout
+   - [x] Install and integrate react-icons package
+   - [x] Create Zustand store for PlayerProfile
+   - [x] Implement actions for updating PlayerProfile state
+   - [x] Add PlayerProfile to Main Menu page
+   - [ ] Enhance PlayerProfile component with more details
+   - [ ] Implement profile editing functionality
+
 2. Implement Bigfoot Character System
-3. Complete implementation of Main Menu page
-   - Integrate player profile components
-   - Implement remaining components (e.g., Bigfoot Selection, Match Selection)
-   - Integrate with game state management
+   - [ ] Create Bigfoot model in Prisma schema
+   - [ ] Implement API routes for Bigfoot data
+   - [ ] Create BigfootCard and BigfootSelection components
+   - [ ] Integrate Bigfoot selection with player profile
+
+3. Develop Core Gameplay Features
+   - [ ] Implement player leveling system
+     - [ ] Create PlayerLevel model in Prisma schema
+     - [ ] Implement XP gain and level-up logic
+     - [ ] Create LevelProgressDisplay component
+   - [ ] Design and implement attack system
+     - [ ] Define attack types and mechanics
+     - [ ] Create Attack model in Prisma schema
+     - [ ] Implement API routes for attacks
+   - [ ] Develop game loop
+     - [ ] Create mock game function to simulate battles
+     - [ ] Implement turn-based logic
+     - [ ] Integrate attacks, XP gain, and leveling into game loop
+
+4. Enhance Main Menu and Game UI
+   - [ ] Update Main Menu with Bigfoot selection
+   - [ ] Create basic Game Board component
+   - [ ] Implement UI for displaying active Bigfoot and opponent
+   - [ ] Add attack selection interface
+
+5. Implement Basic AI Opponent
+   - [ ] Create simple AI logic for opponent moves
+   - [ ] Integrate AI opponent into game loop
 
 ## Hit List
 1. Create initial data files (YAML and Markdown). - in progress
@@ -29,28 +62,17 @@ priority: High
 7. Deploy to Vercel and set up CI/CD pipeline.
 
 ## Next Steps
-1. Implement API Routes:
-   - [x] Create player-profile.ts API route
-   - [x] Update player-profile.ts to create a default profile if one doesn't exist
-2. Create React Components:
-   - [x] Implement basic PlayerProfileDisplay component
-   - [x] Polish PlayerProfileDisplay with icons and improved layout
-   - [x] Install and integrate react-icons package
-3. Set up State Management:
-   - [x] Create Zustand store for PlayerProfile
-   - [x] Implement actions for updating PlayerProfile state
-4. Integrate Components:
-   - [x] Add PlayerProfileDisplay to Main Menu page
-5. Implement core game loop:
-   - [ ] Create API route for updating player XP and gold
-   - [ ] Implement mock game function to simulate XP and gold gain
-   - [ ] Add "Play Game" button to main menu to test core loop
-6. Implement Inventory System:
-   - [ ] Create inventory.ts API route
-   - [ ] Update PlayerProfileDisplay to show basic inventory
-7. Implement Match Log:
-   - [ ] Create match-log.ts API route
-   - [ ] Add recent matches display to PlayerProfileDisplay
+1. Polish and debug core gameplay features
+2. Implement basic matchmaking system
+3. Add more Bigfoot characters and attacks
+4. Enhance AI difficulty levels
+
+## Future Enhancements (Lower Priority)
+- Implement inventory system
+- Create achievement system
+- Develop match history tracking
+- Design and implement leaderboard
+- Add statistics tracking and display
 
 ## Done
 - Set up Next.js project with TypeScript.
