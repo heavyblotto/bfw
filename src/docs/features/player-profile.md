@@ -26,21 +26,26 @@ See the [schema.prisma](../../../prisma/schema.prisma) file for more details.
 
 2. Bigfoot Selection
    - Display and select from unlocked Bigfoot characters
+   - See [Bigfoot Character System](bigfoot-character.md) for more details
 
 3. Inventory Management
    - View and manage player's inventory items
+   - See [Inventory System](inventory.md) for more details
 
 4. Match History
    - Display recent match results and statistics
+   - See [Match History](match-history.md) for more details
 
 5. Achievements Tracking
    - Show unlocked achievements and progress towards new ones
-
+   - See [Achievements System](achievements.md) for more details
 6. Statistics Display
    - Present various player statistics
+   - See [Statistics System](statistics.md) for more details
 
-6. Game Settings Management
+7. Game Settings Management
    - Manage AI difficulty setting
+   - See [Game Settings](game-settings.md) for more details
 
 ## Architecture
 

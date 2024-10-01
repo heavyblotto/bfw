@@ -38,7 +38,6 @@ model PlayerProfile {
   statistics      Statistics?
 }
 
-// New models
 model PlayerLevel {
   id              Int              @id @default(autoincrement())
   playerProfileId Int              @unique
