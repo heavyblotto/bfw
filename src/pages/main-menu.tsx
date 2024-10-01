@@ -354,7 +354,7 @@ export default function MainMenu() {
               {/* New container for warning and sensitive actions */}
               <div className="mt-6 bg-red-900/30 border-2 border-red-700 p-4 rounded-lg">
                 <p className="text-yellow-400 font-pixel text-xs text-center mb-4">
-                  Warning: Changes to your account are permanent!
+                  Proceed with caution!
                 </p>
                 <div className="flex flex-col space-y-2">
                   <Button 
