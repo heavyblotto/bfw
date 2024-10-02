@@ -158,13 +158,13 @@ export default function MainMenu() {
               </h1>
             </div>
 
-            {/* Bigfoot Display Section */}
-            <BigfootDisplay />
-
             {/* Player Profile Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
               <PlayerProfile />
             </div>
+
+            {/* Bigfoot Display Section */}
+            <BigfootDisplay />
 
             {/* Achievements Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
