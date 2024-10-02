@@ -1,67 +1,59 @@
-import Image from 'next/image'
+import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
+import { FaStar, FaCoins } from 'react-icons/fa'
+import { GiUpgrade } from 'react-icons/gi'
+import usePlayerProfileStore from '@/stores/playerProfileStore'
 
 export default function PlayerProfile() {
   const { data: session } = useSession()
+  const { playerProfile, isLoading, error, fetchPlayerProfile } = usePlayerProfileStore()
 
-  // Placeholder data - replace with actual data from your game state
-  const playerData = {
-    level: 1,
-    xp: 50,
-    maxXp: 100,
-    gold: 100,
-    inventory: ['Health Potion', 'Strength Elixir'],
-    matchHistory: [
-      { opponent: 'Sasquatch', result: 'Win' },
-      { opponent: 'Yeti', result: 'Loss' },
-    ],
-    achievements: ['First Win', 'Card Collector'],
+  useEffect(() => {
+    if (session) {
+      fetchPlayerProfile()
+    }
+  }, [session, fetchPlayerProfile])
+
+  if (isLoading) {
+    return <div className="text-stone-200 font-pixel">Loading...</div>
+  }
+
+  if (error) {
+    return <div className="text-red-500 font-pixel">Error: {error}</div>
+  }
+
+  if (!playerProfile) {
+    return null
   }
 
   return (
-    <div className="text-stone-200 font-pixel">
-      <h2 className="text-2xl font-bold mb-4 text-amber-400">Player Profile</h2>
-      <div className="mb-4">
-        <Image
-          src="/images/bigfoot-avatar.png"
-          alt="Bigfoot Avatar"
-          width={100}
-          height={100}
-          className="rounded-full"
-        />
-        <p className="mt-2">{session?.user?.name || 'Unknown Player'}</p>
-      </div>
-      <div className="mb-4">
-        <p>Level: {playerData.level}</p>
-        <p>XP: {playerData.xp} / {playerData.maxXp}</p>
-        <div className="w-full bg-stone-700 rounded-full h-2.5 dark:bg-stone-700">
-          <div className="bg-green-600 h-2.5 rounded-full" style={{ width: `${(playerData.xp / playerData.maxXp) * 100}%` }}></div>
+    <div className="text-stone-200 font-pixel bg-stone-700/50 p-4 rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">
+        <span className="text-amber-400">Player: </span>
+        <span className="text-stone-200">{session?.user?.name || 'Unknown Player'}</span>
+      </h2>
+      <div className="grid grid-cols-3 gap-4">
+        <div className="flex items-center">
+          <GiUpgrade className="text-amber-400 mr-2" />
+          <span>Level: {playerProfile.level}</span>
+        </div>
+        <div className="flex items-center">
+          <FaStar className="text-amber-400 mr-2" />
+          <span>XP: {playerProfile.xp}</span>
+        </div>
+        <div className="flex items-center">
+          <FaCoins className="text-amber-400 mr-2" />
+          <span>Gold: {playerProfile.gold}</span>
         </div>
       </div>
-      <p>Gold: {playerData.gold}</p>
       <div className="mt-4">
-        <h3 className="text-lg font-bold mb-2">Inventory</h3>
-        <ul className="list-disc list-inside">
-          {playerData.inventory.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-bold mb-2">Recent Matches</h3>
-        <ul>
-          {playerData.matchHistory.map((match, index) => (
-            <li key={index}>{match.opponent}: {match.result}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-bold mb-2">Achievements</h3>
-        <ul className="list-disc list-inside">
-          {playerData.achievements.map((achievement, index) => (
-            <li key={index}>{achievement}</li>
-          ))}
-        </ul>
+        <div className="bg-stone-600 h-2 rounded-full">
+          <div
+            className="bg-amber-400 h-2 rounded-full"
+            style={{ width: `${(playerProfile.xp % 100) / 100 * 100}%` }}
+          ></div>
+        </div>
+        <p className="text-xs mt-1 text-center">XP Progress</p>
       </div>
     </div>
   )

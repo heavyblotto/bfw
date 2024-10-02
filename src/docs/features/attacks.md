@@ -18,39 +18,6 @@ After winning a round, Participants can choose to Attack the Opponent’s Bigfoo
 
 ## Data Models
 
-```prisma
-model Attack {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  suit        String // Hearts, Clubs, Diamonds, Spades
-  cardValue   Int    // 2-10, 11 (Jack), 12 (Queen), 13 (King), 14 (Ace)
-  effect      String // JSON string describing the attack's effect
-  bigfootId   Int
-  bigfoot     Bigfoot @relation(fields: [bigfootId], references: [id])
-}
-
-model Ability {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  type        String // Primary or Secondary
-  effect      String // JSON string describing the ability's effect
-  unlockLevel Int
-  bigfootId   Int
-  bigfoot     Bigfoot @relation(fields: [bigfootId], references: [id])
-}
-
-model JokerEffect {
-  id          Int    @id @default(autoincrement())
-  type        String // Black or Red
-  effect      String // JSON string describing the Joker's effect
-  bigfootId   Int
-  bigfoot     Bigfoot @relation(fields: [bigfootId], references: [id])
-}
-
-This updated document now includes the data models for the Attack, Ability, Bigfoot, and JokerEffect entities. These models provide a structure for storing and managing attacks, abilities, Bigfoot characters, and Joker effects. The implementation plan has been updated to reflect the addition of these new data models.
-```
 
 ## General Card-Based Attacks
 

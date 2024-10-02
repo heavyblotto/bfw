@@ -8,18 +8,23 @@ import { Trophy } from 'lucide-react'
 import UpdateUserForm from '@/components/UpdateUserForm'
 import useAuthStore from '@/stores/authStore';
 import { useEffect, useState } from 'react';
+import PlayerProfile from '@/components/PlayerProfile'
+import DevDashboard from '@/components/DevDashboard'
+import DeleteAccountModal from '@/components/DeleteAccountModal'
+import BigfootDisplay from '@/components/BigfootDisplay'
 
-// Dummy data for the current Bigfoot (replace with actual data fetching later)
-const currentBigfoot = {
-  name: "Sasquatch",
-  class: "Squatch",
-  level: 1,
-  primaryAbility: "Forest Regeneration",
-  secondaryAbility: "Ground Smash",
-  hp: 100,
-  attack: 50,
-  defense: 50,
-  luck: 50
+interface MatchHistoryItem {
+  opponent: string
+  result: string
+  goldEarned: number
+  xpEarned: number
+  date: string
+  time: string
+  duration: string
+  cardsCollected: number
+  attacks: number
+  wins: number
+  losses: number
 }
 
 // Dummy data for achievements (replace with actual data fetching later)
@@ -34,7 +39,7 @@ const nextAchievement = {
 }
 
 // Dummy data for match history (replace with actual data fetching later)
-const matchHistory = [
+const matchHistory: MatchHistoryItem[] = [
   {
     opponent: "Yeti",
     result: "Win",
@@ -98,6 +103,7 @@ export default function MainMenu() {
   const router = useRouter()
   const user = useAuthStore((state) => state.user);
   const [email, setEmail] = useState('');
+  const [showDeleteContainer, setShowDeleteContainer] = useState(false);
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -130,17 +136,18 @@ export default function MainMenu() {
         <title>Bigfoot War - Main Menu</title>
         <meta name="description" content="Choose your Bigfoot and start your adventure!" />
       </Head>
-      <div className="min-h-screen flex flex-col relative overflow-hidden">
-        <Image
-          src="/images/bigfoot-war-logo.png"
-          alt="Misty forest background"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+      <div className="h-screen flex flex-col relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/index-bg.webp"
+            alt="Misty forest background"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
 
-        
-        <div className="relative z-10 flex-grow flex flex-col">
+        <div className="relative z-10 flex-grow flex flex-col overflow-y-auto">
           <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
             {/* Updated Bigfoot War title */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
@@ -151,58 +158,13 @@ export default function MainMenu() {
               </h1>
             </div>
 
-            {/* Current Bigfoot Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/images/bigfoot-avatar.webp"
-                  alt={currentBigfoot.name}
-                  width={64}
-                  height={64}
-                  className="rounded-full mr-4"
-                />
-                <h3 className="text-xl font-bold text-amber-400 font-pixel">{currentBigfoot.name}</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
-                <p>Class: {currentBigfoot.class}</p>
-                <p>Level: {currentBigfoot.level}</p>
-                <p>Primary Ability: {currentBigfoot.primaryAbility}</p>
-                <p>Secondary Ability: {currentBigfoot.secondaryAbility}</p>
-                <p>HP: {currentBigfoot.hp}</p>
-                <p>Attack: {currentBigfoot.attack}</p>
-                <p>Defense: {currentBigfoot.defense}</p>
-                <p>Luck: {currentBigfoot.luck}</p>
-              </div>
-              <div className="mt-4 flex gap-2">
-                <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                  <Link href="/bigfoot-selection">Select New Bigfoot</Link>
-                </Button>
-                <Button 
-                  asChild 
-                  className="flex-1 bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 whitespace-nowrap"
-                >
-                  <Link href="/arena">Start New Game</Link>
-                </Button>
-              </div>
-            </div>
-
             {/* Player Profile Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Player Profile</h3>
-              <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
-                <p>Level: 5</p>
-                <p>XP: 1250 / 2000</p>
-                <p>Gold: 500</p>
-                <div className="col-span-2 flex gap-2">
-                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                    <Link href="/inventory">View Inventory</Link>
-                  </Button>
-                  <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                    <Link href="/shop">Shop</Link>
-                  </Button>
-                </div>
-              </div>
+              <PlayerProfile />
             </div>
+
+            {/* Bigfoot Display Section */}
+            <BigfootDisplay />
 
             {/* Achievements Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
@@ -348,12 +310,33 @@ export default function MainMenu() {
                 <p>Email: {email || session?.user?.email || 'N/A'}</p>
               </div>
               <UpdateUserForm onEmailUpdate={handleEmailUpdate} currentEmail={email || session?.user?.email || ''} />
-              <Button 
-                className="w-full mt-4 bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
-                onClick={() => signOut()}
-              >
-                Logout
-              </Button>
+              
+              {/* New container for warning and sensitive actions */}
+              <div className="mt-6 bg-red-900/30 border-2 border-red-700 p-4 rounded-lg">
+                <p className="text-yellow-400 font-pixel text-xs text-center mb-4">
+                  Proceed with caution!
+                </p>
+                <div className="flex flex-col space-y-2">
+                  <Button 
+                    className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
+                    onClick={() => signOut()}
+                  >
+                    Logout
+                  </Button>
+                  <Button
+                    onClick={() => setShowDeleteContainer(!showDeleteContainer)}
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-pixel text-xs"
+                  >
+                    Account Deletion
+                  </Button>
+                  {showDeleteContainer && (
+                    <div className="bg-red-100 p-2 rounded">
+                      <p className="text-red-600 font-pixel text-xs mb-2">Warning: This action cannot be undone!</p>
+                      <DeleteAccountModal onClose={() => setShowDeleteContainer(false)} />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           
@@ -365,6 +348,7 @@ export default function MainMenu() {
           </footer>
         </div>
       </div>
+      <DevDashboard />
     </>
   )
 }
