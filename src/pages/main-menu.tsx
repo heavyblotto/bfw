@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import PlayerProfile from '@/components/PlayerProfile'
 import DevDashboard from '@/components/DevDashboard'
 import DeleteAccountModal from '@/components/DeleteAccountModal'
+import BigfootDisplay from '@/components/BigfootDisplay'
 
 interface MatchHistoryItem {
   opponent: string
@@ -24,19 +25,6 @@ interface MatchHistoryItem {
   attacks: number
   wins: number
   losses: number
-}
-
-// Dummy data for the current Bigfoot (replace with actual data fetching later)
-const currentBigfoot = {
-  name: "Sasquatch",
-  class: "Squatch",
-  level: 1,
-  primaryAbility: "Forest Regeneration",
-  secondaryAbility: "Ground Smash",
-  hp: 100,
-  attack: 50,
-  defense: 50,
-  luck: 50
 }
 
 // Dummy data for achievements (replace with actual data fetching later)
@@ -170,40 +158,8 @@ export default function MainMenu() {
               </h1>
             </div>
 
-            {/* Current Bigfoot Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/images/bigfoot-avatar.webp"
-                  alt={currentBigfoot.name}
-                  width={64}
-                  height={64}
-                  className="rounded-full mr-4"
-                />
-                <h3 className="text-xl font-bold text-amber-400 font-pixel">{currentBigfoot.name}</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-stone-200 font-pixel">
-                <p>Class: {currentBigfoot.class}</p>
-                <p>Level: {currentBigfoot.level}</p>
-                <p>Primary Ability: {currentBigfoot.primaryAbility}</p>
-                <p>Secondary Ability: {currentBigfoot.secondaryAbility}</p>
-                <p>HP: {currentBigfoot.hp}</p>
-                <p>Attack: {currentBigfoot.attack}</p>
-                <p>Defense: {currentBigfoot.defense}</p>
-                <p>Luck: {currentBigfoot.luck}</p>
-              </div>
-              <div className="mt-4 flex gap-2">
-                <Button asChild className="flex-1 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
-                  <Link href="/bigfoot-selection">Select New Bigfoot</Link>
-                </Button>
-                <Button 
-                  asChild 
-                  className="flex-1 bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 whitespace-nowrap"
-                >
-                  <Link href="/arena">Start New Game</Link>
-                </Button>
-              </div>
-            </div>
+            {/* Bigfoot Display Section */}
+            <BigfootDisplay />
 
             {/* Player Profile Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
