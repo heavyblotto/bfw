@@ -64,8 +64,8 @@ interface Bigfoot {
 - `image`: Path to the full-size image of the Bigfoot, used in detailed views.
 - `avatar`: Path to the avatar image of the Bigfoot, used in smaller UI elements.
 - `attacks`: An object containing arrays of card values for each suit, representing the attacks available to this Bigfoot.
-- `primaryAbility`: The main special ability of the Bigfoot, which is always available.
-- `secondaryAbility`: An additional ability that becomes available as the Bigfoot levels up.
+- `primaryAbility`: The main special ability of the Bigfoot, which is always active and applies passively.
+- `secondaryAbility`: An additional ability that is triggered by playing specific cards.
 - `jokerEffect`: Special effects triggered when playing a Joker card, with different effects for black and red Jokers.
 
 These properties define the characteristics, abilities, and gameplay mechanics associated with each Bigfoot character. The combination of these properties creates unique gameplay experiences for each Bigfoot, encouraging players to try different strategies and playstyles.
@@ -124,6 +124,97 @@ And the player plays a 2 of Hearts, the system would:
 
 This structure allows for flexible customization of each Bigfoot's available attacks while maintaining a centralized database of attack effects. It also enables easy balancing and modification of attacks without changing the Bigfoot data itself.
 
+### Attack Availability Based on Bigfoot Level and Class
+
+To create a balanced and varied gameplay experience, we've implemented a system where Bigfoots have access to different attacks based on both their level and class. This affects the `attacks` property in the Bigfoot interface. All classes have access to face card attacks (Jack, Queen, King) at every level, providing consistent strategic options.
+
+#### Level-Based and Class-Based Attack Availability
+The level and class determine the range of available attacks:
+
+- Level 1-5 Bigfoots:
+  - Dwarf: attacks 2, 3, 4, 5, 10, 11, 12 (Jack, Queen)
+  - Squatch: attacks 2, 3, 4, 5, 6, 10, 11, 12, 13 (Jack, Queen, King)
+  - Giant: attacks 2, 3, 4, 5, 6, 7, 12, 13, 14 (Queen, King, Ace)
+  - Boss: attacks 11, 12, 13, 14 (Jack, Queen, King, Ace)
+
+- Level 6-10 Bigfoots:
+  - Dwarf: attacks 2, 3, 4, 5, 6, 10, 11, 12 (Jack, Queen)
+  - Squatch: attacks 2, 3, 4, 5, 6, 7, 10, 11, 12, 13 (Jack, Queen, King)
+  - Giant: attacks 2, 3, 4, 5, 6, 7, 8, 12, 13, 14 (Queen, King, Ace)
+  - Boss: attacks 11, 12, 13, 14 (Jack, Queen, King, Ace)
+
+- Level 11-15 Bigfoots:
+  - Dwarf: attacks 2, 3, 4, 5, 6, 7, 10, 11, 12 (Jack, Queen)
+  - Squatch: attacks 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13 (Jack, Queen, King)
+  - Giant: attacks 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14 (Queen, King, Ace)
+  - Boss: all attacks (2 to 14)
+
+- Level 16-20 Bigfoots:
+  - Dwarf: attacks 2, 3, 4, 5, 6, 7, 8, 10, 11, 12 (Jack, Queen)
+  - Squatch: attacks 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 (Jack, Queen, King)
+  - Giant: attacks 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14 (Queen, King, Ace)
+  - Boss: all attacks (2 to 14)
+
+- Level 21-27 Bigfoots:
+  - Dwarf, Squatch, Giant, Boss: all attacks (2 to 14)
+
+This change is reflected in the Bigfoot data files. For example:
+
+```typescript
+// src/data/bigfoots/forestSprite.ts (Level 8 Dwarf)
+export const forestSprite: Bigfoot = {
+  // ... other properties
+  level: 8,
+  class: 'Dwarf',
+  attacks: {
+    hearts: ['2', '3', '4', '5', '6', '7', '11', '12', '13'],
+    clubs: ['2', '3', '4', '5', '6', '7', '11', '12', '13'],
+    diamonds: ['2', '3', '4', '5', '6', '7', '11', '12', '13'],
+    spades: ['2', '3', '4', '5', '6', '7', '11', '12', '13'],
+  },
+  // ... other properties
+};
+
+// src/data/bigfoots/forestTitan.ts (Level 8 Boss)
+export const forestTitan: Bigfoot = {
+  // ... other properties
+  level: 8,
+  class: 'Boss',
+  attacks: {
+    hearts: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+    clubs: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+    diamonds: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+    spades: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
+  },
+  // ... other properties
+};
+```
+
+This system provides several benefits:
+1. Creates a clear sense of progression as players unlock higher-level Bigfoots
+2. Adds variety to gameplay, as different Bigfoot classes will have different sets of available attacks
+3. Ensures that all Bigfoots have access to face card attacks, providing consistent strategic options at all levels
+4. Allows for easier balancing of Bigfoots based on both level and class
+5. Provides unique gameplay experiences for each Bigfoot class
+6. Offers additional strategic depth when choosing Bigfoots for battles
+
+The `getBigfootAttack` utility function remains the same:
+
+```typescript
+export function getBigfootAttack(bigfoot: Bigfoot, suit: keyof Bigfoot['attacks'], value: number) {
+  const attackKey = bigfoot.attacks[suit].find(k => k === value.toString());
+  if (attackKey) {
+    const numericKey = parseInt(attackKey, 10);
+    if (numericKey >= 2 && numericKey <= 14) {
+      return attacks[suit][numericKey as keyof typeof attacks[typeof suit]];
+    }
+  }
+  return null; // Return null if the Bigfoot doesn't have this attack
+}
+```
+
+This ensures that the game logic correctly handles the attack ranges for all Bigfoot levels and classes, including the consistently available face card attacks.
+
 ### Ability Data Structure
 
 ```typescript
@@ -132,14 +223,22 @@ export const abilities = {
   primary: {
     forestRegeneration: {
       name: "Forest Regeneration",
-      description: "Heal every time a Hearts card is played",
-      effect: "healOnHearts",
-      value: 2
+      description: "Passively heal a small amount with each play",
+      effect: "passiveHeal",
+      value: 1,
+      trigger: "passive"
     },
     // ... other primary abilities
   },
   secondary: {
-    // ... secondary abilities
+    eerieWhistle: {
+      name: "Eerie Whistle",
+      description: "Reduce opponent's attack when playing a Spades card",
+      effect: "reduceAttack",
+      value: 15,
+      trigger: "onSpadesPlay"
+    },
+    // ... other secondary abilities
   }
 };
 ```
@@ -148,41 +247,13 @@ export const abilities = {
 
 The `primaryAbility` and `secondaryAbility` properties in the Bigfoot interface are directly related to this ability data structure. Here's how they work together:
 
-1. The Bigfoot's `primaryAbility` and `secondaryAbility` properties contain string values that serve as keys to look up the actual ability data in the `abilities` structure.
+1. The Bigfoot's `primaryAbility` property contains a string value that serves as a key to look up the actual ability data in the `abilities.primary` structure. This ability is always active and applies passively with each play.
 
-2. The `primaryAbility` is always available to the Bigfoot and represents its core special ability.
+2. The `secondaryAbility` property contains a string value that serves as a key to look up the ability data in the `abilities.secondary` structure. This ability is triggered only when specific cards are played.
 
-3. The `secondaryAbility` becomes available as the Bigfoot levels up, providing additional strategic options.
+3. The primary ability is always available to the Bigfoot and represents its core passive ability that activates with each play, regardless of the cards played.
 
-4. When a Bigfoot uses an ability, the game system:
-   a. Retrieves the ability key from the Bigfoot's `primaryAbility` or `secondaryAbility` property
-   b. Uses that key to look up the full ability data in the `abilities` data structure
-
-For example, if a Sasquatch Bigfoot has these ability properties:
-
-```typescript
-{
-  primaryAbility: 'forestRegeneration',
-  secondaryAbility: 'barkArmor'
-}
-```
-
-The system would:
-1. For the primary ability:
-   - Look up `abilities.primary.forestRegeneration`
-   - Apply the "Forest Regeneration" effect, healing 2 HP every time a Hearts card is played
-
-2. For the secondary ability (once unlocked):
-   - Look up `abilities.secondary.barkArmor`
-   - Apply the "Bark Armor" effect (assuming it exists in the secondary abilities)
-
-This structure allows for:
-- Easy assignment of abilities to different Bigfoot characters
-- Centralized management of ability data
-- Flexibility in updating or balancing abilities without changing individual Bigfoot data
-- Clear separation between available abilities (in the Bigfoot data) and ability effects (in the central ability data)
-
-It's important to note that while a Bigfoot always has both `primaryAbility` and `secondaryAbility` properties defined, the secondary ability might not be immediately available in gameplay. The availability of the secondary ability could be tied to the Bigfoot's level or other progression mechanics, as defined in the game rules.
+4. The secondary ability is available from the start but only activates when specific cards are played, adding a strategic element to card selection during gameplay.
 
 ### Joker Effect Data Structure
 
