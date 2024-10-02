@@ -40,7 +40,9 @@ export default function BigfootDisplay() {
 
   return (
     <div className="bg-stone-800/90 p-6 rounded-lg mb-8 border-2 border-stone-600 shadow-lg">
-      <h3 className="text-2xl font-bold text-amber-400 font-pixel mb-6">{bigfoot.name}</h3>
+      <h3 className="text-2xl font-bold text-amber-400 font-pixel mb-6">
+        Selected: <span className="text-stone-200">{bigfoot.name}</span>
+      </h3>
       <div className="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-6 mb-6">
         <div className="w-full md:w-1/3 flex flex-col items-center">
           <div className="relative w-64 h-64 mb-4 rounded-lg overflow-hidden border-2 border-stone-600">

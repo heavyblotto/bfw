@@ -139,7 +139,7 @@ export default function MainMenu() {
       <div className="h-screen flex flex-col relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/bigfoot-war-logo.png"
+            src="/images/index-bg.webp"
             alt="Misty forest background"
             fill
             style={{ objectFit: 'cover' }}

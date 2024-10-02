@@ -17,9 +17,9 @@ priority: High
    - [x] Complete src/data/attacks.ts
    - [x] Complete src/data/jokerEffects.ts
    - [x] Create more individual Bigfoot files in src/data/bigfoots/
-   - [ ] Implement API routes for Bigfoot data
-   - [ ] Create BigfootCard and BigfootSelection components
-   - [ ] Integrate Bigfoot selection with player profile
+   - [x] Implement API routes for Bigfoot data
+   - [ ] Create Bigfoot Selection components
+   - [x] Integrate Bigfoot selection with player profile
 
 2. Develop Core Gameplay Features
    - [ ] Implement player leveling system

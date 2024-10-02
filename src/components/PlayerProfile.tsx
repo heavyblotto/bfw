@@ -28,10 +28,10 @@ export default function PlayerProfile() {
 
   return (
     <div className="text-stone-200 font-pixel bg-stone-700/50 p-4 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-amber-400">Player Profile</h2>
-      <div className="mb-4">
-        <p className="text-lg">{session?.user?.name || 'Unknown Player'}</p>
-      </div>
+      <h2 className="text-2xl font-bold mb-4">
+        <span className="text-amber-400">Player: </span>
+        <span className="text-stone-200">{session?.user?.name || 'Unknown Player'}</span>
+      </h2>
       <div className="grid grid-cols-3 gap-4">
         <div className="flex items-center">
           <GiUpgrade className="text-amber-400 mr-2" />
