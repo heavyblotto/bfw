@@ -10,6 +10,7 @@ import useAuthStore from '@/stores/authStore';
 import { useEffect, useState } from 'react';
 import PlayerProfile from '@/components/PlayerProfile'
 import DevDashboard from '@/components/DevDashboard'
+import DeleteAccountModal from '@/components/DeleteAccountModal'
 
 interface MatchHistoryItem {
   opponent: string
@@ -375,14 +376,7 @@ export default function MainMenu() {
                   {showDeleteContainer && (
                     <div className="bg-red-100 p-2 rounded">
                       <p className="text-red-600 font-pixel text-xs mb-2">Warning: This action cannot be undone!</p>
-                      <Button
-                        onClick={() => {
-                          // Add account deletion logic here
-                        }}
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-pixel text-xs"
-                      >
-                        Delete Account
-                      </Button>
+                      <DeleteAccountModal onClose={() => setShowDeleteContainer(false)} />
                     </div>
                   )}
                 </div>

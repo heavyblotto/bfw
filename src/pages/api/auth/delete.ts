@@ -21,17 +21,26 @@ export default async function handler(
   try {
     const user = await prisma.user.findUnique({
       where: { id: parseInt(session.user.id) },
+      include: { playerProfile: true },
     })
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
 
+    // Delete the PlayerProfile first
+    if (user.playerProfile) {
+      await prisma.playerProfile.delete({
+        where: { id: user.playerProfile.id },
+      })
+    }
+
+    // Now delete the User
     await prisma.user.delete({
       where: { id: user.id },
     })
 
-    res.status(200).json({ message: 'User deleted successfully' })
+    res.status(200).json({ message: 'User and associated data deleted successfully' })
   } catch (error) {
     console.error('Delete error:', error)
     res.status(500).json({ message: 'Error deleting user' })
