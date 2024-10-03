@@ -11,7 +11,6 @@ import { useEffect, useState } from 'react';
 import PlayerProfile from '@/components/PlayerProfile'
 import DevDashboard from '@/components/DevDashboard'
 import DeleteAccountModal from '@/components/DeleteAccountModal'
-import BigfootDisplay from '@/components/BigfootDisplay'
 
 interface MatchHistoryItem {
   opponent: string
@@ -163,8 +162,15 @@ export default function MainMenu() {
               <PlayerProfile />
             </div>
 
-            {/* Bigfoot Display Section */}
-            <BigfootDisplay />
+            {/* Start Game Button */}
+            <div className="mb-8">
+              <Button 
+                asChild 
+                className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-xl py-4"
+              >
+                <Link href="/arena">Start Game</Link>
+              </Button>
+            </div>
 
             {/* Achievements Section */}
             <div className="bg-stone-800/90 p-4 rounded-lg mb-8">

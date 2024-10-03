@@ -1,4 +1,4 @@
-# Arena (Game Logic) Design
+# Game Logic Design
 
 ## Overview
 This document outlines the core game logic for Bigfoot War, detailing the flow of gameplay, key mechanics, and decision points.
