@@ -3,8 +3,6 @@
 ### 1. **Layout Structure**
 Layout to remain intuitive on mobile first layout, with clear priorities for information and actions. A **vertical stack** for mobile will help maintain readability and ease of interaction. Here’s a breakdown:
 
-#### **Desktop Design (Horizontal Layout)**
-
 #### **Mobile Design (Vertical Stack)**
 On mobile, compress the layout into a single column view:
 - **Top Section**: Show the opponent’s character and stats at the very top, followed by the player’s character and stats right beneath. This keeps things visible without cluttering the small screen.
