@@ -1,14 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { EyeIcon, EyeOffIcon, X } from 'lucide-react'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -21,21 +20,8 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-gradient-to-br from-green-900 via-brown-800 to-green-700">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/index-bg.webp"
-          alt="Forest Background"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          priority
-        />
-      </div>
-      {/* Overlay to darken the background */}
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      
-      <Card className="w-full max-w-md mx-auto bg-stone-800/90 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20 backdrop-blur-sm">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-black">
+      <Card className="w-full max-w-md mx-auto bg-stone-800/90 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20">
         <CardHeader>
           <CardTitle className="text-4xl font-bold mb-2 text-amber-400 font-pixel">Login</CardTitle>
           <CardDescription className="text-stone-300 font-pixel text-xl">Enter your credentials</CardDescription>

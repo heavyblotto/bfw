@@ -24,24 +24,17 @@ export default function Home() {
         <title>Bigfoot War - Card Battle Game</title>
         <meta name="description" content="Battle opponents in this fast-paced card game featuring mythical Bigfoot creatures!" />
       </Head>
-      <div className="min-h-screen flex flex-col relative overflow-hidden">
-        <Image
-          src="/images/index-bg.webp"
-          alt="Forest background"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+      <div className="min-h-screen flex flex-col relative bg-black">
         <div className="relative z-10 flex-grow flex flex-col">
           <div className="flex-grow flex items-center justify-center p-4">
-            <div className="bg-stone-800/90 p-8 rounded-lg text-center max-w-3xl w-full">
-              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center 
-                             [text-shadow:_2px_2px_0_#000,_-2px_-2px_0_#000,_2px_-2px_0_#000,_-2px_2px_0_#000,_0_2px_0_#000,_2px_0_0_#000,_0_-2px_0_#000,_-2px_0_0_#000]
-                             [filter:_drop-shadow(0_0_10px_rgba(245,158,11,0.8))]
-                             mb-4 whitespace-nowrap">
+            <div className="container mx-auto px-4 py-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl flex-grow bg-stone-800/90 rounded-lg text-center">
+              <h1 className="text-3xl sm:text-4xl font-bold text-amber-400 font-pixel text-center 
+                             [text-shadow:_1px_1px_0_#000,_-1px_-1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_0_1px_0_#000,_1px_0_0_#000,_0_-1px_0_#000,_-1px_0_0_#000]
+                             [filter:_drop-shadow(0_0_5px_rgba(245,158,11,0.8))]
+                             mb-3 whitespace-nowrap">
                 Bigfoot War!
               </h1>
-              <div className="relative w-full h-0 pb-[56.25%] mb-4 overflow-hidden">
+              <div className="relative w-full h-0 pb-[56.25%] mb-3 overflow-hidden">
                 <Image
                   src="/images/bigfoot-war-logo.png"
                   alt="Bigfoot Battle"
@@ -53,33 +46,24 @@ export default function Home() {
                   priority
                 />
               </div>
-              <p className="text-stone-200 mb-4 font-pixel">
+              <p className="text-stone-200 mb-6 font-pixel text-sm">
                 Battle opponents in this fast-paced card game featuring mythical Bigfoot creatures!
                 Collect cards, unleash powerful attacks, and become the ultimate Bigfoot warrior.
               </p>
-              <div className="space-x-4 mb-4">
-                <Button asChild className="bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel">
+              <div className="space-y-3">
+                <Button asChild className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-sm py-2 px-3">
                   <Link href="/register">Register</Link>
                 </Button>
-                <Button asChild className="bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel">
+                <Button asChild className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-sm py-2 px-3">
                   <Link href="/login">Login</Link>
                 </Button>
-              </div>
-              <div className="bg-stone-900/80 p-4 rounded-lg mt-4">
-                <h2 className="text-2xl font-bold mb-2 text-amber-400 font-pixel">How to Get Started:</h2>
-                <ol className="text-stone-200 text-left list-decimal list-inside font-pixel">
-                  <li>Register for a new account or log in</li>
-                  <li>Choose your Bigfoot character</li>
-                  <li>Select a match and enter the arena</li>
-                  <li>Battle opponents, collect cards, and earn rewards!</li>
-                </ol>
               </div>
             </div>
           </div>
           
-          <footer className="w-full text-center p-4 bg-stone-800/90 text-stone-200">
-            <p className="font-pixel text-sm">© 2024 Bigfoot War. All rights reserved.</p>
-            <Link href="/release-notes" className="text-amber-400 hover:text-amber-300 font-pixel text-sm transition-colors duration-200">
+          <footer className="w-full text-center p-3 bg-stone-800/90 text-stone-200">
+            <p className="font-pixel text-xs">© 2024 Bigfoot War. All rights reserved.</p>
+            <Link href="/release-notes" className="text-amber-400 hover:text-amber-300 font-pixel text-xs transition-colors duration-200">
               Release Notes
             </Link>
           </footer>

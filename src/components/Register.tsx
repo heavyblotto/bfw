@@ -7,7 +7,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label"
 import Link from 'next/link'
 import { EyeIcon, EyeOffIcon, X } from 'lucide-react'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 export default function RegisterForm() {
@@ -49,19 +48,8 @@ export default function RegisterForm() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-gradient-to-br from-green-900 via-brown-800 to-green-700">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/index-bg.webp"
-          alt="Forest Background"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          priority
-        />
-      </div>
-      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-      
-      <Card className="w-full max-w-md mx-auto bg-stone-800/90 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20 backdrop-blur-sm">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-black">
+      <Card className="container mx-auto px-4 py-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl flex-grow bg-stone-800/90 text-stone-200 border-2 border-stone-600 shadow-lg relative z-20">
         <CardHeader>
           <CardTitle className="text-4xl font-bold mb-2 text-amber-400 font-pixel">Register</CardTitle>
           <CardDescription className="text-stone-300 font-pixel text-xl">Create your Bigfoot War account</CardDescription>

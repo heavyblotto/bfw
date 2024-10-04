@@ -1,7 +1,6 @@
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { Trophy } from 'lucide-react'
@@ -135,22 +134,12 @@ export default function MainMenu() {
         <title>Bigfoot War - Main Menu</title>
         <meta name="description" content="Choose your Bigfoot and start your adventure!" />
       </Head>
-      <div className="h-screen flex flex-col relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/index-bg.webp"
-            alt="Misty forest background"
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-          />
-        </div>
-
+      <div className="h-screen flex flex-col relative overflow-hidden bg-black">
         <div className="relative z-10 flex-grow flex flex-col overflow-y-auto">
-          <div className="container mx-auto px-4 py-8 max-w-3xl flex-grow">
+          <div className="container mx-auto px-4 py-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl flex-grow">
             {/* Updated Bigfoot War title */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h1 className="text-4xl sm:text-6xl font-bold text-amber-400 font-pixel text-center 
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h1 className="text-3xl sm:text-5xl font-bold text-amber-400 font-pixel text-center 
                              [text-shadow:_2px_2px_0_#000,_-2px_-2px_0_#000,_2px_-2px_0_#000,_-2px_2px_0_#000,_0_2px_0_#000,_2px_0_0_#000,_0_-2px_0_#000,_-2px_0_0_#000]
                              [filter:_drop-shadow(0_0_10px_rgba(245,158,11,0.8))]">
                 Bigfoot War!
@@ -158,40 +147,40 @@ export default function MainMenu() {
             </div>
 
             {/* Player Profile Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
               <PlayerProfile />
             </div>
 
             {/* Start Game Button */}
-            <div className="mb-8">
+            <div className="mb-6">
               <Button 
                 asChild 
-                className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-xl py-4"
+                className="w-full bg-green-700 hover:bg-green-600 text-stone-200 border-2 border-stone-400 font-pixel text-lg py-3"
               >
                 <Link href="/arena">Start Game</Link>
               </Button>
             </div>
 
             {/* Achievements Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Achievements</h3>
-              <div className="text-stone-200 font-pixel mb-4">
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3">Achievements</h3>
+              <div className="text-stone-200 font-pixel mb-3 text-sm">
                 <h4 className="font-bold">Latest Unlocked:</h4>
                 <p>{latestAchievement.title} - {latestAchievement.description}</p>
               </div>
-              <div className="text-stone-200 font-pixel mb-4">
+              <div className="text-stone-200 font-pixel mb-3 text-sm">
                 <h4 className="font-bold">Next to Unlock:</h4>
                 <p>{nextAchievement.title} - {nextAchievement.description}</p>
               </div>
-              <Button asChild className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2">
                 <Link href="/achievements">View All Achievements</Link>
               </Button>
             </div>
 
             {/* Match History Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Match History</h3>
-              <div className="max-h-60 overflow-y-auto">
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3">Match History</h3>
+              <div className="max-h-48 overflow-y-auto">
                 {matchHistory.map((match, index) => (
                   <div key={index} className="bg-stone-700/50 p-2 rounded mb-2 text-stone-200 font-pixel text-xs">
                     <div className="flex justify-between items-center mb-1">
@@ -212,15 +201,15 @@ export default function MainMenu() {
                   </div>
                 ))}
               </div>
-              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-3 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2">
                 <Link href="/match-log">View Full Match Log</Link>
               </Button>
             </div>
 
             {/* Trending Stats Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Trending Stats</h3>
-              <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3">Trending Stats</h3>
+              <div className="grid grid-cols-2 gap-3 text-stone-200 font-pixel text-sm">
                 <div>
                   <p className="font-bold">Games Played:</p>
                   <p>{trendingStats.gamesPlayed}</p>
@@ -246,18 +235,18 @@ export default function MainMenu() {
                   <p>{trendingStats.highestWinStreak}</p>
                 </div>
               </div>
-              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-3 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2">
                 <Link href="/stats">View Full Stats</Link>
               </Button>
             </div>
 
             {/* Leaderboard Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4 flex items-center">
-                <Trophy className="mr-2" /> Leaderboard
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3 flex items-center">
+                <Trophy className="mr-2 h-5 w-5" /> Leaderboard
               </h3>
               <div className="overflow-x-auto">
-                <table className="w-full text-stone-200 font-pixel">
+                <table className="w-full text-stone-200 font-pixel text-sm">
                   <thead>
                     <tr className="border-b border-stone-600">
                       <th className="py-2 text-left">Rank</th>
@@ -276,15 +265,15 @@ export default function MainMenu() {
                   </tbody>
                 </table>
               </div>
-              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-3 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2">
                 <Link href="/leaderboard">View Full Leaderboard</Link>
               </Button>
             </div>
 
             {/* Settings Section */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Settings</h3>
-              <div className="grid grid-cols-2 gap-4 text-stone-200 font-pixel">
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3">Settings</h3>
+              <div className="grid grid-cols-2 gap-3 text-stone-200 font-pixel text-sm">
                 <div>
                   <p className="font-bold">AI Difficulty:</p>
                   <p>{settings.aiDifficulty}</p>
@@ -302,36 +291,35 @@ export default function MainMenu() {
                   <p>{settings.notifications ? "On" : "Off"}</p>
                 </div>
               </div>
-              <Button asChild className="w-full mt-4 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs">
+              <Button asChild className="w-full mt-3 bg-stone-700 hover:bg-stone-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2">
                 <Link href="/settings">Adjust Settings</Link>
               </Button>
             </div>
 
-            {/* Account Section with UpdateUserForm component */}
-            <div className="bg-stone-800/90 p-4 rounded-lg mb-8">
-              <h3 className="text-xl font-bold text-amber-400 font-pixel mb-4">Account</h3>
-              {/* Add username and email display */}
-              <div className="mb-4 text-stone-200 font-pixel">
+            {/* Account Section */}
+            <div className="bg-stone-800/90 p-3 rounded-lg mb-6">
+              <h3 className="text-lg font-bold text-amber-400 font-pixel mb-3">Account</h3>
+              <div className="mb-3 text-stone-200 font-pixel text-sm">
                 <p>Username: {session?.user?.username || 'N/A'}</p>
                 <p>Email: {email || session?.user?.email || 'N/A'}</p>
               </div>
               <UpdateUserForm onEmailUpdate={handleEmailUpdate} currentEmail={email || session?.user?.email || ''} />
               
-              {/* New container for warning and sensitive actions */}
-              <div className="mt-6 bg-red-900/30 border-2 border-red-700 p-4 rounded-lg">
-                <p className="text-yellow-400 font-pixel text-xs text-center mb-4">
+              {/* Warning and sensitive actions */}
+              <div className="mt-4 bg-red-900/30 border-2 border-red-700 p-3 rounded-lg">
+                <p className="text-yellow-400 font-pixel text-xs text-center mb-3">
                   Proceed with caution!
                 </p>
                 <div className="flex flex-col space-y-2">
                   <Button 
-                    className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs"
+                    className="w-full bg-red-700 hover:bg-red-600 text-stone-200 border-2 border-stone-400 font-pixel text-xs py-2"
                     onClick={() => signOut()}
                   >
                     Logout
                   </Button>
                   <Button
                     onClick={() => setShowDeleteContainer(!showDeleteContainer)}
-                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-pixel text-xs"
+                    className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-pixel text-xs py-2"
                   >
                     Account Deletion
                   </Button>
@@ -346,9 +334,9 @@ export default function MainMenu() {
             </div>
           </div>
           
-          <footer className="w-full text-center p-4 bg-stone-800/90 text-stone-200">
-            <p className="font-pixel text-sm">© 2024 Bigfoot War. All rights reserved.</p>
-            <Link href="/release-notes" className="text-amber-400 hover:text-amber-300 font-pixel text-sm transition-colors duration-200">
+          <footer className="w-full text-center p-3 bg-stone-800/90 text-stone-200">
+            <p className="font-pixel text-xs">© 2024 Bigfoot War. All rights reserved.</p>
+            <Link href="/release-notes" className="text-amber-400 hover:text-amber-300 font-pixel text-xs transition-colors duration-200">
               Release Notes
             </Link>
           </footer>
